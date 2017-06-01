@@ -1,0 +1,120 @@
+.home_page .left-info{background-color: #39A99D; padding: 10px; color: #fff;}
+.home_page .left-info .fa{font-size: 50px; margin-right: 10px;}
+.home_page .center-info{background-color: #39A99D; padding: 10px; color: #fff;}
+.home_page .center-info .fa{font-size: 50px; margin-right: 10px;}
+
+.index_page .info-tab{border: 1px solid #efefef; margin-bottom: 20px;}
+.index_page .info-tab .info{background-color: #39A99D; color: #fff; padding: 10px;}
+.index_page .info-tab .info img{height: 60px; width: 60px; margin-right: 20px;}
+.index_page .info-tab .edit .item{padding: 10px; text-align: center; border-right: 1px solid #efefef;}
+.index_page .info-tab .edit .item:last-child{border-right: none;}
+
+.index3_page .info-tab{border: 1px solid #efefef; margin-bottom: 20px;}
+.index3_page .info-tab .info{padding: 10px;}
+.index3_page .info-tab .info img{height: 60px; width: 60px; margin-right: 20px;}
+.index3_page .info-tab .edit{border-top: 1px solid #efefef;}
+.index3_page .info-tab .edit .item{padding: 10px; text-align: center; border-right: 1px solid #efefef;}
+.index3_page .info-tab .edit .item:last-child{border-right: none;}
+
+.index7_page .item-info{background-color: #41B2A6; color: #fff; width: 70px; height: 70px; border-radius: 50%;padding: 15px 5px 0px 5px; text-align: center;}
+
+.index9_page .info-tab{border: 1px solid #efefef; margin-bottom: 20px;}
+.index9_page .info-tab .info{padding: 10px;}
+.index9_page .info-tab .info img{height: 60px; width: 60px; margin-right: 20px;}
+
+.index12_page .dept-info{margin-top: 10px;}
+.index12_page .info-tab{background-color: #39A99D; color: #fff; text-align: center; padding: 5px; border-top-left-radius: 5px; border-top-right-radius: 5px;}
+.index12_page .info-tab .info-space{background-color: #148373; font-size: 12px; opacity: .6; border-radius: 10px; margin-bottom: 10px;}
+.index12_page .info-name{padding: 10px; text-align: center; border-radius: 0 0 5px 5px; border-style: solid; border-width: 0 1px 1px; border-color: #ddd;}
+
+.index13_page .info-tab{border: 1px solid #efefef; margin-bottom: 20px;}
+.index13_page .info-tab .info{background-color: #39A99D; color: #fff; padding: 10px;}
+.index13_page .info-tab .info img{height: 60px; width: 60px; margin-right: 20px;}
+.index13_page .info-tab .edit .item{padding: 10px; text-align: center; border-right: 1px solid #efefef;}
+.index13_page .info-tab .edit .item:last-child{border-right: none;}
+.index13_page .search-tab .info{padding: 10px;}
+
+.index5_page .list-tab img{width: 50px; height: 50px; border: 1px solid #efefef;}
+
+.search-tab .info{padding: 10px;}
+.search-tab input, .search-tab select{font-size: 12px;}
+
+.setup_index11_page .float-tab{
+	position: absolute;
+	background-color: #fff;
+	right: 0;
+	z-index: 999;
+	border: 1px solid #efefef;
+	-webkit-transition: display 2s; /* For Safari 3.1 to 6.0 */
+    transition: display;
+}
+
+.page-nav input{margin: 20px 10px; border: 1px solid #ddd; border-radius: 5px;}
+.page-nav button{margin: 20px 0; border: 1px solid #ddd;}
+
+.tree {
+    min-height:20px;
+    padding:0px;
+    margin-bottom:20px;
+    background-color:#fff;
+    border:none;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow:inset 0 0px 0px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow:inset 0 0px 0px rgba(0, 0, 0, 0.05);
+    box-shadow:inset 0 0px 0px rgba(0, 0, 0, 0.05)
+}
+.tree ul:first-child {
+	padding-left: 0px;
+}
+.tree li {
+    list-style-type:none;
+    margin:0;
+    padding:10px 5px 0 5px;
+    position:relative
+}
+.tree li::before, .tree li::after {
+    content:'';
+    left:-20px;
+    position:absolute;
+    right:auto
+}
+.tree li::before {
+    border-left:1px solid #999;
+    bottom:50px;
+    height:100%;
+    top:0;
+    width:1px
+}
+.tree li::after {
+    border-top:1px solid #999;
+    height:20px;
+    top:25px;
+    width:25px
+}
+.tree li span {
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border:1px solid #999;
+    border-radius:5px;
+    display:inline-block;
+    padding:3px 8px;
+    text-decoration:none;
+    border: none;
+    padding: 0px    ;
+}
+.tree li.parent_li>span {
+    cursor:pointer
+}
+.tree>ul>li::before, .tree>ul>li::after {
+    border:0
+}
+.tree li:last-child::before {
+    height:30px
+}
+.tree li.parent_li>span:hover, .tree li.parent_li>span:hover+ul li span {
+    background:#eee;
+    border:1px solid #94a0b4;
+    color:#000
+}

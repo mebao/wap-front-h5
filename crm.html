@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>crm</title>
+
+    <!-- Bootstrap -->
+    <link href="./vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- FullCalendar -->
+    <link href="./vendors/fullcalendar/fullcalendar.min.css" rel="stylesheet">
+    <link href="./vendors/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print">
+
+    <!-- Custom Theme Style -->
+    <link href="css/crm.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <link href="css/crmPage.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div id="crm" class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>John Doe</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                
+              <div class="menu_section">
+                
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="images/img.jpg" alt="">John Doe
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                </li>
+
+                <li role="presentation" class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="badge bg-green">6</span>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <li>
+                      <a>
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="text-center">
+                        <a>
+                          <strong>See All Alerts</strong>
+                          <i class="fa fa-angle-right"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col home_page" role="main">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>工作台</h2>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <div class="row mb10">
+                <div class="col-md-3">
+                  <div class="left-info">
+                    <div class="flex">
+                      <i class="fa fa-user"></i>
+                      <div>
+                        <div>今日就诊概况</div>
+                        <div>总人数：0</div>
+                      </div>
+                    </div>
+                    <div class="flex">
+                      <div class="w40">
+                        <div>门诊人数</div>
+                        <div>0</div>
+                      </div>
+                      <div>
+                        <div>远程就诊人数</div>
+                        <div>0</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="center-info">
+                    <div class="flex">
+                      <i class="fa fa-minus-square-o"></i>
+                      <div>
+                        <div>患者库</div>
+                        <div>患者信息</div>
+                      </div>
+                    </div>
+                    <div class="flex">
+                      <div class="w40">
+                        <div>门诊人数</div>
+                        <div>0</div>
+                      </div>
+                      <div>
+                        <div>远程就诊人数</div>
+                        <div>0</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="flex">
+                    <div class="w50">患者查询</div>
+                    <div class="w50">药物查询</div>
+                  </div>
+                  <div class="">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="患者姓名">
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-primary">搜索</button>
+                    </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="x_panel">
+                    <div class="x_content">
+                      <div id='calendarDay'></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="x_panel">
+                    <div class="x_content">
+                      <div id='calendarWeek'></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            crm
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="./vendors/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="./vendors/bootstrap/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="./vendors/fastclick/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="./vendors/nprogress/nprogress.js"></script>
+    <!-- FullCalendar -->
+    <script src="./vendors/moment/moment.min.js"></script>
+    <script src="./vendors/fullcalendar/fullcalendar.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="js/crm.js"></script>
+    <script src="js/main.js"></script>
+    <!-- FullCalendar -->
+    <script>
+      $(window).load(function() {
+        var date = new Date(),
+            d = date.getDate(),
+            m = date.getMonth(),
+            y = date.getFullYear(),
+            started,
+            categoryClass;
+
+        var calendarDay = $('#calendarDay').fullCalendar({
+          height: 'auto',
+          defaultView: 'basicWeek',
+          header: {
+            left: 'prev,next today',
+            right: ''
+          },
+          allDayText: '预约',
+          slotDuration: '00:30:00',
+          slotLabelFormat: 'H:mm',
+          slotLabelInterval: '00:30:00',
+          minTime: '08:00:00',
+          maxTime: '22:30:00',
+          titleFormat: {
+            month: 'YYYY年MM月',
+            week: 'YYYY年MM月DD日',
+            day: 'YYYY年MM月DD日 dddd'
+          },
+          buttonText: {
+            prev: '‹上一周',
+            next: '下一周›',
+            today: '今天',
+          },
+          dayNames: [
+            '星期天',
+            '星期一',
+            '星期二',
+            '星期三',
+            '星期四',
+            '星期五',
+            '星期六',
+          ],
+          dayNamesShort: [
+            '周日',
+            '周一',
+            '周二',
+            '周三',
+            '周四',
+            '周五',
+            '周六',
+          ],
+          events: [{
+            title: 'All Day Event',
+            start: new Date(y, m, 1)
+          }, {
+            title: 'Long Event',
+            start: new Date(y, m, d - 5),
+            end: new Date(y, m, d - 2)
+          }, {
+            title: 'Meeting',
+            start: new Date(y, m, d, 10, 30),
+            allDay: false
+          }, {
+            title: 'Lunch',
+            start: new Date(y, m, d + 14, 12, 0),
+            end: new Date(y, m, d, 14, 0),
+            allDay: false
+          }, {
+            title: 'Birthday Party',
+            start: new Date(y, m, d + 1, 19, 0),
+            end: new Date(y, m, d + 1, 22, 30),
+            allDay: false
+          }, {
+            title: 'Click for Google',
+            start: new Date(y, m, 28),
+            end: new Date(y, m, 29),
+            url: 'http://google.com/'
+          }]
+        });
+
+        var calendarWeek = $('#calendarWeek').fullCalendar({
+          height: 'auto',
+          defaultView: 'agendaWeek',
+          header: {
+            left: 'title',
+            right: 'prev,next today'
+          },
+          allDayText: '预约',
+          slotDuration: '00:30:00',
+          slotLabelFormat: 'H:mm',
+          slotLabelInterval: '00:30:00',
+          minTime: '08:00:00',
+          maxTime: '22:30:00',
+          titleFormat: {
+            month: 'YYYY年MM月',
+            week: 'YYYY年MM月DD日',
+            day: 'YYYY年MM月DD日 dddd'
+          },
+          buttonText: {
+            prev: '‹上一周',
+            next: '下一周›',
+            today: '今天',
+          },
+          dayNames: [
+            '星期天',
+            '星期一',
+            '星期二',
+            '星期三',
+            '星期四',
+            '星期五',
+            '星期六',
+          ],
+          dayNamesShort: [
+            '周日',
+            '周一',
+            '周二',
+            '周三',
+            '周四',
+            '周五',
+            '周六',
+          ],
+          events: [{
+            title: 'All Day Event',
+            start: new Date(y, m, 1)
+          }, {
+            title: 'Long Event',
+            start: new Date(y, m, d - 5),
+            end: new Date(y, m, d - 2)
+          }, {
+            title: 'Meeting',
+            start: new Date(y, m, d, 10, 30),
+            allDay: false
+          }, {
+            title: 'Lunch',
+            start: new Date(y, m, d + 14, 12, 0),
+            end: new Date(y, m, d, 14, 0),
+            allDay: false
+          }, {
+            title: 'Birthday Party',
+            start: new Date(y, m, d + 1, 19, 0),
+            end: new Date(y, m, d + 1, 22, 30),
+            allDay: false
+          }, {
+            title: 'Click for Google',
+            start: new Date(y, m, 28),
+            end: new Date(y, m, 29),
+            url: 'http://google.com/'
+          }]
+        });
+      });
+    </script>
+    <!-- /FullCalendar -->
+  </body>
+</html>
