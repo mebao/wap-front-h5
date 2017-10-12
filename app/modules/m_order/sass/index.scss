@@ -8,6 +8,21 @@
 				background-color: #fff;
 				margin-top: px2rem(10px);
 				padding: px2rem(10px);
+				.status{
+					border-radius: px2rem(4px);
+					color: #fff;
+					padding: 0 10px;
+					background-color: #D45D5D;
+					&.in{
+						background-color: #39A99D;
+					}
+					&.cancel{
+						background-color: #666666;
+					}
+					&.complete{
+						background-color: #448CCB;
+					}
+				}
 				.text-right{
 					text-align: right;
 				}

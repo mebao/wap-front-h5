@@ -1,6 +1,6 @@
 <div ng-controller="orderDetailCtrl" class="orderDetail-page">
     <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
-		<p class="tip">
+		<p ng-if="(order.status  == '1' || order.status  == '2') && use" class="tip">
 			<span>离面诊时间还有</span>
 			<span ng-bind="order.timeDiff"></span>
 		</p>
@@ -39,7 +39,7 @@
 				<div class="left-box">
 					预约时间
 				</div>
-				<div class="middle-box" ng-bind="order.bookingDate"></div>
+				<div class="middle-box" ng-bind="order.bookingDateText"></div>
 			</div>
 			<div class="cell">
 				<div class="left-box">

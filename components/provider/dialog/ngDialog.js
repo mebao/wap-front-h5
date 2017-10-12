@@ -108,10 +108,10 @@
                     }
 
                     var closeElement = document.getElementById(id);
-                    angular.element(closeElement).remove();
                     if (options.closeCallback) {
                         options.closeCallback(value);
                     }
+                    angular.element(closeElement).remove();
                 }
             };
             return publicMethods;

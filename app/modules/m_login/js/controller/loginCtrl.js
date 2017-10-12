@@ -2,7 +2,7 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
     $scope.footer = true;
-    
+
 	window.headerConfig={
 		title: '登录',
         otherRightOperate: {
@@ -15,13 +15,13 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 	};
 
 	$rootScope.$broadcast('setHeaderConfig', window.headerConfig);
-	
+
 	$scope.selectedTab=0;
 	$scope.checkTab=function(_index){
 		$scope.selectedTab=_index;
 	}
 
-	$scope.from=$stateParams.from?$stateParams.from:'layout.home';
+	$scope.from=$stateParams.from?$stateParams.from:'layout.user';
 	$scope.intercept=StorageConfig.INTERCEPT_STORAGE.getItem('param');
 
 	$scope.loginPwd=function(){
@@ -66,7 +66,7 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 					$scope.$apply();
 				}
 			},1000);
-			
+
 		},function(res){
 			dialog.alert(res.errorMsg);
 			$scope.lockEnabled=false;

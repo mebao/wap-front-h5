@@ -16,7 +16,7 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 		},
 		cancelOrderById: function(urlOptions){
 			var requestObj={
-				url: apiUrl+'/mebapi/bookingcancelled/'+urlOptions.id+'?username='+urlOptions.username+'&token='+urlOptions.token
+				url: apiUrl+'/mebapi/bookingcancelled/'+urlOptions.id+'?username='+urlOptions.username+'&token='+urlOptions.token+'&remark='+urlOptions.remark
 			}
 			return BaseHttpRequest.get(requestObj,getOrderListDto);
 		}
