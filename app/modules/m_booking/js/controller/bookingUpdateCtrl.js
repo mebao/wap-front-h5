@@ -2,7 +2,7 @@ app.controller('bookingUpdateCtrl', ['$scope', '$rootScope', 'doctorService', '$
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
     $scope.footer = true;
-    
+
 	window.headerConfig = {
 		title: '修改订单'
 	}
@@ -111,7 +111,6 @@ app.controller('bookingUpdateCtrl', ['$scope', '$rootScope', 'doctorService', '$
 		backData: '',
 		callback: function(_data){
 			if(_data){
-				console.log(444);
 				getBookingDate();
 			}
 		}

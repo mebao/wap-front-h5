@@ -2,6 +2,12 @@
     <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
 		<form name="registerForm">
 			<div class="cell-group">
+                <div class="cell">
+                    <div class="left-box clearly-width">用户名</div>
+                    <div class="middle-box">
+                        <input type="text" name="name" maxlength="18" ng-model="name" placeholder="请输入用户名" required="">
+                    </div>
+                </div>
 				<div class="cell">
 					<div class="left-box clearly-width">手机号码</div>
 					<div class="middle-box">

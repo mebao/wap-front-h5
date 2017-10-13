@@ -2,7 +2,7 @@ app.controller('createChildCtrl',['$scope','$rootScope','tokenService','dialog',
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
     $scope.footer = true;
-    
+
     window.headerConfig={
 		enableBack: true,
 		title: '添加监护儿童'
@@ -135,7 +135,7 @@ app.controller('createChildCtrl',['$scope','$rootScope','tokenService','dialog',
         });
 
         function getFileNum(num){
-            console.log(num);
+            // console.log(num);
         }
 
         var spinner='';

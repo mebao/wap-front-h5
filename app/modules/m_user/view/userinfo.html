@@ -3,43 +3,34 @@
 		<form name="userinfoForm">
 			<div class="cell-group">
 				<div class="cell">
-					<div class="left-box">
+					<div class="left-box clearly-width">
+						用户名
+					</div>
+					<div class="middle-box">
+						<input type="text" ng-model="info.name" placeholder="用户名" required ng-disabled="!(user.name == null || user.name == '')">
+					</div>
+				</div>
+				<div class="cell">
+					<div class="left-box clearly-width">
 						姓名
 					</div>
-					<div class="middle-box" ng-show="user.name==null">
-						<input type="text" ng-model="name" placeholder="姓名" required>
-					</div>
-					<div class="middle-box" ng-bind="user.name" ng-show="user.name!=null">
-
+					<div class="middle-box">
+						<input type="text" ng-model="info.nickname" placeholder="姓名" required ng-disabled="!(user.nickname == null || user.nickname == '')">
 					</div>
 				</div>
 				<div class="cell">
-					<div class="left-box">
-						昵称
-					</div>
-					<div class="middle-box" ng-show="user.name==null">
-						<input type="text" ng-model="nickname" placeholder="昵称" required>
-					</div>
-					<div class="middle-box" ng-bind="user.nickname" ng-show="user.name!=null">
-
-					</div>
-				</div>
-				<div class="cell">
-					<div class="left-box">
+					<div class="left-box clearly-width">
 						性别
 					</div>
-					<div class="middle-box" ng-show="user.name==null">
-						<select ng-model="gender" required>
-							<option value="F">男</option>
-							<option value="M">女</option>
+					<div class="middle-box">
+						<select ng-model="info.gender" required ng-disabled="!(user.gender == null || user.gender == '')">
+							<option value="M">男</option>
+							<option value="F">女</option>
 						</select>
-					</div>
-					<div class="middle-box" ng-bind="user.gender" ng-show="user.name!=null">
-
 					</div>
 				</div>
 			</div>
-			<div class="btn-dock" ng-show="user.name==null">
+			<div class="btn-dock" ng-show="user.name == null || user.name == '' || user.nickname == null || user.nickname == '' || user.gender == null || user.gender == ''">
 				<button ng-click="submit()" class="btn btn-primary" ng-disabled="userinfoForm.$invalid">提交信息</button>
 			</div>
 		</form>

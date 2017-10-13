@@ -2,7 +2,7 @@ app.controller('registerCtrl', ['$scope', '$rootScope', '$state', 'CommonService
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
     $scope.footer = true;
-    
+
 	window.headerConfig={
 		title: '注册'
 	}
@@ -37,7 +37,7 @@ app.controller('registerCtrl', ['$scope', '$rootScope', '$state', 'CommonService
 					$scope.$apply();
 				}
 			},1000);
-			
+
 		},function(res){
 			dialog.alert(res.errorMsg);
 			$scope.lockEnabled=false;
@@ -45,8 +45,13 @@ app.controller('registerCtrl', ['$scope', '$rootScope', '$state', 'CommonService
 	}
 
 	$scope.register=function(){
+		if(!$scope.name.match(/^\w+$/)){
+			dialog.alert('用户名只能由字母、数字和下划线组成');
+			return;
+		}
 		var spinner=dialog.showSpinner();
 		var params={
+			name: $scope.name,
 			mobile: $scope.mobile,
 			verify_code: $scope.verifyCode,
 			password: $scope.password

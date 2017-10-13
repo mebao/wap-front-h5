@@ -29,7 +29,6 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 				}
 			}
 			$scope.allBookings=res.results.allBookings;
-			console.log($scope.allBookings);
 		},function(res){
 			dialog.closeSpinner(spinnerId);
 			dialog.alert(res.errorMsg);

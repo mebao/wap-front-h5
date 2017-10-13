@@ -78,7 +78,7 @@ app.controller('baoquanCreateCtrl', ['$scope', '$rootScope', 'StorageConfig', 'd
         }
 
         function afterCall(upFileList){
-        	console.log(upFileList);
+        	// console.log(upFileList);
         	for(var i = 0; i < upFileList.length; i++){
 	            var requestObj={
 	                username: StorageConfig.TOKEN_STORAGE.getItem('username'),

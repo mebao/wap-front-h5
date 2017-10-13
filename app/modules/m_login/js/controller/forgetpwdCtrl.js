@@ -2,7 +2,7 @@ app.controller('forgetpwdCtrl', ['$scope', '$rootScope', 'dialog', 'CommonServic
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
     $scope.footer = true;
-    
+
 	window.headerConfig={
 		title: '忘记密码'
 	}
@@ -18,7 +18,6 @@ app.controller('forgetpwdCtrl', ['$scope', '$rootScope', 'dialog', 'CommonServic
 	$scope.sendSMSText='验证码';
 	//发送验证码
 	$scope.smsverifycode=function(){
-		console.log(123);
 		$scope.lockEnabled=true;
 		var smsParams={
 			mobile: $scope.mobile,
@@ -37,7 +36,7 @@ app.controller('forgetpwdCtrl', ['$scope', '$rootScope', 'dialog', 'CommonServic
 					$scope.$apply();
 				}
 			},1000);
-			
+
 		},function(res){
 			dialog.alert(res.errorMsg);
 			$scope.lockEnabled=false;
@@ -45,7 +44,6 @@ app.controller('forgetpwdCtrl', ['$scope', '$rootScope', 'dialog', 'CommonServic
 	}
 
 	$scope.forgetpwd=function(){
-		console.log(123);
 		var spinner=dialog.showSpinner();
 		var params={
 			mobile: $scope.mobile,

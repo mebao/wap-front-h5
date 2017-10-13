@@ -13,10 +13,6 @@ app.service('bookingService', ['BaseHttpRequest', function(BaseHttpRequest){
 		return res;
 	}
 
-	function bookinglistDto(res){
-		return res;
-	}
-
 	function cancellbookingDto(res){
 		return res;
 	}
@@ -41,12 +37,6 @@ app.service('bookingService', ['BaseHttpRequest', function(BaseHttpRequest){
 				data: param
 			}
 			return BaseHttpRequest.post(requestObj, cancellbookingDto);
-		},
-		bookinglist: function(urlOptions){
-			var requestObj = {
-				url: apiUrl + '/dxyapi/bookinglist?username=' + urlOptions.username + '&token=' + urlOptions.token,
-			}
-			return BaseHttpRequest.get(requestObj, bookinglistDto);
 		},
 		cancellbooking: function(param){
 			var requestObj = {

@@ -2,7 +2,7 @@ app.controller('ClinicBookingCtrl',['$scope','$rootScope','$stateParams','Clinic
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
     $scope.footer = true;
-    
+
 	window.headerConfig={
 		enableBack: true,
 		title: '提交预约',
@@ -80,7 +80,7 @@ app.controller('ClinicBookingCtrl',['$scope','$rootScope','$stateParams','Clinic
 	});
 	// 根据预约日期展示预约时间
 	$scope.switchTime=function(date){
-		console.log(new Date(date));
+		// console.log(new Date(date));
 	}
 
 	$scope.replaceMobile=function(){
@@ -116,7 +116,7 @@ app.controller('ClinicBookingCtrl',['$scope','$rootScope','$stateParams','Clinic
 					$scope.$apply();
 				}
 			},1000);
-			
+
 		},function(res){
 			dialog.alert(res.errorMsg);
 			$scope.lockEnabled=false;
