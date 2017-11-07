@@ -4,7 +4,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
     $scope.footer = true;
 
 	window.headerConfig={
-		title: '订单列表',
+		title: '预约列表',
 		enableRefresh: false
 	};
 
@@ -43,6 +43,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 	//查看详情
 	$scope.detail=function(order){
 		StorageConfig.ORDER_STORAGE.putItem('detail', order);
+		StorageConfig.ORDER_STORAGE.putItem('selectedTab', 0);
 		$state.go('layout.order-detail');
 	}
 

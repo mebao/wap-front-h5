@@ -58,6 +58,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                     url: '/order/detail',
                     templateUrl: 'app/modules/m_order/view/orderDetail.html'
                 })
+                .state('layout.order-checkInfo',{
+                    url: '/order/checkInfo',
+                    templateUrl: 'app/modules/m_order/view/checkInfo.html'
+                })
                 .state('layout.cck',{
                     url: '/cck?showFooter',
                     templateUrl: 'app/modules/m_cck/view/index.html'
@@ -149,6 +153,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 .state('layout.user-feedback', {
                     url: '/user/feedback',
                     templateUrl: 'app/modules/m_user/view/feedback.html'
+                })
+                .state('layout.user-payList', {
+                    url: '/user/payList',
+                    templateUrl: 'app/modules/m_user/view/payList.html'
                 })
                 .state('layout.doctor', {
                     url: '/doctor',

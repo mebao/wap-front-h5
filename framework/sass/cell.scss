@@ -45,6 +45,13 @@ $double-cell-height: 70px;
             margin-top: px2rem(9px);
         }
     }
+    &.text{
+        .cell{
+            line-height: normal;
+            padding-top: 1.2em;
+            padding-bottom: 1.2em;
+        }
+    }
     .cell.double-line{
         height: px2rem($double-cell-height);
         line-height: px2rem($double-cell-height);

@@ -93,6 +93,9 @@ a{
 .text-right {
     text-align: right;
 }
+.line-height-normal{
+    line-height: normal;
+}
 .container{
     padding: 0 px2rem(10px) 0 px2rem(10px);
 }
@@ -117,6 +120,9 @@ a{
 .w40{
     width: 40%;
 }
+.w45{
+    width: 45%;
+}
 .w50{
     width: 50%;
 }
@@ -136,11 +142,17 @@ a{
     width: 100%;
 }
 
+.pad10{
+    padding: px2rem(10px);
+}
+.pt10{
+    padding-top: px2rem(10px)!important;
+}
 .pt20{
     padding-top: px2rem(20px);
 }
 .pb10{
-    padding-bottom: px2rem(10px);
+    padding-bottom: px2rem(10px)!important;
 }
 .pb20{
     padding-bottom: px2rem(20px);

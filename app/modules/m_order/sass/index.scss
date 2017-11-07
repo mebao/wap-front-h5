@@ -38,11 +38,43 @@
 	}
 }
 .orderDetail-page{
-	.tip{
-		margin: px2rem(10px);
-		padding: px2rem(5px);
-		background-color: #9CCC65;
-		color: #fff;
-		border-radius: px2rem(5px);
+	.content-page{
+		top: px2rem(92px)!important;
+		.tip{
+			margin: px2rem(10px);
+			padding: px2rem(5px);
+			background-color: #9CCC65;
+			color: #fff;
+			border-radius: px2rem(5px);
+		}
+	}
+}
+.orderCheckInfo-page{
+	.check-list{
+		.item{
+			margin-bottom: px2rem(10px);
+			background-color: #fff;
+			padding: px2rem(10px);
+			.title{
+				font-size: px2rem(16px);
+			}
+			.info-tab{
+				margin-top: px2rem(10px);
+				border: 1px solid #E0E0E0;
+				.tab{
+					border-bottom: 1px solid #E0E0E0;
+					&:last-child{
+						border-bottom: none;
+					}
+					.tab-item{
+						padding: px2rem(5px);
+						border-right: 1px solid #E0E0E0;
+						&:last-child{
+							border-right: none;
+						}
+					}
+				}
+			}
+		}
 	}
 }

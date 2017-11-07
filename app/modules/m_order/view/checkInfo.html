@@ -1,0 +1,35 @@
+<div ng-controller="orderCheckInfoCtrl" class="orderCheckInfo-page">
+    <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
+		<div class="check-list">
+            <div ng-repeat="check in checkList" class="item">
+                <div class="title">{{check.checkName}}</div>
+                <div>开单医生：{{check.doctorName}}</div>
+                <div class="info-tab">
+                    <div class="tab flex">
+                        <div class="tab-item w40">项目</div>
+                        <div class="tab-item w40">结果</div>
+                        <div class="tab-item w20">性质</div>
+                    </div>
+                    <div ng-repeat="result in check.resultList" class="tab flex">
+                        <!-- 非图片 -->
+                        <div ng-if="result.isUpload == '0'" class="tab-item w40">
+                            <div>{{result.checkInfoName}}</div>
+                            <div>参考范围：{{result.references}}</div>
+                        </div>
+                        <div ng-if="result.isUpload == '0'" class="tab-item w40">
+                            <div>{{result.values}}</div>
+                            <div>单位：{{result.unit}}</div>
+                        </div>
+                        <div ng-if="result.isUpload == '0'" class="tab-item w20">
+                            <div>{{result.compare}}</div>
+                        </div>
+                        <!-- 图片 -->
+                        <div ng-if="result.isUpload == '1'" class="tab-item" ng-click="showImg(result.values);">
+                            <img ng-src="{{result.values}}" class="w100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>

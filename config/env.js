@@ -15,19 +15,11 @@
     var allEnvs = {
         product: {
             env:'product',
-            api_url: 'http://mebapi.jiabaokangle.com'
-        },
-        release: {
-            env:'release',
-            api_url: 'http://mebapi.mingyizd.com'
-        },
-        dev: {
-            env:'dev',
-            api_url: 'http://121.40.127.64:8228'
+            api_url: 'http://wapapi.meb168.com'
         },
         localhost: {
             env:'localhost',
-            api_url: 'http://192.168.31.114/mebnew'
+            api_url: 'http://192.168.31.200/jiabaokangle'
         }
     };
     var envs = allEnvs.localhost;//默认连接dev开发环境
