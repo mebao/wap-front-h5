@@ -158,6 +158,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                     url: '/user/payList',
                     templateUrl: 'app/modules/m_user/view/payList.html'
                 })
+                .state('layout.user-payDetail', {
+                    url: '/user/payDetail?type&id',
+                    templateUrl: 'app/modules/m_user/view/payDetail.html'
+                })
                 .state('layout.doctor', {
                     url: '/doctor',
                     templateUrl: 'app/modules/m_doctor/view/list.html'

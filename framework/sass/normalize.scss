@@ -145,6 +145,9 @@ a{
 .pad10{
     padding: px2rem(10px);
 }
+.pt5{
+    padding-top: px2rem(5px);
+}
 .pt10{
     padding-top: px2rem(10px)!important;
 }
@@ -156,4 +159,19 @@ a{
 }
 .pb20{
     padding-bottom: px2rem(20px);
+}
+.pl10{
+    padding-left: px2rem(10px);
+}
+.pr10{
+    padding-right: px2rem(10px);
+}
+.mt10{
+    margin-top: px2rem(10px);
+}
+.mb10{
+    margin-bottom: px2rem(10px);
+}
+.color-g{
+    color: #717171;
 }

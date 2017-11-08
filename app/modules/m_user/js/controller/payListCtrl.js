@@ -32,21 +32,27 @@ app.controller('payListCtrl', ['$scope', '$rootScope', '$state', 'userinfoServic
 		if(data.results.list.length > 0){
 			for(var i = 0; i < data.results.list.length; i++){
 				// 判断是否为充值
-				if(data.results.list[0].type == '2'){
-					recharge += parseFloat(data.results.list[0].amount);
+				if(data.results.list[i].type == '2'){
+					recharge += parseFloat(data.results.list[i].amount);
 				}
 				// 判断是否为消费
-				if(data.results.list[0].type == '1'){
-					consume += parseFloat(data.results.list[0].amount);
+				if(data.results.list[i].type == '1'){
+					consume += parseFloat(data.results.list[i].amount);
 				}
 			}
 		}
+		$scope.recharge = userinfoService.toDecimal2(recharge);
+		$scope.consume = userinfoService.toDecimal2(consume);
     }, function(data){
         dialog.closeSpinner(spinner.id);
         dialog.alert(data.errorMsg);
     });
 
-	$scope.goRouter = function(_url){
-		$state.go(_url);
+	$scope.detail = function(pay){
+		StorageConfig.ORDER_STORAGE.putItem('payDetail', pay);
+		$state.go('layout.user-payDetail', {
+			type: pay.type,
+			id: pay.bookingId,
+		})
 	}
 }]);

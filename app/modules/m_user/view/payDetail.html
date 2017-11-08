@@ -1,0 +1,113 @@
+<div ng-controller="payDetailCtrl" class="payDetail-page">
+    <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
+        <!-- 会员充值 -->
+        <div ng-if="payType == '0'">
+            <div class="info-tab pad10">
+                <div class="text-center">{{detail.typeText}}</div>
+                <div class="text-center money">{{detail.amount}}元</div>
+                <div class="flex">
+                    <div class="flex-1">充值金额：</div>
+                    <div>{{detail.amount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">赠送金额：</div>
+                    <div>{{detail.giveAmount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">收款方式：</div>
+                    <div>{{detail.wayText}}</div>
+                </div>
+                <div class="flex pt10 color-g">
+                    <div class="flex-1">交易时间：</div>
+                    <div>{{detail.time}}</div>
+                </div>
+            </div>
+        </div>
+        <!-- 支付费用 -->
+        <div ng-if="payType == '1'">
+            <div class="info-tab pad10">
+                <div class="text-center">{{detail.typeText}}</div>
+                <div class="text-center money">{{detail.amount}}元</div>
+                <div ng-repeat="info in bookingfee.feeinfo['医生服务费用']" class="flex">
+                    <div class="flex-1">{{info.serviceName}}</div>
+                    <div>{{info.fee}}</div>
+                </div>
+                <div ng-repeat="info in bookingfee.feeinfo['检查项目费用']" class="flex">
+                    <div class="flex-1">{{info.projectName}}</div>
+                    <div>{{info.fee}}</div>
+                </div>
+                <div ng-repeat="info in bookingfee.feeinfo['辅助项目费用']" class="flex">
+                    <div class="flex-1">{{info.projectName}}</div>
+                    <div>{{info.fee}}</div>
+                </div>
+                <div ng-if="bookingfee.feeinfo['药方药品费用'].length > 0" ng-repeat="info in bookingfee.feeinfo['药方药品费用'][0].info" class="flex">
+                    <div class="flex-1">{{info.pname + '-' + info.num + info.unit}}</div>
+                    <div>{{info.allFee}}</div>
+                </div>
+                <div ng-repeat="info in bookingfee.feeinfo['其他费用']" class="flex">
+                    <div class="flex-1">{{info.projectName}}</div>
+                    <div>{{info.fee}}</div>
+                </div>
+                <div class="flex pt10">
+                    <div class="flex-1">费用合计：</div>
+                    <div>{{detail.needAmount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">折扣金额：</div>
+                    <div>{{detail.discountAmount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">减免金额：</div>
+                    <div>{{detail.giveAmount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">实收金额：</div>
+                    <div>{{detail.amount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">收款方式：</div>
+                    <div>{{detail.wayText}}</div>
+                </div>
+                <div class="flex pt10 color-g">
+                    <div class="flex-1">交易时间：</div>
+                    <div>{{detail.time}}</div>
+                </div>
+            </div>
+        </div>
+        <!-- 药品零售 -->
+        <div ng-if="payType == '2'">
+            <div class="info-tab pad10">
+                <div class="text-center">{{detail.typeText}}</div>
+                <div class="text-center money">{{detail.amount}}元</div>
+                <div ng-repeat="info in detail.drug.info" class="flex">
+                    <div class="flex-1">{{info.pname}}-{{info.num}}{{info.unit}}</div>
+                    <div>{{info.allFee}}</div>
+                </div>
+                <div class="flex pt10">
+                    <div class="flex-1">费用合计：</div>
+                    <div>{{detail.drug.needAmount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">折扣金额：</div>
+                    <div>{{detail.drug.discountAmount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">减免金额：</div>
+                    <div>{{detail.giveAmount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">实收金额：</div>
+                    <div>{{detail.drug.amount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">收款方式：</div>
+                    <div>{{detail.wayText}}</div>
+                </div>
+                <div class="flex pt10 color-g">
+                    <div class="flex-1">交易时间：</div>
+                    <div>{{detail.time}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

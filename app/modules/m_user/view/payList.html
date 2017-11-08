@@ -1,20 +1,21 @@
 <div ng-controller="payListCtrl" class="payList-page">
     <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
         <div class="info-tab">
-            <div class="text-center">{{user.balance}}￥</div>
-            <div class="flex">
+            <div class="text-center pt5">余额</div>
+            <div class="text-center money">{{user.balance}}元</div>
+            <div class="flex pt10 pb10">
                 <div class="flex-1 text-center">累计充值：{{recharge}}</div>
                 <div class="flex-1 text-center">累计消费：{{consume}}</div>
             </div>
         </div>
-        <div class="info-list">
-            <div ng-repeat="pay in payList" class="flex">
+        <div class="info-list mt10 mb10 pl10 pr10">
+            <div ng-repeat="pay in payList" ng-click="detail(pay)" class="flex item pt10 pb10">
                 <div class="flex-1">
                     <div>{{pay.time}}</div>
                     <div>{{pay.typeText}}</div>
                 </div>
                 <div>
-                    {{pay.amount}}
+                    {{(pay.type == '1' ? '-' : '') + pay.amount}}
                 </div>
             </div>
         </div>

@@ -181,9 +181,9 @@
 		width: 100%;
 			border: none;
 			border-width:0px;
-		    border-top-style: none; 
-		    border-right-style: none; 
-		    border-left-style: none; 
+		    border-top-style: none;
+		    border-right-style: none;
+		    border-left-style: none;
 		    border-bottom-style: none;
 		    border-radius: px2rem(5px);
 		    appearance:none;
@@ -209,5 +209,32 @@
 		border-top: 1px solid #d6d6d6;
 		padding: px2rem(20px) px2rem(10px);
 		text-align: justify;
+	}
+}
+.payList-page{
+	.info-tab{
+		background-color: #fff;
+		.money{
+			padding: px2rem(20px) 0 px2rem(10px);
+			font-size: px2rem(16px);
+		}
+	}
+	.info-list{
+		background-color: #fff;
+		.item{
+			border-bottom: 1px solid #cecece;
+			&:last-child{
+				border-bottom: none;
+			}
+		}
+	}
+}
+.payDetail-page{
+	.info-tab{
+		background-color: #fff;
+		.money{
+			padding: px2rem(20px) 0 px2rem(10px);
+			font-size: px2rem(16px);
+		}
 	}
 }
