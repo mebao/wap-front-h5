@@ -103,6 +103,17 @@ $base-font-size: map_get($map-font-size, s);
         border-radius: .5rem;
         overflow: auto;
     }
+    .btn-tab{
+        position: absolute;
+        z-index: 99999;
+        background-color: #fff;
+        .item{
+            padding: px2rem(10px);
+            .icon{
+                width: px2rem(20px);
+            }
+        }
+    }
     /*spinner*/
     .spinner-body {
         $spinner-body-width: 100px;

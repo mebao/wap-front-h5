@@ -12,6 +12,9 @@ app.controller('orderCheckInfoCtrl', ['$scope', '$rootScope', 'StorageConfig', '
     $scope.checkList = StorageConfig.ORDER_STORAGE.getItem('checkList');
 
     $scope.showImg = function(_url){
-		dialog.show('<img src="' + _url + '" class="w100">');
+		dialog.show('<img id="showImgView" src="' + _url + '" style="width: 100%;">', {
+			showBtn: true,
+			id: 'showImgView'
+		});
 	}
 }]);

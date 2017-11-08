@@ -127,6 +127,15 @@
         $scope.closeByDocument = function (id) {
             ngDialog.close(id, {}, 2);
         };
+        var size = 100;
+        $scope.narrow = function(id){
+            size = size / 2;
+            document.getElementById(id).style.width = size + '%';
+        }
+        $scope.enlarge = function(id){
+            size = size * 2;
+            document.getElementById(id).style.width = size + '%';
+        }
     }]);
 
     return m;

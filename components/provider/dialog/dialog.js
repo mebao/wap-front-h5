@@ -107,10 +107,21 @@ app.factory('dialog', ['ngDialog', function (ngDialog) {
 
         },
         show: function (html, opts) {
+            var tabHtml = opts.showBtn ? '<div class="btn-tab w100">\
+                        <div class="flex">\
+                            <div ng-click="narrow(\'' + opts.id + '\')" class="item">\
+                                <img class="icon" src="./app/images/icon_narrow.png">\
+                            </div>\
+                            <div class="flex-1"></div>\
+                            <div ng-click="enlarge(\'' +opts.id + '\')" class="item">\
+                                <img class="icon" src="./app/images/icon_enlarge.png">\
+                            </div>\
+                        </div>' : '';
             var options = {
                 overlay: true,
                 closeByDocument: true,
-                contentHtml: '<div class="show-body" ng-click="closeByOkButton(\'REPLACEDIALOGID\')">\
+                contentHtml: tabHtml + '</div>\
+                        <div class="show-body" ng-click="closeByOkButton(\'REPLACEDIALOGID\')">\
                         <div class="contentHtml">' + html + '</div>\
                 </div>'
             };
