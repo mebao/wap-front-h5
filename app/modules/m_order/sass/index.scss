@@ -72,6 +72,16 @@
 						&:last-child{
 							border-right: none;
 						}
+						img{
+							position: relative;
+							top: 50%;
+							left: 50%;
+							margin-top: px2rem(-10px);
+							margin-left: px2rem(-10px);
+							width: px2rem(20px);
+							height: px2rem(20px);
+							display: block;
+						}
 					}
 				}
 			}

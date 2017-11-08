@@ -21,7 +21,9 @@
                             <div>单位：{{result.unit}}</div>
                         </div>
                         <div ng-if="result.isUpload == '0'" class="tab-item w20">
-                            <div>{{result.compare}}</div>
+                            <div ng-if="result.compare" class="text-center h100">
+                                <img ng-src="{{result.compare == 'low' ? './app/images/icon-arrow-down.png' : './app/images/icon-arrow-up.png'}}">
+                            </div>
                         </div>
                         <!-- 图片 -->
                         <div ng-if="result.isUpload == '1'" class="tab-item" ng-click="showImg(result.values);">
