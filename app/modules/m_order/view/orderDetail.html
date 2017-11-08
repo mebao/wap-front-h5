@@ -266,12 +266,22 @@
                             </div>
                         </div>
                     </div>
+        			<div ng-if="prescript.length > 0" class="cell height-auto">
+        				<div class="left-box clearly-width">
+        					处方
+        				</div>
+        				<div class="middle-box">
+                            <div ng-repeat="item in prescript" class="line-height-normal">
+                                {{item.value}}
+                            </div>
+                        </div>
+        			</div>
                 </div>
                 <div ng-if="check != ''" class="btn-dock">
 					<button class="btn btn-primary" ng-click="showCheckInfo()">查看检查详情</button>
 				</div>
             </div>
-            <div ng-if="check == '' && assist == ''" class="pad10">
+            <div ng-if="check == '' && assist == '' && prescript.length == 0" class="pad10">
                 暂无医嘱信息
             </div>
         </div>
