@@ -89,27 +89,24 @@
 	}
 }
 .orderPaySuccess-page{
+	img{
+		width: px2rem(90px);
+	}
+	.info{
+		margin-top: px2rem(20px);
+		font-size: px2rem(20px);
+	}
+	.tel{
+		margin-top: px2rem(20px);
+		font-size: px2rem(16px);
+	}
 	.success-tab{
 		margin-top: px2rem(50px);
 		text-align: center;
-		img{
-			width: px2rem(90px);
-		}
-		.info{
-			margin-top: px2rem(20px);
-			font-size: px2rem(20px);
-		}
 	}
 	.error-tab{
 		margin-top: px2rem(50px);
 		text-align: center;
-		img{
-			width: px2rem(90px);
-		}
-		.info{
-			margin-top: px2rem(20px);
-			font-size: px2rem(20px);
-		}
 		.btn-dock{
 			margin-top: px2rem(20px);
 		}
