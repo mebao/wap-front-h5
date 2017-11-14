@@ -190,4 +190,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                     url: '/baoquan',
                     templateUrl: 'app/modules/m_baoquan/view/index.html'
                 })
+                .state('layout.order-paySuccess', {
+                    url: '/order/paySuccess?id&username&token',
+                    templateUrl: 'app/modules/m_order/view/paySuccess.html'
+                })
     }]);

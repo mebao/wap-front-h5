@@ -3,7 +3,7 @@ app.run(['$rootScope','StorageConfig','$state',function($rootScope,StorageConfig
 		if(document.getElementById('layoutContent')){
 			document.getElementById('layoutContent').scrollTop=0;
 		}
-		if((toState.name=='layout.login') || (toState.name=='layout.register') || (toState.name=='layout.forgetpwd')) return;
+		if((toState.name=='layout.login') || (toState.name=='layout.register') || (toState.name=='layout.forgetpwd') || (toState.name=='layout.order-paySuccess')) return;
 		if(toState.name.indexOf('cck')!=-1) return;
 		var username=StorageConfig.TOKEN_STORAGE.getItem('username');
 		var token=StorageConfig.TOKEN_STORAGE.getItem('token');

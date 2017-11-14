@@ -1,0 +1,15 @@
+<div ng-controller="orderPaySuccessCtrl" class="orderPaySuccess-page">
+    <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
+        <div ng-if="tab == 'success'" class="success-tab">
+            <img src="./app/images/pay_success.png">
+            <p class="info">支付成功，订单状态更新成功</p>
+        </div>
+        <div ng-if="tab == 'error'" class="error-tab">
+            <img src="./app/images/pay_error.png">
+            <p class="info">支付成功，订单状态更新失败</p>
+            <div class="btn-dock">
+                <a href="tel://0851-27556691" class="btn btn-primary">联系客服</a>
+            </div>
+        </div>
+    </div>
+</div>

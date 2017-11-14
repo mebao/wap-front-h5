@@ -25,6 +25,10 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 		return res;
 	}
 
+	function finishpayDto(res){
+		return res;
+	}
+
 	var service={
 		getOrderList: function(urlOptions){
 			var requestObj={
@@ -59,6 +63,12 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 		bookingassist: function(urlOptions){
 			var requestObj = {
 				url: apiUrl + '/mebapi/bookingassist?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id,
+			}
+			return BaseHttpRequest.get(requestObj, bookingassistDto);
+		},
+		finishpay: function(urlOptions){
+			var requestObj = {
+				url: apiUrl + '/mebcrm/finishpay/' + urlOptions.booking_id + '?username=' + urlOptions.username + '&token=' + urlOptions.token,
 			}
 			return BaseHttpRequest.get(requestObj, bookingassistDto);
 		}
