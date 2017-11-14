@@ -16,6 +16,7 @@ app.controller('orderPaySuccessCtrl', ['$scope', '$rootScope', '$stateParams', '
 
 	$rootScope.$broadcast('setFooterConfig', window.footerConfig);
 
+	var spinner = dialog.showSpinner();
     var urlOptions = {
         username: $stateParams.username,
         token: $stateParams.token,
@@ -23,8 +24,10 @@ app.controller('orderPaySuccessCtrl', ['$scope', '$rootScope', '$stateParams', '
     }
 
     OrderService.finishpay(urlOptions).then(function(data){
+		dialog.closeSpinner(spinner.id);
 		$scope.tab = 'success';
     }, function(data){
+		dialog.closeSpinner(spinner.id);
 		$scope.tab = 'error';
     });
 }]);
