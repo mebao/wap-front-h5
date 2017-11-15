@@ -12,9 +12,11 @@ app.controller('payDetailCtrl', ['$scope', '$rootScope', '$state', 'userinfoServ
     var type = $state.params.type;
 	var detail = StorageConfig.ORDER_STORAGE.getItem('payDetail');
 	if(type == '2'){
+		// 会员充值
 		$scope.payType = '0';
 	}else if(type == '1'){
 		if(detail.drug){
+			// 药品零售
 			$scope.payType = '2';
 			detail.drug.discountAmount = userinfoService.toDecimal2(parseFloat(detail.drug.needAmount) - parseFloat(detail.drug.giveAmount) - parseFloat(detail.drug.amount));
 			if(detail.drug.info.length > 0){
@@ -23,6 +25,7 @@ app.controller('payDetailCtrl', ['$scope', '$rootScope', '$state', 'userinfoServ
 				}
 			}
 		}else{
+			// 支付费用
 			$scope.payType = '1';
 			var spinner = dialog.showSpinner();
 			var urlOptions = {
@@ -63,7 +66,7 @@ app.controller('payDetailCtrl', ['$scope', '$rootScope', '$state', 'userinfoServ
 						detail.needAmount += parseFloat(data.results.feeinfo['其他费用'][i].fee);
 					}
 				}
-				detail.discountAmount = userinfoService.toDecimal2(detail.needAmount - parseFloat(detail.giveAmount) - parseFloat(detail.amount));
+				detail.discountAmount = userinfoService.toDecimal2(detail.needAmount - parseFloat(detail.giveAmount) - parseFloat(detail.amount) - (data.results.feeinfo['预约金'] ? parseFloat(data.results.feeinfo['预约金'].fee) : 0));
 				detail.needAmount = userinfoService.toDecimal2(detail.needAmount);
 				$scope.bookingfee = data.results;
 			}, function(data){
@@ -71,7 +74,9 @@ app.controller('payDetailCtrl', ['$scope', '$rootScope', '$state', 'userinfoServ
 				dialog.alert(data.errorMsg);
 			});
 		}
+	}else if(type == '3'){
+		// 支付预约金
+		$scope.payType = '3';
 	}
 	$scope.detail = detail;
-
 }]);

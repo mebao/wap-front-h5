@@ -36,7 +36,7 @@ app.controller('payListCtrl', ['$scope', '$rootScope', '$state', 'userinfoServic
 					recharge += parseFloat(data.results.list[i].amount);
 				}
 				// 判断是否为消费
-				if(data.results.list[i].type == '1'){
+				if(data.results.list[i].type == '1' || data.results.list[i].type == '3'){
 					consume += parseFloat(data.results.list[i].amount);
 				}
 			}

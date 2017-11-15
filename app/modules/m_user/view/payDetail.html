@@ -52,13 +52,17 @@
                     <div class="flex-1">费用合计：</div>
                     <div>{{detail.needAmount}}</div>
                 </div>
+                <div ng-if="bookingfee.feeinfo['预约金']" class="flex">
+                    <div class="flex-1">已支付预约金：</div>
+                    <div>-{{bookingfee.feeinfo['预约金'].fee}}</div>
+                </div>
                 <div class="flex">
                     <div class="flex-1">折扣金额：</div>
-                    <div>{{detail.discountAmount}}</div>
+                    <div>-{{detail.discountAmount}}</div>
                 </div>
                 <div class="flex">
                     <div class="flex-1">减免金额：</div>
-                    <div>{{detail.giveAmount}}</div>
+                    <div>-{{detail.giveAmount}}</div>
                 </div>
                 <div class="flex">
                     <div class="flex-1">实收金额：</div>
@@ -89,15 +93,34 @@
                 </div>
                 <div class="flex">
                     <div class="flex-1">折扣金额：</div>
-                    <div>{{detail.drug.discountAmount}}</div>
+                    <div>-{{detail.drug.discountAmount}}</div>
                 </div>
                 <div class="flex">
                     <div class="flex-1">减免金额：</div>
-                    <div>{{detail.giveAmount}}</div>
+                    <div>-{{detail.giveAmount}}</div>
                 </div>
                 <div class="flex">
                     <div class="flex-1">实收金额：</div>
                     <div>{{detail.drug.amount}}</div>
+                </div>
+                <div class="flex">
+                    <div class="flex-1">收款方式：</div>
+                    <div>{{detail.wayText}}</div>
+                </div>
+                <div class="flex pt10 color-g">
+                    <div class="flex-1">交易时间：</div>
+                    <div>{{detail.time}}</div>
+                </div>
+            </div>
+        </div>
+        <!-- 支付预约金 -->
+        <div ng-if="payType == '3'">
+            <div class="info-tab pad10">
+                <div class="text-center">{{detail.typeText}}</div>
+                <div class="text-center money">{{detail.amount}}元</div>
+                <div class="flex">
+                    <div class="flex-1">支付预约金：</div>
+                    <div>{{detail.amount}}</div>
                 </div>
                 <div class="flex">
                     <div class="flex-1">收款方式：</div>
