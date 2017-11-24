@@ -32,7 +32,7 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 	var service={
 		getOrderList: function(urlOptions){
 			var requestObj={
-				url: apiUrl+'/mebapi/mybookings?username='+urlOptions.username+'&token='+urlOptions.token
+				url: apiUrl+'/mebapi/mybookings?username='+urlOptions.username+'&token='+urlOptions.token+'&child_id='+urlOptions.childId
 			};
 			return BaseHttpRequest.get(requestObj,getOrderListDto);
 		},

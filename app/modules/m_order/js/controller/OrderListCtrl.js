@@ -9,34 +9,44 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
         username: StorageConfig.TOKEN_STORAGE.getItem('username'),
         token: StorageConfig.TOKEN_STORAGE.getItem('token')
     };
-    // HomeService.getChilds(urlOptions).then(function(res){
-	// 	setHeader(res.results.childs);
-    // },function(res){
-    //     dialog.closeSpinner(spinner.id);
-    //     dialog.alert(res.errorMsg);
-    // });
+    HomeService.getChilds(urlOptions).then(function(res){
+		if(res.results.childs.length > 0){
+			setHeader(res.results.childs);
+		}else{
+			window.headerConfig={
+				title: '就诊记录',
+				enableBack: false,
+				enableRefresh: false,
+			};
 
-	// function setHeader(childList) {
+			$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
+	        dialog.closeSpinner(spinner.id);
+		}
+    },function(res){
+        dialog.closeSpinner(spinner.id);
+        dialog.alert(res.errorMsg);
+    });
+
+	function setHeader(childList) {
 		window.headerConfig={
 			title: '就诊记录',
 			enableBack: false,
 			enableRefresh: false,
-			// areaOperate: {
-			// 	enable: true,
-			// 	areas: childList,
-			// 	trackKey: 'childName',
-			// 	selectedCall: function(item){
-					// getOrderData(spinner.id, item.childId);
-			// 	}
-			// },
+			areaOperate: {
+				enable: true,
+				areas: childList,
+				trackKey: 'childName',
+				selectedCall: function(item){
+					getOrderData(spinner.id, item.childId);
+				}
+			},
 		};
 
 		$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
-	// }
-
-	getOrderData(spinner.id, '');
+	}
 
 	function getOrderData(spinnerId, childId){
+		urlOptions.childId = childId;
 		OrderService.getOrderList(urlOptions).then(function(res){
 			dialog.closeSpinner(spinnerId);
 			if(res.results.allBookings.length > 0){
