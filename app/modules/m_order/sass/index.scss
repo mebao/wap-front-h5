@@ -4,6 +4,16 @@
 
 		}
 		.tab-content{
+			.button-tab{
+				.item{
+					padding: px2rem(10px);
+					text-align: center;
+					background-color: #fff;
+					&:first-child{
+						border-right: 1px solid #efefef;
+					}
+				}
+			}
 			.order-tab{
 				background-color: #fff;
 				margin-top: px2rem(10px);

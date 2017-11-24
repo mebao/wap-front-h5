@@ -1,7 +1,7 @@
 app.controller('orderCheckInfoCtrl', ['$scope', '$rootScope', 'StorageConfig', 'dialog', function($scope, $rootScope, StorageConfig, dialog){
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
-    $scope.footer = true;
+    $scope.footer = false;
 
 	window.headerConfig={
 		title: '检查详情'

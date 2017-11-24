@@ -1,7 +1,7 @@
 app.controller('payDetailCtrl', ['$scope', '$rootScope', '$state', 'userinfoService', 'dialog', 'StorageConfig', function($scope, $rootScope, $state, userinfoService, dialog, StorageConfig){
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
-    $scope.footer = true;
+    $scope.footer = false;
 
 	window.headerConfig = {
 		title: '收费信息',

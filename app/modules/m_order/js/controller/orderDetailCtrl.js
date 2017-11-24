@@ -1,7 +1,7 @@
 app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderService', 'dialog', '$state', function($scope,$rootScope,StorageConfig, OrderService, dialog, $state){
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
-    $scope.footer = true;
+    $scope.footer = false;
 
 	window.headerConfig={
 		title: '预约'

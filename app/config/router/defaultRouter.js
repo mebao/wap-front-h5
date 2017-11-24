@@ -1,6 +1,6 @@
 app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/layout/user');
-        $urlRouterProvider.when('/layout', '/layout/user');
+        $urlRouterProvider.otherwise('/layout/orderlist');
+        $urlRouterProvider.when('/layout', '/layout/orderlist');
         $stateProvider
                 .state('layout.test', {
                     url: '/test',

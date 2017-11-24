@@ -1,24 +1,42 @@
-app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','StorageConfig','$state',function($scope,$rootScope,OrderService,dialog,StorageConfig,$state){
+app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','StorageConfig','$state', 'HomeService', function($scope,$rootScope,OrderService,dialog,StorageConfig,$state, HomeService){
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
-    $scope.footer = true;
+    $scope.footer = false;
 
-	window.headerConfig={
-		title: '预约列表',
-		enableRefresh: false
-	};
+    // 获取宝宝信息
+    var spinner=dialog.showSpinner();
+    var urlOptions={
+        username: StorageConfig.TOKEN_STORAGE.getItem('username'),
+        token: StorageConfig.TOKEN_STORAGE.getItem('token')
+    };
+    // HomeService.getChilds(urlOptions).then(function(res){
+	// 	setHeader(res.results.childs);
+    // },function(res){
+    //     dialog.closeSpinner(spinner.id);
+    //     dialog.alert(res.errorMsg);
+    // });
 
-	$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
+	// function setHeader(childList) {
+		window.headerConfig={
+			title: '就诊记录',
+			enableBack: false,
+			enableRefresh: false,
+			// areaOperate: {
+			// 	enable: true,
+			// 	areas: childList,
+			// 	trackKey: 'childName',
+			// 	selectedCall: function(item){
+					// getOrderData(spinner.id, item.childId);
+			// 	}
+			// },
+		};
 
-	var spinner=dialog.showSpinner();
-	var urlOptions={
-		username: StorageConfig.TOKEN_STORAGE.getItem('username'),
-		token: StorageConfig.TOKEN_STORAGE.getItem('token')
-	}
+		$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
+	// }
 
-	getOrderData(spinner.id);
+	getOrderData(spinner.id, '');
 
-	function getOrderData(spinnerId){
+	function getOrderData(spinnerId, childId){
 		OrderService.getOrderList(urlOptions).then(function(res){
 			dialog.closeSpinner(spinnerId);
 			if(res.results.allBookings.length > 0){
@@ -35,9 +53,8 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 		});
 	}
 
-	$scope.selectTab=0;
-	$scope.checkTab=function(_index){
-		$scope.selectTab=_index;
+	$scope.goRouter=function(_url){
+		$state.go(_url);
 	}
 
 	//查看详情

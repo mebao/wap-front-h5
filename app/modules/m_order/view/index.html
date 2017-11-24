@@ -2,20 +2,15 @@
     <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
 		<div class="tab-box">
 			<div class="tab-content">
+                <div class="flex button-tab">
+                    <div class="flex-1 item" ng-click="goRouter('layout.user-payList')">查看支付信息</div>
+                </div>
 				<div class="order-tab" ng-repeat="order in allBookings">
 					<div ng-click="detail(order)">
                         <div class="flex">
                             <div class="flex-1"></div>
                             <div class="status" ng-bind="order.statusText" ng-class="{'in': order.status == '3' || order.status == '4', 'cancel':  order.status == '0', 'complete': order.status == '5'}"></div>
                         </div>
-						<p>
-							<span>预约编号：</span>
-							<span ng-bind="order.refNo"></span>
-						</p>
-						<p>
-							<span>预约诊所：</span>
-							<span ng-bind="order.clinicName"></span>
-						</p>
 						<p>
 							<span>预约时间：</span>
 							<span ng-bind="order.bookingDateText"></span>
