@@ -16,18 +16,18 @@ app.controller('orderPaySuccessCtrl', ['$scope', '$rootScope', '$stateParams', '
 
 	$rootScope.$broadcast('setFooterConfig', window.footerConfig);
 
-	var spinner = dialog.showSpinner();
-    var urlOptions = {
-        username: $stateParams.username,
-        token: $stateParams.token,
-        booking_id: $stateParams.id,
-    }
+	// var spinner = dialog.showSpinner();
+    // var urlOptions = {
+    //     username: $stateParams.username,
+    //     token: $stateParams.token,
+    //     booking_id: $stateParams.id,
+    // }
 
-    OrderService.finishpay(urlOptions).then(function(data){
-		dialog.closeSpinner(spinner.id);
+    // OrderService.finishpay(urlOptions).then(function(data){
+	// 	dialog.closeSpinner(spinner.id);
 		$scope.tab = 'success';
-    }, function(data){
-		dialog.closeSpinner(spinner.id);
-		$scope.tab = 'error';
-    });
+    // }, function(data){
+	// 	dialog.closeSpinner(spinner.id);
+	// 	$scope.tab = 'error';
+    // });
 }]);
