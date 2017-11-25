@@ -1,14 +1,20 @@
 app.factory('dialog', ['ngDialog', function (ngDialog) {
     return {
-        alert: function (html, opts) {                 
+        alert: function (html, opts) {
             var buttonText = (opts) ? opts.okText || '确定' : '确定';
             var titleText = (opts) ? opts.title || '温馨提示' : '温馨提示';
+            var closeType = '';
+            // 需要重新登录
+            if(html == '用户名或token不正确!'){
+                closeType = 'relogin';
+                buttonText = '重新登录';
+            }
             var options = {
                 overlay: true,
                 contentHtml: '<div class="dialog-body">\
                         <div class="title">' + titleText + '</div>\
                         <div class="contentHtml">' + html + '</div>\
-                        <div class="alertButton"><button class="btn btn-lg" ng-click="closeByOkButton(\'REPLACEDIALOGID\')">' + buttonText + '</button></div>\
+                        <div class="alertButton"><button class="btn btn-lg" ng-click="closeByOkButton(\'REPLACEDIALOGID\', \'' + closeType + '\')">' + buttonText + '</button></div>\
                 </div>'
             };
             angular.extend(options, (opts || {}));
@@ -76,7 +82,7 @@ app.factory('dialog', ['ngDialog', function (ngDialog) {
                 //         <span class="circle-close"></span>\
                 //     </div>\
                 // </div>'
-                // 
+                //
                 // <div class="logo-box">\
                 //     <img src="app/images/icon_loading.gif">\
                 // </div>\

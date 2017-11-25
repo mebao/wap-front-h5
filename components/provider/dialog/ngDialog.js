@@ -117,9 +117,14 @@
             return publicMethods;
         }];
     });
-    m.controller('dialogCommonCtrl', ['$scope', 'ngDialog', function ($scope, ngDialog) {
-        $scope.closeByOkButton = function (id) {
+    m.controller('dialogCommonCtrl', ['$scope', 'ngDialog', 'StorageConfig', '$state', function ($scope, ngDialog, StorageConfig, $state) {
+        $scope.closeByOkButton = function (id, type) {
             ngDialog.close(id, {}, 1);
+            if(type == 'relogin'){
+                StorageConfig.TOKEN_STORAGE.removeItem('username');
+                StorageConfig.TOKEN_STORAGE.removeItem('token');
+                $state.reload();
+            }
         };
         $scope.closeByCancelButton = function (id) {
             ngDialog.close(id, {}, 0);
