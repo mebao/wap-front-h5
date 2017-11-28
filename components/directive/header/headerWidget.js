@@ -3,7 +3,7 @@ app.directive('headerWidget', [function () {
         var defaults = {
             enableHeader: true,
             enableBack: true,
-            enableClose: true,
+            enableClose: false,
             enableTitle: true,
             enableRefresh: false,
             enableArea: false,
@@ -21,6 +21,11 @@ app.directive('headerWidget', [function () {
                     }
                 ],
                 currentTab: 0
+            },
+            otherLeftOperate: {
+                enable: false,
+                html: '',
+                clickCall: ''
             },
             otherRightOperate: {
                 enable: false,
@@ -126,6 +131,14 @@ app.directive('headerWidget', [function () {
             }
         };
         /**
+         * Click the other right operate fn
+         */
+        $scope.clickOtherLeftOperate = function () {
+            if ($scope.defaults.otherLeftOperate.clickCall && typeof $scope.defaults.otherLeftOperate.clickCall === 'function') {
+                $scope.defaults.otherLeftOperate.clickCall();
+            }
+        };
+        /**
          * control the areas show or hide
          * @type {boolean}
          */
@@ -182,6 +195,7 @@ app.run(['$templateCache', function ($templateCache) {
                <div class="icon-back"></div>\
            </div>\
            <div class="btn-close" ng-show="defaults.enableClose" ng-click="closeHeader()"></div>\
+           <div class="other-left-operate" ng-show="defaults.otherLeftOperate.enable" ng-bind-html="defaults.otherLeftOperate.html | trustAsHtml" ng-click="clickOtherLeftOperate()"></div>\
        </div>\
        <div class="title" ng-bind="defaults.title" ng-show="defaults.enableTitle"></div>\
        <div class="header-tab" ng-show="defaults.tabOperate.enableTab && !defaults.enableTitle">\

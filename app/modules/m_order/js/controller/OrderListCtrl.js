@@ -17,6 +17,21 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 				title: '就诊记录',
 				enableBack: false,
 				enableRefresh: false,
+				otherLeftOperate: {
+					enable: true,
+					html: '退出',
+					clickCall: function() {
+						dialog.confirm('确认退出', {
+							closeCallback: function(value){
+								if(value == 0){
+								}else{
+									StorageConfig.TOKEN_STORAGE.putItem('token', '');
+									$state.go('layout.login');
+								}
+							}
+						});
+					},
+				},
 			};
 
 			$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
@@ -32,6 +47,21 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 			title: '就诊记录',
 			enableBack: false,
 			enableRefresh: false,
+			otherLeftOperate: {
+				enable: true,
+				html: '退出',
+				clickCall: function() {
+					dialog.confirm('确认退出', {
+						closeCallback: function(value){
+							if(value == 0){
+							}else{
+								StorageConfig.TOKEN_STORAGE.putItem('token', '');
+								$state.go('layout.login');
+							}
+						}
+					});
+				},
+			},
 			areaOperate: {
 				enable: true,
 				areas: childList,
