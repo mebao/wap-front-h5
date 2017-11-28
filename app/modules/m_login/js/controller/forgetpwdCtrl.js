@@ -15,13 +15,23 @@ app.controller('forgetpwdCtrl', ['$scope', '$rootScope', 'dialog', 'CommonServic
 		$scope.showPwd=!$scope.showPwd;
 		$scope.pwdInputType=$scope.showPwd?'text':'password';
 	}
+
+	// 获取图形验证码
+	var num = 1;
+	$scope.imgCode = window.envs.api_url + '/mebapi/getcode?id=1';
+	$scope.changeImgCode = function(){
+		num++;
+		$scope.imgCode = window.envs.api_url + '/mebapi/getcode?id=' + num;
+	}
+
 	$scope.sendSMSText='验证码';
 	//发送验证码
 	$scope.smsverifycode=function(){
 		$scope.lockEnabled=true;
 		var smsParams={
 			mobile: $scope.mobile,
-			action_type: 101
+			action_type: 101,
+			vali_code: $scope.vali_code,
 		};
 		CommonService.sendSMSCode(smsParams).then(function(res){
 			dialog.alert('验证码已发送');

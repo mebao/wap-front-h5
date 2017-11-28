@@ -12,19 +12,15 @@
                             <div class="status" ng-bind="order.statusText" ng-class="{'in': order.status == '3' || order.status == '4', 'cancel':  order.status == '0', 'complete': order.status == '5'}"></div>
                         </div>
 						<p>
-							<span>预约时间：</span>
+							<span>就诊时间：</span>
 							<span ng-bind="order.bookingDateText"></span>
 						</p>
 						<p>
-							<span>预约宝宝：</span>
-							<span ng-bind="order.childName"></span>
-						</p>
-						<p>
-							<span>预约科室：</span>
+							<span>就诊科室：</span>
 							<span ng-bind="order.serviceName"></span>
 						</p>
 						<p>
-							<span>预约医生：</span>
+							<span>接诊医生：</span>
 							<span ng-bind="order.doctorName"></span>
 						</p>
 					</div>
@@ -32,7 +28,7 @@
 						<button class="btn-cancel" ng-click="cancelOrder(order.id)">取消订单</button>
 					</p>
 				</div>
-                <div class="nodata">
+                <div ng-show="allBookings.length == 0" class="nodata">
                     暂无就诊记录
                 </div>
 			</div>

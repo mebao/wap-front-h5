@@ -11,7 +11,9 @@ app.factory('BaseHttpRequest', ['$http', '$q', 'dialog', 'StorageConfig','helper
         };
         var _def = {
             timeout: 60000,
-            responseType: "json"
+            responseType: "json",
+            withCredentials: true,
+            Cookie: document.cookie,
         };
         var obj = angular.extend(_def, angular.extend(config, requestObj));
         _setRequestHeaderAuthor();
@@ -23,7 +25,9 @@ app.factory('BaseHttpRequest', ['$http', '$q', 'dialog', 'StorageConfig','helper
         };
         var _def = {
             timeout: 60000,
-            responseType: "json"
+            responseType: "json",
+            withCredentials: true,
+            Cookie: document.cookie,
         };
         var obj = angular.extend(_def, angular.extend(config, requestObj));
         _setRequestHeaderAuthor();
@@ -35,7 +39,9 @@ app.factory('BaseHttpRequest', ['$http', '$q', 'dialog', 'StorageConfig','helper
         };
         var _def = {
             timeout: 60000,
-            responseType: "json"
+            responseType: "json",
+            withCredentials: true,
+            Cookie: document.cookie,
         };
         var obj = angular.extend(_def, angular.extend(config, requestObj));
         _setRequestHeaderAuthor();
@@ -47,7 +53,9 @@ app.factory('BaseHttpRequest', ['$http', '$q', 'dialog', 'StorageConfig','helper
         };
         var _def = {
             timeout: 60000,
-            responseType: "json"
+            responseType: "json",
+            withCredentials: true,
+            Cookie: document.cookie,
         };
         var obj = angular.extend(_def, angular.extend(config, requestObj));
         _setRequestHeaderAuthor();
@@ -59,7 +67,9 @@ app.factory('BaseHttpRequest', ['$http', '$q', 'dialog', 'StorageConfig','helper
         };
         var _def = {
             timeout: 60000,
-            responseType: "json"
+            responseType: "json",
+            withCredentials: true,
+            Cookie: document.cookie,
         };
         var obj = angular.extend(_def, angular.extend(config, requestObj));
         _setRequestHeaderAuthor();

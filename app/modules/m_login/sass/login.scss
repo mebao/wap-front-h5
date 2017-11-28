@@ -2,6 +2,10 @@
 	.btn-dock{
 		margin: px2rem(10px) 0 px2rem(20px);
 	}
+	.img-code{
+		width: px2rem(90px);
+		height: 100%;
+	}
 }
 .register-page{
 	.icon-eye{
@@ -16,6 +20,10 @@
 			background-position-x: 0;
 		}
 	}
+	.img-code{
+		width: px2rem(90px);
+		height: 100%;
+	}
 }
 .forgetpwd-page{
 	.icon-eye{
@@ -29,5 +37,9 @@
 		&.show{
 			background-position-x: 0;
 		}
+	}
+	.img-code{
+		width: px2rem(90px);
+		height: 100%;
 	}
 }

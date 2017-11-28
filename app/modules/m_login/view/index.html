@@ -31,7 +31,7 @@
 			</form>
 		</div>
 		<div class="login-tab" ng-show="selectedTab==1">
-			<form name="loginForm">
+			<form name="loginForm" novalidate="novalidate">
 				<div class="cell-group">
 					<div class="cell">
 						<div class="left-box clearly-width">
@@ -40,8 +40,16 @@
 						<div class="middle-box">
 							<input type="tel" maxlength="11" minlength="11" name="mobile" ng-model="mobile" placeholder="请输入联系方式" required>
 						</div>
+					</div>
+					<div class="cell">
+						<div class="left-box clearly-width">
+							图形验证码
+						</div>
+						<div class="middle-box">
+							<input type="text" name="vali_code" minlength="4" maxlength="4" ng-model="vali_code" placeholder="请输入图形验证码" required="">
+						</div>
 						<div class="right-box">
-							<button class="btn btn-small btn-primary in-cell" ng-disabled="loginForm.mobile.$invalid || lockEnabled" ng-click="smsverifycode()" ng-bind="sendSMSText"></button>
+                            <img src="{{imgCode}}" class="img-code" ng-click="changeImgCode()">
 						</div>
 					</div>
 					<div class="cell">
@@ -50,6 +58,9 @@
 						</div>
 						<div class="middle-box">
 							<input type="tel" maxlength="11" minlength="4" name="verify_code" ng-model="verify_code" placeholder="请输入验证码" required="">
+						</div>
+						<div class="right-box">
+							<button class="btn btn-small btn-primary in-cell" ng-disabled="loginForm.vali_code.$invalid || loginForm.mobile.$invalid || lockEnabled" ng-click="smsverifycode()" ng-bind="sendSMSText"></button>
 						</div>
 					</div>
 				</div>
