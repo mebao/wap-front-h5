@@ -2,18 +2,18 @@
     <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
 		<form name="registerForm" novalidate="novalidate">
 			<div class="cell-group">
-                <div class="cell">
-                    <div class="left-box clearly-width">用户名</div>
-                    <div class="middle-box">
-                        <input type="text" name="name" maxlength="18" ng-model="name" placeholder="请输入用户名" required="">
-                    </div>
-                </div>
 				<div class="cell">
 					<div class="left-box clearly-width">手机号码</div>
 					<div class="middle-box">
 						<input type="tel" name="mobile" ng-model="mobile" minlength="11" maxlength="11" placeholder="请输入手机号码" required="">
 					</div>
 				</div>
+                    <div class="cell">
+                        <div class="left-box clearly-width">真实姓名</div>
+                        <div class="middle-box">
+                            <input type="text" name="name" maxlength="18" ng-model="name" placeholder="请输入真实姓名" required="">
+                        </div>
+                    </div>
                 <div class="cell">
                     <div class="left-box clearly-width">
                         图形验证码

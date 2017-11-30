@@ -23,8 +23,8 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 	// 详情
 	$scope.order = StorageConfig.ORDER_STORAGE.getItem('detail');
 	$scope.use = new Date().getTime() < new Date($scope.order.bookingDate);
-	var refNo = $scope.order.refNo.replace(/\s/g, '').replace(/(.{4})/g, "$1 ");
-	$scope.order.refNo=refNo;
+	// var refNo = $scope.order.refNo.replace(/\s/g, '').replace(/(.{4})/g, "$1 ");
+	// $scope.order.refNo=refNo;
 
 	// 病例
 	var spinner = dialog.showSpinner();

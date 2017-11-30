@@ -42,7 +42,11 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 			$state.go('layout.orderlist');
 		},function(res){
 			dialog.closeSpinner(spinner.id);
-			dialog.alert(res.errorMsg);
+			if(res.errorMsg == '密码错误!'){
+				dialog.alert('密码错误，可通过忘记密码设置新密码');
+			}else{
+				dialog.alert(res.errorMsg);
+			}
 		});
 	}
 
