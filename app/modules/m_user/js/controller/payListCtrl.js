@@ -26,21 +26,23 @@ app.controller('payListCtrl', ['$scope', '$rootScope', '$state', 'userinfoServic
     // 收费信息
     userinfoService.searchtran(urlOptions).then(function(data){
         dialog.closeSpinner(spinner.id);
-		$scope.payList = data.results.list;
 		var recharge = 0;
 		var consume = 0;
 		if(data.results.list.length > 0){
 			for(var i = 0; i < data.results.list.length; i++){
+				data.results.list[i].payAmount = userinfoService.toDecimal2((parseFloat(data.results.list[i].amount) + parseFloat(data.results.list[i].secondAmount)).toString());
+				data.results.list[i].totalAmount = userinfoService.toDecimal2(parseFloat(data.results.list[i].amount) + parseFloat(data.results.list[i].giveAmount) + parseFloat(data.results.list[i].secondAmount));
 				// 判断是否为充值
 				if(data.results.list[i].type == '2'){
-					recharge += parseFloat(data.results.list[i].amount);
+					recharge += parseFloat(data.results.list[i].totalAmount);
 				}
 				// 判断是否为消费
 				if(data.results.list[i].type == '1' || data.results.list[i].type == '3'){
-					consume += parseFloat(data.results.list[i].amount);
+					consume += parseFloat(data.results.list[i].totalAmount);
 				}
 			}
 		}
+		$scope.payList = data.results.list;
 		$scope.recharge = userinfoService.toDecimal2(recharge);
 		$scope.consume = userinfoService.toDecimal2(consume);
     }, function(data){

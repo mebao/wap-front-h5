@@ -27,7 +27,7 @@
         <div ng-if="payType == '1'">
             <div class="info-tab pad10">
                 <div class="text-center">{{detail.typeText}}</div>
-                <div class="text-center money">{{detail.amount}}元</div>
+                <div class="text-center money">{{detail.payAmount}}元</div>
                 <div ng-repeat="info in bookingfee.feeinfo['医生服务费用']" class="flex">
                     <div class="flex-1">{{info.serviceName}}</div>
                     <div>{{info.fee}}</div>
@@ -64,13 +64,16 @@
                     <div class="flex-1">减免金额：</div>
                     <div>-{{detail.giveAmount}}</div>
                 </div>
-                <div class="flex">
-                    <div class="flex-1">实收金额：</div>
+                <div class="flex pt10">
+                    <div class="flex-1">{{detail.wayText}}：</div>
                     <div>{{detail.amount}}</div>
                 </div>
-                <div class="flex">
-                    <div class="flex-1">收款方式：</div>
-                    <div>{{detail.wayText}}</div>
+                <div ng-if="detail.secondWay" class="flex">
+                    <div class="flex-1">{{detail.secondWayText}}：</div>
+                    <div>{{detail.secondAmount}}</div>
+                </div>
+                <div ng-if="detail.secondType != '0'" class="pt10 text-right" ng-class="{'unComplete': detail.secondType == '1', 'complete': detail.secondType == '2'}">
+                    {{detail.secondType == '1' ? '挂账金额待支付' : '挂账金额已支付'}}
                 </div>
                 <div class="flex pt10 color-g">
                     <div class="flex-1">交易时间：</div>

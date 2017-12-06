@@ -66,7 +66,7 @@ app.controller('payDetailCtrl', ['$scope', '$rootScope', '$state', 'userinfoServ
 						detail.needAmount += parseFloat(data.results.feeinfo['其他费用'][i].fee);
 					}
 				}
-				detail.discountAmount = userinfoService.toDecimal2(detail.needAmount - parseFloat(detail.giveAmount) - parseFloat(detail.amount) - (data.results.feeinfo['预约金'] ? parseFloat(data.results.feeinfo['预约金'].fee) : 0));
+				detail.discountAmount = userinfoService.toDecimal2(detail.needAmount - parseFloat(detail.giveAmount) - parseFloat(detail.payAmount) - (data.results.feeinfo['预约金'] ? parseFloat(data.results.feeinfo['预约金'].fee) : 0));
 				detail.needAmount = userinfoService.toDecimal2(detail.needAmount);
 				$scope.bookingfee = data.results;
 			}, function(data){
