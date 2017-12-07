@@ -14,10 +14,10 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 			setHeader(res.results.childs);
 		}else{
 			window.headerConfig={
-				title: '就诊记录',
+				title: '暂无就诊记录',
 				enableBack: false,
 				enableRefresh: false,
-				otherLeftOperate: {
+				otherRightOperate: {
 					enable: true,
 					html: '退出',
 					clickCall: function() {
@@ -44,10 +44,10 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 
 	function setHeader(childList) {
 		window.headerConfig={
-			title: '就诊记录',
+			enableTitle: false,
 			enableBack: false,
 			enableRefresh: false,
-			otherLeftOperate: {
+			otherRightOperate: {
 				enable: true,
 				html: '退出',
 				clickCall: function() {
