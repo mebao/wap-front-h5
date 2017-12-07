@@ -99,27 +99,27 @@ app.controller('bookingInfoCtrl', ['$scope', '$rootScope', 'doctorService', 'Sto
 					if(backData){
 						$scope.dept_date = backData.date;
 						$scope.dateSelected=true;
-						var dutytimeParam = {
-							date: $scope.dept_date.replace(/-/g, ''),
-							department: $scope.optionsDept.backData.key.toString(),
-							reservationType: $scope.optionsType.backData.key,
-							doctorId: $scope.optionsDoctor.backData.key
-						}
-						doctorService.getDutytime(dutytimeParam).then(function(res){
-							var times = res.results;
-							if(times){
-								$scope.optionsTime.data = [];
-								angular.forEach(times, function(time, index, array){
-									var option = {};
-									option.key = index;
-									option.value = index;
-									option.statu = (time == 0 || time == -1) ? 2 : 0;
-									$scope.optionsTime.data.push(option);
-								})
-							}
-						}, function(res){
-							dialog.alert(res.errorMsg);
-						});
+						// var dutytimeParam = {
+						// 	date: $scope.dept_date.replace(/-/g, ''),
+						// 	department: $scope.optionsDept.backData.key.toString(),
+						// 	reservationType: $scope.optionsType.backData.key,
+						// 	doctorId: $scope.optionsDoctor.backData.key
+						// }
+						// doctorService.getDutytime(dutytimeParam).then(function(res){
+						// 	var times = res.results;
+						// 	if(times){
+						// 		$scope.optionsTime.data = [];
+						// 		angular.forEach(times, function(time, index, array){
+						// 			var option = {};
+						// 			option.key = index;
+						// 			option.value = index;
+						// 			option.statu = (time == 0 || time == -1) ? 2 : 0;
+						// 			$scope.optionsTime.data.push(option);
+						// 		})
+						// 	}
+						// }, function(res){
+						// 	dialog.alert(res.errorMsg);
+						// });
 					}
 				}
 			}
@@ -151,14 +151,14 @@ app.controller('bookingInfoCtrl', ['$scope', '$rootScope', 'doctorService', 'Sto
 	};
 
 	//预约时间
-	$scope.optionsTime = {
-		text: '选择预约时间',
-		title: '时间列表',
-		data: [],
-		backData: '',
-		callback: function(){
-		}
-	}
+	// $scope.optionsTime = {
+	// 	text: '选择预约时间',
+	// 	title: '时间列表',
+	// 	data: [],
+	// 	backData: '',
+	// 	callback: function(){
+	// 	}
+	// }
 
 	//预约
 	$scope.submitDocForm = function(){
@@ -182,10 +182,10 @@ app.controller('bookingInfoCtrl', ['$scope', '$rootScope', 'doctorService', 'Sto
 			dialog.toast('请选择日期');
 			return;
 		}
-		if(!$scope.optionsTime.backData || $scope.optionsTime.backData == ''){
-			dialog.toast('请选择时间');
-			return;
-		}
+		// if(!$scope.optionsTime.backData || $scope.optionsTime.backData == ''){
+		// 	dialog.toast('请选择时间');
+		// 	return;
+		// }
 		var param = {
 			username: StorageConfig.TOKEN_STORAGE.getItem('username'),
 			token: StorageConfig.TOKEN_STORAGE.getItem('token'),
@@ -193,7 +193,7 @@ app.controller('bookingInfoCtrl', ['$scope', '$rootScope', 'doctorService', 'Sto
 			mobileNumber: $scope.doc_mobileNumber,
 			department: $scope.optionsDept.backData.key.toString(),
 			doctorId: $scope.optionsDoctor.backData.key,
-			reservationDate: $scope.dept_date + ' ' + $scope.optionsTime.backData.key,
+			// reservationDate: $scope.dept_date + ' ' + $scope.optionsTime.backData.key,
 			reservationType: $scope.optionsType.backData.key,
 		}
 		var spinner = dialog.showSpinner();

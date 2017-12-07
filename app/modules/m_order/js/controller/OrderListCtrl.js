@@ -26,7 +26,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 								if(value == 0){
 								}else{
 									StorageConfig.TOKEN_STORAGE.putItem('token', '');
-									$state.go('layout.login');
+									$state.go('login');
 								}
 							}
 						});
@@ -56,7 +56,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 							if(value == 0){
 							}else{
 								StorageConfig.TOKEN_STORAGE.putItem('token', '');
-								$state.go('layout.login');
+								$state.go('login');
 							}
 						}
 					});
@@ -101,7 +101,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 	$scope.detail=function(order){
 		StorageConfig.ORDER_STORAGE.putItem('detail', order);
 		StorageConfig.ORDER_STORAGE.putItem('selectedTab', 0);
-		$state.go('layout.order-detail');
+		$state.go('order-detail');
 	}
 
 	$scope.cancelOrder=function(id){

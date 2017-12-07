@@ -1,37 +1,47 @@
-<div ng-controller="OrderCtrl" class="orderList-page">
-    <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
-		<div class="tab-box">
-			<div class="tab-content">
-                <div class="flex button-tab">
-                    <div class="flex-1 item" ng-click="goRouter('layout.user-payList')">查看支付信息</div>
-                </div>
-				<div class="order-tab" ng-repeat="order in allBookings">
-					<div ng-click="detail(order)">
-                        <div class="flex">
-                            <div class="flex-1"></div>
-                            <div class="status" ng-bind="order.statusText" ng-class="{'in': order.status == '3' || order.status == '4', 'cancel':  order.status == '0', 'complete': order.status == '5'}"></div>
-                        </div>
-						<p>
-							<span>就诊时间：</span>
-							<span ng-bind="order.bookingDateText"></span>
-						</p>
-						<p>
-							<span>就诊科室：</span>
-							<span ng-bind="order.serviceName"></span>
-						</p>
-						<p>
-							<span>接诊医生：</span>
-							<span ng-bind="order.doctorName"></span>
-						</p>
-					</div>
-					<p class="text-right" ng-show="order.status==1">
-						<button class="btn-cancel" ng-click="cancelOrder(order.id)">取消订单</button>
-					</p>
-				</div>
-                <div ng-show="allBookings.length == 0" class="nodata">
-                    暂无就诊记录
-                </div>
-			</div>
-		</div>
-	</div>
+<div ng-controller="LayoutCtrl" class="layout-base">
+    <div header-widget></div>
+
+    <div class="layout-content" id="layoutContent">
+        <div class="content-view">
+            <div ng-controller="OrderCtrl" class="orderList-page">
+                <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
+            		<div class="tab-box">
+            			<div class="tab-content">
+                            <div class="flex button-tab">
+                                <div class="flex-1 item" ng-click="goRouter('user-payList')">查看支付信息</div>
+                            </div>
+            				<div class="order-tab" ng-repeat="order in allBookings">
+            					<div ng-click="detail(order)">
+                                    <div class="flex">
+                                        <div class="flex-1"></div>
+                                        <div class="status" ng-bind="order.statusText" ng-class="{'in': order.status == '3' || order.status == '4', 'cancel':  order.status == '0', 'complete': order.status == '5'}"></div>
+                                    </div>
+            						<p>
+            							<span>就诊时间：</span>
+            							<span ng-bind="order.bookingDateText"></span>
+            						</p>
+            						<p>
+            							<span>就诊科室：</span>
+            							<span ng-bind="order.serviceName"></span>
+            						</p>
+            						<p>
+            							<span>接诊医生：</span>
+            							<span ng-bind="order.doctorName"></span>
+            						</p>
+            					</div>
+            					<p class="text-right" ng-show="order.status==1">
+            						<button class="btn-cancel" ng-click="cancelOrder(order.id)">取消订单</button>
+            					</p>
+            				</div>
+                            <div ng-show="allBookings.length == 0" class="nodata">
+                                暂无就诊记录
+                            </div>
+            			</div>
+            		</div>
+            	</div>
+            </div>
+        </div>
+    </div>
+
+    <div footer-widget menu-list="menuList"></div>
 </div>

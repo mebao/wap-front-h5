@@ -106,6 +106,6 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 	$scope.showCheckInfo = function(){
 		StorageConfig.ORDER_STORAGE.putItem('selectedTab', 2);
 		StorageConfig.ORDER_STORAGE.putItem('checkList', $scope.checkList);
-		$state.go('layout.order-checkInfo');
+		$state.go('order-checkInfo');
 	}
 }]);

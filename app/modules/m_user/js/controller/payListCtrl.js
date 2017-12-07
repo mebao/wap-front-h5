@@ -52,7 +52,7 @@ app.controller('payListCtrl', ['$scope', '$rootScope', '$state', 'userinfoServic
 
 	$scope.detail = function(pay){
 		StorageConfig.ORDER_STORAGE.putItem('payDetail', pay);
-		$state.go('layout.user-payDetail', {
+		$state.go('user-payDetail', {
 			type: pay.type,
 			id: pay.bookingId,
 		})
