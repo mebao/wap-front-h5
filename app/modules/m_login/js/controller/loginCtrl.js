@@ -4,19 +4,20 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
     $scope.footer = true;
 
 	window.headerConfig={
+		enableBack: false,
 		title: '登录',
-        otherRightOperate: {
-            enable: true,
-            html: '注册',
-            clickCall: function(){
-            	$state.go('layout.register');
-            }
-        },
+        // otherRightOperate: {
+        //     enable: true,
+        //     html: '注册',
+        //     clickCall: function(){
+        //     	$state.go('layout.register');
+        //     }
+        // },
 	};
 
 	$rootScope.$broadcast('setHeaderConfig', window.headerConfig);
 
-	$scope.selectedTab=0;
+	$scope.selectedTab=1;
 	$scope.checkTab=function(_index){
 		$scope.selectedTab=_index;
 	}
