@@ -1,6 +1,7 @@
-app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/orderlist');
         $urlRouterProvider.when('/', '/orderlist');
+        // $locationProvider.html5Mode(true).hashPrefix('!');
         $stateProvider
                 .state('layout.test', {
                     url: '/test',
