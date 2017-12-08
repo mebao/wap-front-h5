@@ -66,7 +66,9 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 				enable: true,
 				areas: childList,
 				trackKey: 'childName',
+				currentArea: StorageConfig.ORDER_STORAGE.getItem('selectedChild') ? StorageConfig.ORDER_STORAGE.getItem('selectedChild') : undefined,
 				selectedCall: function(item){
+					StorageConfig.ORDER_STORAGE.putItem('selectedChild', item);
 					getOrderData(spinner.id, item.childId);
 				}
 			},

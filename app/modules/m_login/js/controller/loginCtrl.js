@@ -103,6 +103,8 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 			StorageConfig.TOKEN_STORAGE.putItem('nickname', res.results.userinfo.username);
 			StorageConfig.TOKEN_STORAGE.putItem('gender', res.results.userinfo.gender);
 			// $state.go($scope.from,eval('(' + $scope.intercept + ')'));
+			// 清空默认选中宝宝
+			StorageConfig.ORDER_STORAGE.removeItem('selectedChild');
 			$state.go('orderlist');
 		},function(res){
 			dialog.closeSpinner(spinner.id);
