@@ -21,7 +21,9 @@
 			.order-tab{
 				background-color: #fff;
 				margin-top: px2rem(10px);
-				padding: px2rem(10px);
+				.tab{
+					padding: px2rem(10px);
+				}
 				.status{
 					border-radius: px2rem(4px);
 					color: #fff;
@@ -46,6 +48,11 @@
 					    border: none;
     					color: #fff;
     					border-radius: 5px;
+				}
+				.sawtooth{
+					height: px2rem(5px);
+					background: url('images/sawtooth.jpg') no-repeat;
+					background-size: 100% 100%;
 				}
 			}
 		}

@@ -12,27 +12,29 @@
                                 <div class="item" ng-click="goRouter('user-payList')">查看明细</div>
                             </div>
             				<div class="order-tab" ng-repeat="order in allBookings">
-            					<div ng-click="detail(order)">
-                                    <div class="flex">
-                                        <div class="flex-1"></div>
-                                        <div class="status" ng-bind="order.statusText" ng-class="{'in': order.status == '3' || order.status == '4', 'cancel':  order.status == '0', 'complete': order.status == '5'}"></div>
-                                    </div>
-            						<p>
-            							<span>就诊时间：</span>
-            							<span ng-bind="order.bookingDateText"></span>
-            						</p>
-            						<p>
-            							<span>就诊科室：</span>
-            							<span ng-bind="order.serviceName"></span>
-            						</p>
-            						<p>
-            							<span>接诊医生：</span>
-            							<span ng-bind="order.doctorName"></span>
-            						</p>
-            					</div>
-            					<p class="text-right" ng-show="order.status==1">
-            						<button class="btn-cancel" ng-click="cancelOrder(order.id)">取消订单</button>
-            					</p>
+                                <div class="tab">
+                					<div ng-click="detail(order)">
+                                        <div class="flex">
+                                            <div class="flex-1"></div>
+                                            <div class="status" ng-bind="order.statusText" ng-class="{'in': order.status == '3' || order.status == '4', 'cancel':  order.status == '0', 'complete': order.status == '5'}"></div>
+                                        </div>
+                						<p>
+                							<span ng-bind="order.bookingDateText"></span>
+                						</p>
+                						<p>
+                							<span>就诊科室：</span>
+                							<span ng-bind="order.serviceName"></span>
+                						</p>
+                						<p>
+                							<span>接诊医生：</span>
+                							<span ng-bind="order.doctorName"></span>
+                						</p>
+                					</div>
+                					<p class="text-right" ng-show="order.status==1">
+                						<button class="btn-cancel" ng-click="cancelOrder(order.id)">取消订单</button>
+                					</p>
+                                </div>
+                                <div class="sawtooth"></div>
             				</div>
                             <div ng-show="allBookings.length == 0" class="nodata">
                                 暂无就诊记录
