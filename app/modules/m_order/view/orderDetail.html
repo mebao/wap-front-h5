@@ -65,71 +65,63 @@
                     <div ng-if="selectedTab == 1">
                         <div ng-if="hasCasehistory">
                     		<div class="cell-group text">
-                    			<div ng-if="casehistory.weight != null" class="cell height-auto">
+                    			<div ng-if="casehistory.weight != null && casehistory.weight != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					体重
                     				</div>
                     				<div class="middle-box">
                                         <div class="line-height-normal">
-                                            {{casehistory.weight}}
+                                            {{casehistory.weight}}Kg
                                         </div>
-                                        <div ng-if="casehistory.midWeight != null" class="line-height-normal">
-                                            中等值：{{casehistory.midWeight}}
+                                        <div ng-if="casehistory.midWeight != null && casehistory.midWeight != ''" class="line-height-normal">
+                                            中等值：{{casehistory.midWeight}}Kg
                                         </div>
-                                        <div ng-if="casehistory.weight != null && casehistory.midWeight != null" class="line-height-normal">
+                                        <div ng-if="casehistory.weight != null && casehistory.weight != '' && casehistory.midWeight != null && casehistory.midWeight != ''" class="line-height-normal">
                                             对比：{{casehistory.compareWeight}}
                                         </div>
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.height != null" class="cell height-auto">
+                    			<div ng-if="casehistory.height != null && casehistory.height != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					身高
                     				</div>
                     				<div class="middle-box">
                                         <div class="line-height-normal">
-                                            {{casehistory.height}}
+                                            {{casehistory.height}}cm
                                         </div>
-                                        <div ng-if="casehistory.midHeight != null" class="line-height-normal">
-                                            中等值：{{casehistory.midHeight}}
+                                        <div ng-if="casehistory.midHeight != null && casehistory.midHeight != ''" class="line-height-normal">
+                                            中等值：{{casehistory.midHeight}}cm
                                         </div>
-                                        <div ng-if="casehistory.height != null && casehistory.midHeight != null" class="line-height-normal">
+                                        <div ng-if="casehistory.height != null && casehistory.height != '' && casehistory.midHeight != null && casehistory.midHeight != ''" class="line-height-normal">
                                             对比：{{casehistory.compareHeight}}
                                         </div>
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.bodyTemperature != null" class="cell">
+                    			<div ng-if="casehistory.bodyTemperature != null && casehistory.bodyTemperature != ''" class="cell">
                     				<div class="left-box clearly-width">
                     					体温
                     				</div>
                     				<div class="middle-box">
-                                        {{casehistory.bodyTemperature}}
+                                        {{casehistory.bodyTemperature}}°C
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.headCircum != null" class="cell">
+                    			<div ng-if="casehistory.headCircum != null && casehistory.headCircum != ''" class="cell">
                     				<div class="left-box clearly-width">
                     					头围
                     				</div>
                     				<div class="middle-box">
-                                        {{casehistory.headCircum}}
+                                        {{casehistory.headCircum}}cm
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.breastCircum != null" class="cell">
+                    			<div ng-if="casehistory.breastCircum != null && casehistory.breastCircum != ''" class="cell">
                     				<div class="left-box clearly-width">
                     					胸围
                     				</div>
                     				<div class="middle-box">
-                                        {{casehistory.breastCircum}}
+                                        {{casehistory.breastCircum}}cm
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.teeth != null" class="cell">
-                    				<div class="left-box clearly-width">
-                    					出牙数
-                    				</div>
-                    				<div class="middle-box">
-                                        {{casehistory.teeth}}
-                                    </div>
-                    			</div>
-                    			<div ng-if="casehistory.topicComment != null" class="cell height-auto">
+                    			<div ng-if="casehistory.topicComment != null && casehistory.topicComment != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					主诉
                     				</div>
@@ -137,7 +129,7 @@
                                         {{casehistory.topicComment}}
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.checkResult != null" class="cell height-auto">
+                    			<div ng-if="casehistory.checkResult != null && casehistory.checkResult != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					检查结果
                     				</div>
@@ -145,7 +137,7 @@
                                         {{casehistory.checkResult}}
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.presentIllness != null" class="cell height-auto">
+                    			<div ng-if="casehistory.presentIllness != null && casehistory.presentIllness != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					现病史
                     				</div>
@@ -153,7 +145,7 @@
                                         {{casehistory.presentIllness}}
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.previousHistory != null" class="cell height-auto">
+                    			<div ng-if="casehistory.previousHistory != null && casehistory.previousHistory != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					既往史
                     				</div>
@@ -161,7 +153,7 @@
                                         {{casehistory.previousHistory}}
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.allergy != null" class="cell height-auto">
+                    			<div ng-if="casehistory.allergy != null && casehistory.allergy != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					过敏史
                     				</div>
@@ -169,7 +161,7 @@
                                         {{casehistory.allergy}}
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.familyHistory != null" class="cell height-auto">
+                    			<div ng-if="casehistory.familyHistory != null && casehistory.familyHistory != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					家族史
                     				</div>
@@ -177,7 +169,7 @@
                                         {{casehistory.familyHistory}}
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.breedHistory != null" class="cell height-auto">
+                    			<div ng-if="casehistory.breedHistory != null && casehistory.breedHistory != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					孕育史
                     				</div>
@@ -185,7 +177,7 @@
                                         {{casehistory.breedHistory}}
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.growthHistory != null" class="cell height-auto">
+                    			<div ng-if="casehistory.growthHistory != null && casehistory.growthHistory != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					生长发育史
                     				</div>
@@ -193,7 +185,7 @@
                                         {{casehistory.growthHistory}}
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.physicalCheck != null" class="cell height-auto">
+                    			<div ng-if="casehistory.physicalCheck != null && casehistory.physicalCheck != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					体格检查
                     				</div>
@@ -201,35 +193,35 @@
                                         {{casehistory.physicalCheck}}
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.breathe != null || casehistory.bloodPressure != null || casehistory.faceNeck != null || casehistory.heartLung != null || casehistory.abdomen != null || casehistory.limbs != null || casehistory.nervousSystem != null" class="cell height-auto">
+                    			<div ng-if="(casehistory.breathe != null && casehistory.breathe != '') || (casehistory.bloodPressure != null && casehistory.bloodPressure != '') || (casehistory.faceNeck != null && casehistory.faceNeck != '') || (casehistory.heartLung != null && casehistory.heartLung != '') || (casehistory.abdomen != null && casehistory.abdomen != '') || (casehistory.limbs != null && casehistory.limbs != '') || (casehistory.nervousSystem != null && casehistory.nervousSystem != '')" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					体格检查详情
                     				</div>
                     				<div class="middle-box">
-                                        <div ng-if="casehistory.breathe != null" class="line-height-normal">
+                                        <div ng-if="casehistory.breathe != null && casehistory.breathe != ''" class="line-height-normal">
                                             呼吸：{{casehistory.breathe}}
                                         </div>
-                                        <div ng-if="casehistory.bloodPressure != null" class="line-height-normal">
+                                        <div ng-if="casehistory.bloodPressure != null && casehistory.bloodPressure != ''" class="line-height-normal">
                                             血压：{{casehistory.bloodPressure}}
                                         </div>
-                                        <div ng-if="casehistory.faceNeck != null" class="line-height-normal">
+                                        <div ng-if="casehistory.faceNeck != null && casehistory.faceNeck != ''" class="line-height-normal">
                                             面、颈部：{{casehistory.faceNeck}}
                                         </div>
-                                        <div ng-if="casehistory.heartLung != null" class="line-height-normal">
+                                        <div ng-if="casehistory.heartLung != null && casehistory.heartLung != ''" class="line-height-normal">
                                             心肺：{{casehistory.heartLung}}
                                         </div>
-                                        <div ng-if="casehistory.abdomen != null" class="line-height-normal">
+                                        <div ng-if="casehistory.abdomen != null && casehistory.abdomen != ''" class="line-height-normal">
                                             腹部：{{casehistory.abdomen}}
                                         </div>
-                                        <div ng-if="casehistory.limbs != null" class="line-height-normal">
+                                        <div ng-if="casehistory.limbs != null && casehistory.limbs != ''" class="line-height-normal">
                                             四肢：{{casehistory.limbs}}
                                         </div>
-                                        <div ng-if="casehistory.nervousSystem != null" class="line-height-normal">
+                                        <div ng-if="casehistory.nervousSystem != null && casehistory.nervousSystem != ''" class="line-height-normal">
                                             神经系统：{{casehistory.nervousSystem}}
                                         </div>
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.diagnosis != null" class="cell height-auto">
+                    			<div ng-if="casehistory.diagnosis != null && casehistory.diagnosis != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					诊断
                     				</div>
@@ -237,22 +229,12 @@
                                         {{casehistory.diagnosis}}
                                     </div>
                     			</div>
-                    			<div ng-if="casehistory.advise != null" class="cell height-auto">
+                    			<div ng-if="casehistory.advise != null && casehistory.advise != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					建议
                     				</div>
                     				<div class="middle-box line-height-normal">
                                         {{casehistory.advise}}
-                                    </div>
-                    			</div>
-                    			<div class="cell height-auto">
-                    				<div class="left-box clearly-width">
-                    					处方
-                    				</div>
-                    				<div class="middle-box">
-                                        <div ng-repeat="item in prescript" class="line-height-normal">
-                                            {{item.value}}
-                                        </div>
                                     </div>
                     			</div>
                             </div>
@@ -262,7 +244,7 @@
                         </div>
                     </div>
                     <div ng-if="selectedTab == 2">
-                        <div ng-if="check != '' || assist != ''">
+                        <div ng-if="check != '' || assist != '' || prescript.length > 0">
                             <div class="cell-group text">
                                 <div ng-if="check != ''" class="cell height-auto">
                                     <div class="left-box clearly-width">
@@ -284,6 +266,16 @@
                                         </div>
                                     </div>
                                 </div>
+                    			<div ng-if="prescript.length > 0" class="cell height-auto">
+                    				<div class="left-box clearly-width">
+                    					处方
+                    				</div>
+                    				<div class="middle-box">
+                                        <div ng-repeat="item in prescript" class="line-height-normal">
+                                            {{item.value}}
+                                        </div>
+                                    </div>
+                    			</div>
                             </div>
                             <div ng-if="check != ''" class="btn-dock">
             					<button class="btn btn-primary" ng-click="showCheckInfo()">查看检查详情</button>

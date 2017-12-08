@@ -7,8 +7,9 @@
                 <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
             		<div class="tab-box">
             			<div class="tab-content">
-                            <div class="flex button-tab">
-                                <div class="flex-1 item" ng-click="goRouter('user-payList')">查看支付信息</div>
+                            <div class="user-tab text-center">
+                                <div class="money">余额：{{user.balance}}元</div>
+                                <div class="item" ng-click="goRouter('user-payList')">查看明细</div>
                             </div>
             				<div class="order-tab" ng-repeat="order in allBookings">
             					<div ng-click="detail(order)">

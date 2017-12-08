@@ -73,16 +73,21 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 	// 实验室检查
 	OrderService.usercheckprojects(urlOptions).then(function(data){
 		var check = '';
+		var checkList = [];
 		if(data.results.list.length > 0){
 			for(var i = 0; i < data.results.list.length; i++){
-				check += data.results.list[i].checkName + '、';
+				// 判断该检查是否填写检查结果
+				if(data.results.list[i].checkDoctorId){
+					checkList.push(data.results.list[i]);
+					check += data.results.list[i].checkName + '、';
+				}
 			}
 		}
 		if(check.length > 0){
 			check = check.slice(0, check.length - 1);
 		}
 		$scope.check = check;
-		$scope.checkList = data.results.list;
+		$scope.checkList = checkList;
 	}, function(data){
 		dialog.alert(data.errorMsg);
 	});

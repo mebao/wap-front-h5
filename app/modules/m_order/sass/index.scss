@@ -8,14 +8,14 @@
 				margin-top: px2rem(10px);
 				padding: px2rem(10px);
 			}
-			.button-tab{
+			.user-tab{
+				background-color: #fff;
+				.money{
+					font-size: px2rem(16px);
+					padding: px2rem(20px) 0 px2rem(10px);
+				}
 				.item{
 					padding: px2rem(10px);
-					text-align: center;
-					background-color: #fff;
-					&:first-child{
-						border-right: 1px solid #efefef;
-					}
 				}
 			}
 			.order-tab{

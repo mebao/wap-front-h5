@@ -1,4 +1,4 @@
-app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','StorageConfig','$state', 'HomeService', function($scope,$rootScope,OrderService,dialog,StorageConfig,$state, HomeService){
+app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','StorageConfig','$state', 'HomeService', 'userinfoService', function($scope,$rootScope,OrderService,dialog,StorageConfig,$state, HomeService, userinfoService){
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
     $scope.footer = false;
@@ -131,4 +131,13 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 			}
 		});
 	}
+
+	// 获取用户余额
+	userinfoService.searchuser(urlOptions).then(function(data){
+		if(data.results.users.length > 0){
+			$scope.user = data.results.users[0];
+		}
+	}, function(data){
+		dialog.alert(urlOptions);
+	});
 }]);
