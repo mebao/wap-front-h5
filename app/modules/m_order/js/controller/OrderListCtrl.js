@@ -14,7 +14,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 			setHeader(res.results.childs);
 		}else{
 			window.headerConfig={
-				title: '暂无就诊记录',
+				title: '',
 				enableBack: false,
 				enableRefresh: false,
 				otherRightOperate: {
@@ -35,6 +35,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 			};
 
 			$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
+			$scope.allBookings = [];
 	        dialog.closeSpinner(spinner.id);
 		}
     },function(res){
