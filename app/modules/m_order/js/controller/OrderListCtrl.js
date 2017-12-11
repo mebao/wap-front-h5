@@ -9,6 +9,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
         username: StorageConfig.TOKEN_STORAGE.getItem('username'),
         token: StorageConfig.TOKEN_STORAGE.getItem('token')
     };
+	$scope.username = StorageConfig.TOKEN_STORAGE.getItem('username');
     HomeService.getChilds(urlOptions).then(function(res){
 		if(res.results.childs.length > 0){
 			setHeader(res.results.childs);
@@ -69,6 +70,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 				trackKey: 'childName',
 				currentArea: StorageConfig.ORDER_STORAGE.getItem('selectedChild') ? StorageConfig.ORDER_STORAGE.getItem('selectedChild') : undefined,
 				selectedCall: function(item){
+					$scope.selectedChild = item;
 					StorageConfig.ORDER_STORAGE.putItem('selectedChild', item);
 					getOrderData(spinner.id, item.childId);
 				}
@@ -134,11 +136,11 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 	}
 
 	// 获取用户余额
-	userinfoService.searchuser(urlOptions).then(function(data){
-		if(data.results.users.length > 0){
-			$scope.user = data.results.users[0];
-		}
-	}, function(data){
-		dialog.alert(urlOptions);
-	});
+	// userinfoService.searchuser(urlOptions).then(function(data){
+	// 	if(data.results.users.length > 0){
+	// 		$scope.user = data.results.users[0];
+	// 	}
+	// }, function(data){
+	// 	dialog.alert(urlOptions);
+	// });
 }]);

@@ -7,28 +7,41 @@
                 <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
             		<div class="tab-box">
             			<div class="tab-content">
-                            <div class="user-tab text-center">
-                                <div class="money">余额：{{user.balance}}元</div>
-                                <div class="item" ng-click="goRouter('user-payList')">查看明细</div>
+                            <div class="top-tab">
+                                <div class="flex">
+                                    <div class="flex-1 pay-tab text-center">
+                                        <img src="./app/images/icon_rmb.png" ng-click="goRouter('user-payList')">
+                                    </div>
+                                    <div class="child-img">
+                                        <img ng-src="{{selectedChild.imageUrl ? selectedChild.imageUrl : './app/images/icon_child.png'}}">
+                                    </div>
+                                    <div class="flex-1"></div>
+                                </div>
+                                <div class="text-center info">
+                                    <span>{{selectedChild.gender}}</span>
+                                    <span>{{selectedChild.age}}</span>
+                                    <span>{{username}}</span>
+                                </div>
+                            </div>
+                            <div ng-show="allBookings.length == 0" class="nodata">
+                                暂无就诊记录
                             </div>
             				<div class="order-tab" ng-repeat="order in allBookings">
                                 <div class="tab">
                 					<div ng-click="detail(order)">
                                         <div class="flex">
-                                            <div class="flex-1"></div>
-                                            <div class="status" ng-bind="order.statusText" ng-class="{'in': order.status == '3' || order.status == '4', 'cancel':  order.status == '0', 'complete': order.status == '5'}"></div>
+                                            <div class="flex-1 date" ng-bind="order.bookingDateText"></div>
+                                            <div class="status" ng-bind="order.statusText" ng-class="{'in': order.status == '3' || order.status == '4' || order.status == '11', 'cancel':  order.status == '0', 'complete': order.status == '5'}"></div>
                                         </div>
-                						<p>
-                							<span ng-bind="order.bookingDateText"></span>
-                						</p>
-                						<p>
-                							<span>就诊科室：</span>
-                							<span ng-bind="order.serviceName"></span>
-                						</p>
-                						<p>
+                						<p class="pt10">
                 							<span>接诊医生：</span>
                 							<span ng-bind="order.doctorName"></span>
+                							<span ng-bind="order.serviceName"></span>
                 						</p>
+                                        <p ng-if="order.status != '0'" class="pt10">
+                                            <span>诊断结果：</span>
+                                            <span ng-class="{'diagnosis': !(order.status == '4' || order.status == '5' || order.status == '11'), 'has-diagnosis': order.status == '4' || order.status == '5' || order.status == '11'}">{{order.status == '4' || order.status == '5' || order.status == '11' ? (!order.diagnosis || order.diagnosis == '' ? '暂无' : order.diagnosis) : '尚未就诊'}}</span>
+                                        </p>
                 					</div>
                 					<p class="text-right" ng-show="order.status==1">
                 						<button class="btn-cancel" ng-click="cancelOrder(order.id)">取消订单</button>
@@ -36,9 +49,6 @@
                                 </div>
                                 <div class="sawtooth"></div>
             				</div>
-                            <div ng-show="allBookings.length == 0" class="nodata">
-                                暂无就诊记录
-                            </div>
             			</div>
             		</div>
             	</div>

@@ -8,26 +8,50 @@
 				margin-top: px2rem(10px);
 				padding: px2rem(10px);
 			}
-			.user-tab{
-				background-color: #fff;
-				.money{
-					font-size: px2rem(16px);
-					padding: px2rem(20px) 0 px2rem(10px);
+			.top-tab{
+				background: url('./images/bg2.jpg') no-repeat;
+				background-size: 100%;
+				padding: px2rem(15px) 0;
+				.pay-tab{
+					padding-top: px2rem(15px);
+					img{
+						width: px2rem(30px);
+					}
 				}
-				.item{
-					padding: px2rem(10px);
+				.child-img{
+					width: px2rem(60px);
+					img{
+						width: 100%;
+					}
+				}
+				.info{
+					color: #fff;
 				}
 			}
 			.order-tab{
 				background-color: #fff;
-				margin-top: px2rem(10px);
+				margin: px2rem(10px) px2rem(10px) 0;
+				border-top-left-radius: px2rem(4px);
+				border-top-right-radius: px2rem(4px);
+				&:last-child{
+					margin-bottom: px2rem(10px);
+				}
+				.date{
+					font-size: px2rem(15px);
+				}
 				.tab{
 					padding: px2rem(10px);
+					.diagnosis{
+						color: #D45D5D;
+					}
+					.has-diagnosis{
+						color: #34E945;
+					}
 				}
 				.status{
 					border-radius: px2rem(4px);
 					color: #fff;
-					padding: 0 10px;
+					padding: px2rem(2px) px2rem(10px);
 					background-color: #D45D5D;
 					&.in{
 						background-color: #39A99D;
