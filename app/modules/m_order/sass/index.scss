@@ -11,7 +11,10 @@
 			.top-tab{
 				background: url('./images/bg2.jpg') no-repeat;
 				background-size: 100%;
-				padding-top: px2rem(15px);
+				.tab{
+					padding-top: px2rem(15px);
+					background-color: rgba(0,0,0,0.2);
+				}
 				.pay-tab{
 					padding-top: px2rem(15px);
 					img{
