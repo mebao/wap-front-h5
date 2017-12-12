@@ -44,7 +44,7 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 		},
 		searchcasehistory: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebapi/searchcasehistory?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id,
+				url: apiUrl + '/mebapi/searchcasehistory?username=' + urlOptions.username + '&token=' + urlOptions.token + (urlOptions.booking_id ? '&booking_id=' + urlOptions.booking_id : '') + (urlOptions.child_id ? '&child_id=' + urlOptions.child_id : ''),
 			}
 			return BaseHttpRequest.get(requestObj, searchcasehistoryDto);
 		},
@@ -56,7 +56,7 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 		},
 		usercheckprojects: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebapi/usercheckprojects?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id + '&today=1',
+				url: apiUrl + '/mebapi/usercheckprojects?username=' + urlOptions.username + '&token=' + urlOptions.token + (urlOptions.booking_id ? '&booking_id=' + urlOptions.booking_id : '') + (urlOptions.child_id ? '&child_id=' + urlOptions.child_id : '') + '&today=1&ischeck=1',
 			}
 			return BaseHttpRequest.get(requestObj, usercheckprojectsDto);
 		},

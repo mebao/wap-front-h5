@@ -23,7 +23,7 @@
                                     </div>
                                     <div ng-if="result.isUpload == '0'" class="tab-item w40">
                                         <div>{{result.values}}</div>
-                                        <div>单位：{{result.unit}}</div>
+                                        <div>{{result.references == '阴性' ? '' : (result.unit ? '单位：' + result.unit : '')}}</div>
                                     </div>
                                     <div ng-if="result.isUpload == '0'" class="tab-item w20">
                                         <div ng-if="result.compare" class="text-center h100">

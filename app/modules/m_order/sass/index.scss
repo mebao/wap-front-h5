@@ -11,7 +11,7 @@
 			.top-tab{
 				background: url('./images/bg2.jpg') no-repeat;
 				background-size: 100%;
-				padding: px2rem(15px) 0;
+				padding-top: px2rem(15px);
 				.pay-tab{
 					padding-top: px2rem(15px);
 					img{
@@ -26,6 +26,16 @@
 				}
 				.info{
 					color: #fff;
+				}
+				.order-info{
+					padding: px2rem(10px) 0;
+					color: #fff;
+					.flex-1{
+						border-right: 1px solid #fff;
+						&:last-child{
+							border-right: none;
+						}
+					}
 				}
 			}
 			.order-tab{

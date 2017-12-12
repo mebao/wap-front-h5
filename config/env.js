@@ -24,7 +24,7 @@
     };
     var envs = allEnvs.localhost;//默认连接dev开发环境
     switch (window.location.host) {
-        case 'm.mingyizhudao.com':
+        case 'wap.meb168.com':
         {
             envs = allEnvs.product;
             break;

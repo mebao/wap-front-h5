@@ -7,7 +7,7 @@
                 <div class="tab-box">
                     <div class="tab-header">
                         <div class="tab-item" ng-class="{'active': selectedTab==0}" ng-click="checkTab(0)">详情</div>
-                        <div class="tab-item" ng-class="{'active': selectedTab==1}" ng-click="checkTab(1)">病例</div>
+                        <div class="tab-item" ng-class="{'active': selectedTab==1}" ng-click="checkTab(1)">病历</div>
                         <div class="tab-item" ng-class="{'active': selectedTab==2}" ng-click="checkTab(2)">医嘱</div>
                     </div>
                 </div>
@@ -18,47 +18,29 @@
                 			<span ng-bind="order.timeDiff"></span>
                 		</p>
                 		<div class="cell-group">
-                			<!-- <div class="cell">
-                				<div class="left-box">
-                					预约编号
-                				</div>
-                				<div class="middle-box" ng-bind="order.refNo"></div>
-                			</div> -->
-                			<!-- <div class="cell">
-                				<div class="left-box">
-                					预约诊所
-                				</div>
-                				<div class="middle-box" ng-bind="order.clinicName"></div>
-                			</div> -->
+                            <div class="cell">
+                                <div class="left-box">
+                                    接诊医生:
+                                </div>
+                                <div class="middle-box" ng-bind="order.doctorName"></div>
+                            </div>
                 			<div class="cell">
                 				<div class="left-box">
-                					预约项目:
-                				</div>
-                				<div class="middle-box" ng-bind="order.serviceName"></div>
-                			</div>
-                			<div class="cell">
-                				<div class="left-box">
-                					预约宝宝:
+                					就诊宝宝:
                 				</div>
                 				<div class="middle-box" ng-bind="order.childName"></div>
                 			</div>
                 			<div class="cell">
                 				<div class="left-box">
-                					预留电话:
+                					就诊科室:
                 				</div>
-                				<div class="middle-box" ng-bind="order.mobile"></div>
+                				<div class="middle-box" ng-bind="order.serviceName"></div>
                 			</div>
                 			<div class="cell">
                 				<div class="left-box">
-                					预约时间:
+                					就诊时间:
                 				</div>
                 				<div class="middle-box" ng-bind="order.bookingDateText"></div>
-                			</div>
-                			<div class="cell">
-                				<div class="left-box">
-                					预约医生:
-                				</div>
-                				<div class="middle-box" ng-bind="order.doctorName"></div>
                 			</div>
                 		</div>
                     </div>
