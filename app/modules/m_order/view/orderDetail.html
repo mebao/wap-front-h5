@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="content-page" ng-class="{'bottomFooter': footer}">
-                    <div ng-if="selectedTab == 0">
+                    <div ng-if="selectedTab == 0" class="pad10">
                 		<p ng-if="(order.status  == '1' || order.status  == '2') && use" class="tip">
                 			<span>离面诊时间还有</span>
                 			<span ng-bind="order.timeDiff"></span>
@@ -36,16 +36,16 @@
                 				</div>
                 				<div class="middle-box" ng-bind="order.serviceName"></div>
                 			</div>
-                			<div class="cell">
+                			<div class="cell" ng-if="order.begin">
                 				<div class="left-box">
                 					就诊时间:
                 				</div>
-                				<div class="middle-box" ng-bind="order.bookingDateText"></div>
+                				<div class="middle-box" ng-bind="order.beginText"></div>
                 			</div>
                 		</div>
                     </div>
                     <div ng-if="selectedTab == 1">
-                        <div ng-if="hasCasehistory">
+                        <div ng-if="hasCasehistory" class="pad10">
                     		<div class="cell-group text">
                     			<div ng-if="casehistory.weight != null && casehistory.weight != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                     <div ng-if="selectedTab == 2">
-                        <div ng-if="check != '' || assist != '' || prescript.length > 0">
+                        <div ng-if="check != '' || assist != '' || prescript.length > 0" class="pad10">
                             <div class="cell-group text">
                                 <div ng-if="check != ''" class="cell height-auto">
                                     <div class="left-box clearly-width">

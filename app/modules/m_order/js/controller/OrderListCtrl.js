@@ -93,6 +93,11 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 					res.results.allBookings[i].bookingDateText = res.results.allBookings[i].bookingDate.replace('-', '年');
 					res.results.allBookings[i].bookingDateText = res.results.allBookings[i].bookingDateText.replace('-', '月');
 					res.results.allBookings[i].bookingDateText = res.results.allBookings[i].bookingDateText.replace(' ', '日 ');
+					if(res.results.allBookings[i].begin){
+						res.results.allBookings[i].beginText = res.results.allBookings[i].begin.replace('-', '年');
+						res.results.allBookings[i].beginText = res.results.allBookings[i].beginText.replace('-', '月');
+						res.results.allBookings[i].beginText = res.results.allBookings[i].beginText.replace(' ', '日 ');
+					}
 					if(res.results.allBookings[i].status == '4' || res.results.allBookings[i].status == '5' || res.results.allBookings[i].status == '11'){
 						bookingInNum++;
 					}

@@ -22,15 +22,17 @@
                                     <span>{{selectedChild.age}}</span>
                                     <span>{{username}}</span>
                                 </div>
-                                <div class="flex order-info text-center">
-                                    <div class="flex-1">
-                                        {{bookingInNum}}次就诊
-                                    </div>
-                                    <div class="flex-1">
-                                        {{casehistory.length}}份病历
-                                    </div>
-                                    <div class="flex-1">
-                                        {{checkprojects.length}}组报告
+                                <div class="order-info">
+                                    <div ng-if="selectedChild" class="flex text-center">
+                                        <div class="flex-1">
+                                            {{bookingInNum}}次就诊
+                                        </div>
+                                        <div class="flex-1">
+                                            {{casehistory.length}}份病历
+                                        </div>
+                                        <div class="flex-1">
+                                            {{checkprojects.length}}组报告
+                                        </div>
                                     </div>
                                 </div>
                             </div>

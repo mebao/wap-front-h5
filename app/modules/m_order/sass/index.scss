@@ -96,20 +96,31 @@
 	.content-page{
 		top: px2rem(92px)!important;
 		.tip{
-			margin: px2rem(10px);
+			margin: px2rem(10px) 0;
 			padding: px2rem(5px);
 			background-color: #9CCC65;
 			color: #fff;
 			border-radius: px2rem(5px);
+		}
+		.cell-group{
+			border-radius: px2rem(4px);
+			border-width: 0;
+			.cell{
+				border-bottom: 1px dashed #d6d6d6;
+				&:last-child{
+					border-bottom: none;
+				}
+			}
 		}
 	}
 }
 .orderCheckInfo-page{
 	.check-list{
 		.item{
-			margin-bottom: px2rem(10px);
+			margin: px2rem(10px);
 			background-color: #fff;
 			padding: px2rem(10px);
+			border-radius: px2rem(4px);
 			.title{
 				font-size: px2rem(16px);
 			}

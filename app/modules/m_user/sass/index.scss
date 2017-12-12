@@ -213,10 +213,15 @@
 }
 .payList-page{
 	.info-tab{
-		background-color: #fff;
+		background: url('./images/bg_pay.jpg') no-repeat;
+		background-size: 100%;
+		color: #fff;
+		.tab{
+			background-color: rgba(0,0,0,0.4);
+		}
 		.money{
 			padding: px2rem(20px) 0 px2rem(10px);
-			font-size: px2rem(16px);
+			font-size: px2rem(18px);
 		}
 	}
 	.info-list{
