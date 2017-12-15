@@ -11,6 +11,10 @@
                                 <span>检查项目：</span>
                                 <span ng-bind="check.checkName"></span>
                             </p>
+                            <p ng-if="check.resultList.length > 0" class="pt10">
+                                <span>报告时间：</span>
+                                <span ng-bind="check.resultList[0].time"></span>
+                            </p>
                         </div>
                     </div>
                     <div class="sawtooth"></div>
