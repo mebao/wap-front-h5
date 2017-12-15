@@ -168,6 +168,12 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 		});
 	}
 
+	$scope.checkList = function(){
+		$state.go('order-check-list', {
+			childId: $scope.selectedChild.childId
+		})
+	}
+
 	// 获取用户余额
 	// userinfoService.searchuser(urlOptions).then(function(data){
 	// 	if(data.results.users.length > 0){

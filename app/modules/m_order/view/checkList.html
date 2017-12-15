@@ -1,0 +1,23 @@
+<div ng-controller="LayoutCtrl" class="layout-base">
+    <div header-widget></div>
+
+    <div class="layout-content" id="layoutContent">
+        <div class="content-view">
+            <div ng-controller="orderCheckListCtrl" class="orderCheckList-page">
+                <div class="check-tab" ng-repeat="check in checkList">
+                    <div class="tab">
+                        <div ng-click="detail(check)">
+                            <p>
+                                <span>检查项目：</span>
+                                <span ng-bind="check.checkName"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sawtooth"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div footer-widget menu-list="menuList"></div>
+</div>

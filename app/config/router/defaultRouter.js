@@ -59,6 +59,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
                     url: '/order/detail',
                     templateUrl: 'app/modules/m_order/view/orderDetail.html'
                 })
+                .state('order-check-list', {
+                    url: '/order/checkList?childId',
+                    templateUrl: 'app/modules/m_order/view/checkList.html'
+                })
                 .state('order-checkInfo',{
                     url: '/order/checkInfo',
                     templateUrl: 'app/modules/m_order/view/checkInfo.html'
