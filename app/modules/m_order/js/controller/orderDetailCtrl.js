@@ -56,14 +56,9 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 			var prescript = data.results.list[0];
 			if(prescript.info.length > 0){
 				for(var i = 0; i < prescript.info.length; i++){
-					$scope.prescript.push({
-						value: prescript.info[i].pname + ': ' + prescript.info[i].frequency
-							 + '，一次' + prescript.info[i].oneNum + prescript.info[i].oneUnit
-							 + '，' + prescript.info[i].usage
-							 + '，需服用' + prescript.info[i].days + '天'
-							 + '，共开' + prescript.info[i].num + prescript.info[i].unit + '。'
-					});
+					prescript.info[i].oneNum = parseFloat(prescript.info[i].oneNum);
 				}
+				$scope.prescript = prescript.info;
 			}
 		}
 	}, function(data){

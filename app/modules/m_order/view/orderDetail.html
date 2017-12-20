@@ -248,13 +248,22 @@
                                         </div>
                                     </div>
                                 </div>
-                    			<div ng-if="prescript.length > 0" class="cell height-auto">
+                    			<div ng-if="prescript.length > 0" ng-repeat="item in prescript" class="cell height-auto">
                     				<div class="left-box clearly-width">
-                    					处方:
+                    					{{$index == 0 ? '处方:' : ''}}
                     				</div>
                     				<div class="middle-box">
-                                        <div ng-repeat="item in prescript" class="line-height-normal">
-                                            {{item.value}}
+                                        <div>
+                                            <span>{{item.pname}}</span>
+                                            <span>{{item.format}}</span>
+                                            <span>{{item.num + item.unit}}</span>
+                                            <span>{{item.days}}天</span>
+                                        </div>
+                                        <div>
+                                            用法：
+                                            <span>{{item.frequency}}</span>
+                                            <span>{{item.usage}}</span>
+                                            <span>一次{{item.oneNum + item.oneUnit}}</span>
                                         </div>
                                     </div>
                     			</div>
