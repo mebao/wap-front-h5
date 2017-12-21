@@ -11,6 +11,7 @@ app.controller('payDetailCtrl', ['$scope', '$rootScope', '$state', 'userinfoServ
 
     var type = $state.params.type;
 	var detail = StorageConfig.ORDER_STORAGE.getItem('payDetail');
+	detail.amount = userinfoService.toDecimal2(detail.amount);
 	if(type == '2'){
 		// 会员充值
 		$scope.payType = '0';
