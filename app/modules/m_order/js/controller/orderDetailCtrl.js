@@ -108,4 +108,67 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 		StorageConfig.ORDER_STORAGE.putItem('checkList', $scope.checkList);
 		$state.go('order-checkInfo');
 	}
+
+	$scope.healthItem = [
+		{name: '头围', key: 'headCircum', unit: 'cm'},
+		{name: '胸围', key: 'breastCircum', unit: 'cm'},
+		{name: '体温', key: 'bodyTemperature', unit: '°C'},
+		{name: '脉搏', key: 'pulse', unit: '次/分钟'},
+		{name: '呼吸', key: 'breathe', unit: '次/分钟'},
+		{name: '血压', key: 'bloodPressure', unit: 'mmHg'},
+		{name: '精神及神志', key: 'spirit', unit: ''},
+		{name: '营养状态', key: 'nutritionalStatus', unit: ''},
+		{name: '皮肤', key: 'skin', unit: ''},
+		{name: '口腔黏膜', key: 'oralMucosa', unit: ''},
+		{name: '毛发', key: 'hair', unit: ''},
+		{name: '浅表淋巴结', key: 'lymphNode', unit: ''},
+		{name: '头颅', key: 'head', unit: ''},
+		{name: '前囟', key: 'bregmatic', unit: ''},
+		{name: '耳', key: 'ear', unit: ''},
+		{name: '鼻', key: 'nose', unit: ''},
+		{name: '咽喉', key: 'throat', unit: ''},
+		{name: '扁桃体', key: 'tonsil', unit: ''},
+		{name: '双眼', key: 'eyes', unit: ''},
+		{name: '视力筛查', key: 'vision', unit: ''},
+		{name: '牙龈', key: 'gums', unit: ''},
+		{name: '舌系带', key: 'tongue_tie', unit: ''},
+		{name: '牙窝沟', key: 'teeth_pit', unit: ''},
+		{name: '牙菌斑', key: 'plaque', unit: ''},
+		{name: '出牙数', key: 'teeth_num', unit: '颗'},
+		{name: '龋齿', key: 'dental_caries', unit: ''},
+		{name: '胸廓', key: 'thoracic', unit: ''},
+		{name: '心脏', key: 'heart', unit: ''},
+		{name: '双肺', key: 'lung', unit: ''},
+		{name: '双肾', key: 'kidney', unit: ''},
+		{name: '腹部', key: 'abdomen', unit: ''},
+		{name: '脊柱及四肢', key: 'limb', unit: ''},
+		{name: '肋骨', key: 'ribs', unit: ''},
+		{name: '髋关节', key: 'hip_joint', unit: ''},
+		{name: '斜颈', key: 'torticollis', unit: ''},
+		{name: '外生殖器', key: 'genitalia', unit: ''},
+		{name: '肛门', key: 'anus', unit: ''},
+		{name: '神经发育', key: 'neurodevelopment', unit: ''},
+		{name: '血常规', key: 'bloodRoutineExamination', unit: ''},
+		{name: '尿常规', key: 'routineUrine', unit: ''},
+		{name: '大便常规', key: 'stoolRoutineExamination', unit: ''},
+		{name: '骨密度', key: 'boneDensity', unit: ''},
+		{name: '骨碱性磷酸酶', key: 'BALP', unit: ''},
+		{name: '微量元素', key: 'traceElement', unit: ''},
+		{name: '铅、镉、锰', key: 'heavyMetal', unit: ''},
+		{name: 'ABO血型鉴定', key: 'bloodType', unit: ''},
+		{name: '喂养指导', key: 'feeding', unit: ''},
+		{name: '生活指导', key: 'life', unit: ''},
+		{name: '免疫接种指导', key: 'immunization', unit: ''},
+		{name: '疾病预防', key: 'diseasePrevention', unit: ''},
+		{name: '答疑解惑', key: 'answeringQuestions', unit: ''},
+		{name: '诊疗记录', key: 'record', unit: ''},
+		{name: '复查日期', key: 'reviewDate', unit: ''},
+	]
+
+	// 儿保
+	OrderService.searchhealthrecord(urlOptions).then(function(data){
+		$scope.healthrecordList = data.results.list;
+	}, function(data){
+		dialog.alert(data.errorMsg);
+	});
 }]);

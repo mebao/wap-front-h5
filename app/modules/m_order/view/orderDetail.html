@@ -7,8 +7,9 @@
                 <div class="tab-box">
                     <div class="tab-header">
                         <div class="tab-item" ng-class="{'active': selectedTab==0}" ng-click="checkTab(0)">详情</div>
-                        <div class="tab-item" ng-class="{'active': selectedTab==1}" ng-click="checkTab(1)">病历</div>
-                        <!-- <div class="tab-item" ng-class="{'active': selectedTab==2}" ng-click="checkTab(2)">医嘱</div> -->
+                        <div class="tab-item" ng-class="{'active': selectedTab==1}" ng-click="checkTab(1)" ng-if="hasCasehistory || healthrecordList.length == 0">病历</div>
+                        <div class="tab-item" ng-class="{'active': selectedTab==2}" ng-click="checkTab(2)" ng-if="healthrecordList.length > 0">儿保</div>
+                        <!-- <div class="tab-item" ng-class="{'active': selectedTab==3}" ng-click="checkTab(3)">医嘱</div> -->
                     </div>
                 </div>
                 <div class="content-page" ng-class="{'bottomFooter': footer}">
@@ -44,7 +45,7 @@
                 			</div>
                 		</div>
                     </div>
-                    <div ng-if="selectedTab == 1">
+                    <div ng-if="(hasCasehistory || healthrecordList.length == 0) && selectedTab == 1">
                         <div ng-if="hasCasehistory" class="pad10">
                     		<div class="cell-group text">
                     			<div ng-if="casehistory.weight != null && casehistory.weight != ''" class="cell height-auto">
@@ -225,7 +226,55 @@
                             暂无病例信息
                         </div>
                     </div>
-                    <div ng-if="selectedTab == 2">
+                    <div ng-if="healthrecordList.length > 0 && selectedTab == 2">
+                        <div class="pad10" ng-repeat="healthrecord in healthrecordList">
+                            <div class="cell-group text">
+                                <div ng-if="healthrecord.weight != null && healthrecord.weight != ''" class="cell height-auto">
+                                    <div class="left-box clearly-width">
+                                        体重:
+                                    </div>
+                                    <div class="middle-box">
+                                        <div class="line-height-normal">
+                                            {{healthrecord.weight}}Kg
+                                        </div>
+                                        <div ng-if="healthrecord.mediumWeight != null && healthrecord.mediumWeight != ''" class="line-height-normal">
+                                            中等值：{{healthrecord.mediumWeight}}Kg
+                                        </div>
+                                        <div ng-if="healthrecord.weight != null && healthrecord.weight != '' && healthrecord.mediumWeight != null && healthrecord.mediumWeight != ''" class="line-height-normal">
+                                            对比：{{healthrecord.compareWeight}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="healthrecord.height != null && healthrecord.height != ''" class="cell height-auto">
+                                    <div class="left-box clearly-width">
+                                        身高:
+                                    </div>
+                                    <div class="middle-box">
+                                        <div class="line-height-normal">
+                                            {{healthrecord.height}}Kg
+                                        </div>
+                                        <div ng-if="healthrecord.mediumHeight != null && healthrecord.mediumHeight != ''" class="line-height-normal">
+                                            中等值：{{healthrecord.mediumHeight}}Kg
+                                        </div>
+                                        <div ng-if="healthrecord.height != null && healthrecord.height != '' && healthrecord.mediumHeight != null && healthrecord.mediumHeight != ''" class="line-height-normal">
+                                            对比：{{healthrecord.compareHeight}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div> -->
+                                    <div ng-if="healthrecord[item.key] != null && healthrecord[item.key] != ''" ng-repeat="item in healthItem" class="cell height-auto">
+                                        <div class="left-box clearly-width">
+                                            {{item.name}}:
+                                        </div>
+                                        <div class="middle-box line-height-normal">
+                                            {{healthrecord[item.key] + item.unit}}
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="selectedTab == 3">
                         <div ng-if="check != '' || assist != '' || prescript.length > 0" class="pad10">
                             <div class="cell-group text">
                                 <div ng-if="check != ''" class="cell height-auto">
