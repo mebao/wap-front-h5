@@ -109,6 +109,10 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 		},function(res){
 			dialog.closeSpinner(spinner.id);
 			dialog.alert(res.errorMsg);
+			// 更新图形验证码
+			$scope.vali_code = '';
+			num++;
+			$scope.imgCode = window.envs.api_url + '/mebapi/getcode?id=' + num;
 		});
 	}
 

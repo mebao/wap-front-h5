@@ -9,7 +9,7 @@
                         <div class="tab-item" ng-class="{'active': selectedTab==0}" ng-click="checkTab(0)">详情</div>
                         <div class="tab-item" ng-class="{'active': selectedTab==1}" ng-click="checkTab(1)" ng-if="hasCasehistory || healthrecordList.length == 0">病历</div>
                         <div class="tab-item" ng-class="{'active': selectedTab==2}" ng-click="checkTab(2)" ng-if="healthrecordList.length > 0">儿保</div>
-                        <!-- <div class="tab-item" ng-class="{'active': selectedTab==3}" ng-click="checkTab(3)">医嘱</div> -->
+                        <div class="tab-item" ng-class="{'active': selectedTab==3}" ng-click="checkTab(3)">医嘱</div>
                     </div>
                 </div>
                 <div class="content-page" ng-class="{'bottomFooter': footer}">
@@ -251,10 +251,10 @@
                                     </div>
                                     <div class="middle-box">
                                         <div class="line-height-normal">
-                                            {{healthrecord.height}}Kg
+                                            {{healthrecord.height}}cm
                                         </div>
                                         <div ng-if="healthrecord.mediumHeight != null && healthrecord.mediumHeight != ''" class="line-height-normal">
-                                            中等值：{{healthrecord.mediumHeight}}Kg
+                                            中等值：{{healthrecord.mediumHeight}}cm
                                         </div>
                                         <div ng-if="healthrecord.height != null && healthrecord.height != '' && healthrecord.mediumHeight != null && healthrecord.mediumHeight != ''" class="line-height-normal">
                                             对比：{{healthrecord.compareHeight}}
