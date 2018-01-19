@@ -1,7 +1,7 @@
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/orderlist');
         $urlRouterProvider.when('/', '/orderlist');
-        // $locationProvider.html5Mode(true).hashPrefix('!');
+        $locationProvider.html5Mode(true).hashPrefix('!');
         $stateProvider
                 .state('layout.test', {
                     url: '/test',
@@ -138,5 +138,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
                 .state('order-paySuccess', {
                     url: '/order/paySuccess?id&username&token',
                     templateUrl: 'app/modules/m_order/view/paySuccess.html'
+                })
+                .state('order-info', {
+                    url: '/order/info?id',
+                    templateUrl: 'app/modules/m_order/view/orderInfo.html'
                 })
     }]);

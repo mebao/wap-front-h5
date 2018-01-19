@@ -33,6 +33,10 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 		return res;
 	}
 
+	function bookinginfoDto(res) {
+		return res;
+	}
+
 	var service={
 		getOrderList: function(urlOptions){
 			var requestObj={
@@ -81,6 +85,12 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 				url: apiUrl + '/mebapi/searchhealthrecord?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id,
 			}
 			return BaseHttpRequest.get(requestObj, searchhealthrecordDto);
+		},
+		bookinginfo: function(urlOptions) {
+			var requestObj = {
+				url: apiUrl + '/mebapi/bookinginfo/' + urlOptions.id
+			}
+			return BaseHttpRequest.get(requestObj, bookinginfoDto);
 		}
 	};
 	return service;

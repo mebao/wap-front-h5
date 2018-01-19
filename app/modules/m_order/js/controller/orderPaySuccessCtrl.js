@@ -1,4 +1,4 @@
-app.controller('orderPaySuccessCtrl', ['$scope', '$rootScope', '$stateParams', 'OrderService', 'dialog', function($scope, $rootScope, $stateParams, OrderService, dialog){
+app.controller('orderPaySuccessCtrl', ['$scope', '$rootScope', '$stateParams', 'OrderService', 'dialog', '$state', function($scope, $rootScope, $stateParams, OrderService, dialog, $state){
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
     $scope.footer = false;
@@ -15,6 +15,12 @@ app.controller('orderPaySuccessCtrl', ['$scope', '$rootScope', '$stateParams', '
 	}
 
 	$rootScope.$broadcast('setFooterConfig', window.footerConfig);
+
+	$scope.showInfo = function() {
+		$state.go('order-info', {
+			id: $stateParams.id
+		})
+	}
 
 	// var spinner = dialog.showSpinner();
     // var urlOptions = {
