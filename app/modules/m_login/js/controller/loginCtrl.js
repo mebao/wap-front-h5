@@ -90,22 +90,35 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 
 	$scope.login=function(){
 		var spinner=dialog.showSpinner();
-		var loginParams={
-			mobile: $scope.mobile,
-			verify_code: $scope.verify_code
-		}
-		CommonService.userlogin(loginParams).then(function(res){
-			dialog.closeSpinner(spinner.id);
-			StorageConfig.TOKEN_STORAGE.putItem('username',$scope.mobile);
-			StorageConfig.TOKEN_STORAGE.putItem('token',res.results.userinfo.token);
-			StorageConfig.TOKEN_STORAGE.putItem('uid',res.results.userinfo.uid);
-			StorageConfig.TOKEN_STORAGE.putItem('name', res.results.userinfo.name);
-			StorageConfig.TOKEN_STORAGE.putItem('nickname', res.results.userinfo.username);
-			StorageConfig.TOKEN_STORAGE.putItem('gender', res.results.userinfo.gender);
-			// $state.go($scope.from,eval('(' + $scope.intercept + ')'));
-			// 清空默认选中宝宝
-			StorageConfig.ORDER_STORAGE.removeItem('selectedChild');
-			$state.go('orderlist');
+		// 先获取用户所在诊所
+		var urlOptions = '?mobile=' + $scope.mobile;
+		CommonService.topuser(urlOptions).then(function(res_topUser){
+			localStorage.setItem('wap_clinic', res_topUser.results.user.clinicId);
+			resetEnvs();
+			var loginParams={
+				mobile: $scope.mobile,
+				verify_code: $scope.verify_code
+			}
+			CommonService.userlogin(loginParams).then(function(res){
+				dialog.closeSpinner(spinner.id);
+				StorageConfig.TOKEN_STORAGE.putItem('username',$scope.mobile);
+				StorageConfig.TOKEN_STORAGE.putItem('token',res.results.userinfo.token);
+				StorageConfig.TOKEN_STORAGE.putItem('uid',res.results.userinfo.uid);
+				StorageConfig.TOKEN_STORAGE.putItem('name', res.results.userinfo.name);
+				StorageConfig.TOKEN_STORAGE.putItem('nickname', res.results.userinfo.username);
+				StorageConfig.TOKEN_STORAGE.putItem('gender', res.results.userinfo.gender);
+				// $state.go($scope.from,eval('(' + $scope.intercept + ')'));
+				// 清空默认选中宝宝
+				StorageConfig.ORDER_STORAGE.removeItem('selectedChild');
+				$state.go('orderlist');
+			},function(res){
+				dialog.closeSpinner(spinner.id);
+				dialog.alert(res.errorMsg);
+				// 更新图形验证码
+				$scope.vali_code = '';
+				num++;
+				$scope.imgCode = window.envs.api_url + '/mebapi/getcode?id=' + num;
+			});
 		},function(res){
 			dialog.closeSpinner(spinner.id);
 			dialog.alert(res.errorMsg);
@@ -118,5 +131,46 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 
 	$scope.forgetPwd=function(){
 		$state.go('layout.forgetpwd');
+	}
+
+	function resetEnvs() {
+		var allEnvs = {
+	        product: {
+	            env:'product',
+	            api_url: 'http://wapapi.meb168.com',
+	        },
+	        product_zunyi: {
+	            env:'product_zunyi',
+	            api_url: 'http://wapapi.meb168.com',
+	        },
+	        product_kunming: {
+	            env:'product_kunming',
+	            api_url: 'http://km01.yunapi.meb168.com',
+	        },
+	        localhost: {
+	            env:'localhost',
+	            api_url: 'http://192.168.31.200/jiabaokangle',
+	        }
+	    };
+		switch (localStorage.getItem('wap_clinic')) {
+			case '1':
+			{
+				window.envs = allEnvs.product_zunyi;
+				break;
+			}
+			case '4':
+			{
+				window.envs = allEnvs.product_zunyi;
+				break;
+			}
+			case '2':
+			{
+				window.envs = allEnvs.product_kunming;
+				break;
+			}
+			default:
+				window.envs = allEnvs.localhost;
+				break;
+		}
 	}
 }]);

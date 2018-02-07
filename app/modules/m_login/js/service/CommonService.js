@@ -21,6 +21,10 @@ app.service('CommonService',['BaseHttpRequest',function(BaseHttpRequest){
 		return res;
 	}
 
+	function topuserDto(res){
+		return res;
+	}
+
 	var service={
 		sendSMSCode: function(params){
 			var requestObj={
@@ -31,7 +35,7 @@ app.service('CommonService',['BaseHttpRequest',function(BaseHttpRequest){
 		},
 		userlogin: function(params){
 			var requestObj={
-				url: apiUrl+'/mebapi/userlogin',
+				url: window.envs.api_url+'/mebapi/userlogin',
 				data: params
 			};
 			return BaseHttpRequest.post(requestObj,userloginDto);
@@ -56,7 +60,14 @@ app.service('CommonService',['BaseHttpRequest',function(BaseHttpRequest){
 				data: params
 			}
 			return BaseHttpRequest.post(requestObj, forgetpwdDto);
-		}
+		},
+		topuser: function(urlOptions){
+			var requestObj = {
+				// url: 'http://localhost/yrbk/mebapi/topuser' + urlOptions,
+				url: 'http://localhost/yrbk/mebapi/topuser' + urlOptions,
+			}
+			return BaseHttpRequest.get(requestObj, topuserDto);
+		},
 	}
     return service;
 }]);
