@@ -18,7 +18,8 @@ app.controller('orderPaySuccessCtrl', ['$scope', '$rootScope', '$stateParams', '
 
 	$scope.showInfo = function() {
 		$state.go('order-info', {
-			id: $stateParams.id
+			id: $stateParams.id,
+			clinic_id: $stateParams.clinic_id,
 		})
 	}
 

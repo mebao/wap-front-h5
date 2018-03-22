@@ -12,13 +12,13 @@ app.service('childService',['BaseHttpRequest',function(BaseHttpRequest){
 	var service={
 		getChild: function(urlOptions){
 			var requestObj={
-				url: apiUrl+'/mebapi/childprofilelist?username='+urlOptions.username+'&token='+urlOptions.token
+				url: window.envs.api_url+'/mebapi/childprofilelist?username='+urlOptions.username+'&token='+urlOptions.token
 			}
 			return BaseHttpRequest.get(requestObj,getChildDto);
 		},
 		createChild: function(params){
 			var requestObj={
-				url: apiUrl+'/mebapi/createchild',
+				url: window.envs.api_url+'/mebapi/createchild',
 				data: params
 			}
 			return BaseHttpRequest.post(requestObj,createChildDto);

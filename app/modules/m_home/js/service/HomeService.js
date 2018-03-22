@@ -28,7 +28,7 @@ app.service('HomeService',['BaseHttpRequest',function(BaseHttpRequest){
 	var service={
 		getChilds: function(urlOptions){
 			var requestObj={
-				url: apiUrl+'/mebapi/childprofilelist?username='+urlOptions.username+'&token='+urlOptions.token
+				url: window.envs.api_url+'/mebapi/childprofilelist?username='+urlOptions.username+'&token='+urlOptions.token
 			}
 			return BaseHttpRequest.get(requestObj, getChildsDto);
 		},

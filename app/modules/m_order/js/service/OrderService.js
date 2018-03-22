@@ -40,55 +40,55 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 	var service={
 		getOrderList: function(urlOptions){
 			var requestObj={
-				url: apiUrl+'/mebapi/mybookings?username='+urlOptions.username+'&token='+urlOptions.token+'&child_id='+urlOptions.childId
+				url: window.envs.api_url+'/mebapi/mybookings?username='+urlOptions.username+'&token='+urlOptions.token+'&child_id='+urlOptions.childId
 			};
 			return BaseHttpRequest.get(requestObj,getOrderListDto);
 		},
 		cancelOrderById: function(urlOptions){
 			var requestObj={
-				url: apiUrl+'/mebapi/bookingcancelled/'+urlOptions.id+'?username='+urlOptions.username+'&token='+urlOptions.token+'&remark='+urlOptions.remark
+				url: window.envs.api_url+'/mebapi/bookingcancelled/'+urlOptions.id+'?username='+urlOptions.username+'&token='+urlOptions.token+'&remark='+urlOptions.remark
 			}
 			return BaseHttpRequest.get(requestObj,getOrderListDto);
 		},
 		searchcasehistory: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebapi/searchcasehistory?username=' + urlOptions.username + '&token=' + urlOptions.token + (urlOptions.booking_id ? '&booking_id=' + urlOptions.booking_id : '') + (urlOptions.child_id ? '&child_id=' + urlOptions.child_id : ''),
+				url: window.envs.api_url + '/mebapi/searchcasehistory?username=' + urlOptions.username + '&token=' + urlOptions.token + (urlOptions.booking_id ? '&booking_id=' + urlOptions.booking_id : '') + (urlOptions.child_id ? '&child_id=' + urlOptions.child_id : ''),
 			}
 			return BaseHttpRequest.get(requestObj, searchcasehistoryDto);
 		},
 		searchprescript: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebapi/searchprescript?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id + '&isout=1&today=1',
+				url: window.envs.api_url + '/mebapi/searchprescript?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id + '&isout=1&today=1',
 			}
 			return BaseHttpRequest.get(requestObj, searchprescriptDto);
 		},
 		usercheckprojects: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebapi/usercheckprojects?username=' + urlOptions.username + '&token=' + urlOptions.token + (urlOptions.booking_id ? '&booking_id=' + urlOptions.booking_id : '') + (urlOptions.child_id ? '&child_id=' + urlOptions.child_id : '') + '&today=1&ischeck=1',
+				url: window.envs.api_url + '/mebapi/usercheckprojects?username=' + urlOptions.username + '&token=' + urlOptions.token + (urlOptions.booking_id ? '&booking_id=' + urlOptions.booking_id : '') + (urlOptions.child_id ? '&child_id=' + urlOptions.child_id : '') + '&today=1&ischeck=1',
 			}
 			return BaseHttpRequest.get(requestObj, usercheckprojectsDto);
 		},
 		bookingassist: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebapi/bookingassist?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id,
+				url: window.envs.api_url + '/mebapi/bookingassist?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id,
 			}
 			return BaseHttpRequest.get(requestObj, bookingassistDto);
 		},
 		finishpay: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebcrm/finishpay/' + urlOptions.booking_id + '?username=' + urlOptions.username + '&token=' + urlOptions.token,
+				url: window.envs.api_url + '/mebcrm/finishpay/' + urlOptions.booking_id + '?username=' + urlOptions.username + '&token=' + urlOptions.token,
 			}
 			return BaseHttpRequest.get(requestObj, bookingassistDto);
 		},
 		searchhealthrecord: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebapi/searchhealthrecord?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id,
+				url: window.envs.api_url + '/mebapi/searchhealthrecord?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id,
 			}
 			return BaseHttpRequest.get(requestObj, searchhealthrecordDto);
 		},
 		bookinginfo: function(urlOptions) {
 			var requestObj = {
-				url: apiUrl + '/mebapi/bookinginfo/' + urlOptions.id
+				url: window.envs.api_url + '/mebapi/bookinginfo/' + urlOptions.id
 			}
 			return BaseHttpRequest.get(requestObj, bookinginfoDto);
 		}

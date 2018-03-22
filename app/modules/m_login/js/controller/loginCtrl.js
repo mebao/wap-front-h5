@@ -51,12 +51,14 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 		});
 	}
 
+	$scope.imgUrl = 'http://mebapi.meb168.com';
+
 	// 获取图形验证码
 	var num = 1;
-	$scope.imgCode = window.envs.api_url + '/mebapi/getcode?id=1';
+	$scope.imgCode = $scope.imgUrl + '/mebapi/getcode?id=1';
 	$scope.changeImgCode = function(){
 		num++;
-		$scope.imgCode = window.envs.api_url + '/mebapi/getcode?id=' + num;
+		$scope.imgCode = $scope.imgUrl + '/mebapi/getcode?id=' + num;
 	}
 
 	$scope.sendSMSText='验证码';
@@ -90,16 +92,20 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 
 	$scope.login=function(){
 		var spinner=dialog.showSpinner();
+		// 通过手机号，获取用户所在诊所
 		// 先获取用户所在诊所
-		var urlOptions = '?mobile=' + $scope.mobile;
-		CommonService.topuser(urlOptions).then(function(res_topUser){
+		var loginParams={
+			mobile: $scope.mobile,
+			verify_code: $scope.verify_code
+		}
+		CommonService.topuserlogin(loginParams).then(function(res_topUser){
 			localStorage.setItem('wap_clinic', res_topUser.results.user.clinicId);
 			resetEnvs();
-			var loginParams={
-				mobile: $scope.mobile,
-				verify_code: $scope.verify_code
-			}
-			CommonService.userlogin(loginParams).then(function(res){
+			// var loginParams={
+			// 	mobile: $scope.mobile,
+			// 	verify_code: $scope.verify_code
+			// }
+			CommonService.topuser(res_topUser.results.user.userId).then(function(res){
 				dialog.closeSpinner(spinner.id);
 				StorageConfig.TOKEN_STORAGE.putItem('username',$scope.mobile);
 				StorageConfig.TOKEN_STORAGE.putItem('token',res.results.userinfo.token);
@@ -117,7 +123,7 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 				// 更新图形验证码
 				$scope.vali_code = '';
 				num++;
-				$scope.imgCode = window.envs.api_url + '/mebapi/getcode?id=' + num;
+				$scope.imgCode = $scope.imgUrl + '/mebapi/getcode?id=' + num;
 			});
 		},function(res){
 			dialog.closeSpinner(spinner.id);
@@ -125,7 +131,7 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 			// 更新图形验证码
 			$scope.vali_code = '';
 			num++;
-			$scope.imgCode = window.envs.api_url + '/mebapi/getcode?id=' + num;
+			$scope.imgCode = $scope.imgUrl + '/mebapi/getcode?id=' + num;
 		});
 	}
 
@@ -147,9 +153,13 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 	            env:'product_kunming',
 	            api_url: 'http://km01.yunapi.meb168.com',
 	        },
+            product_test: {
+	            env:'product_test',
+	            api_url: 'http://mebtestapi.meb168.com',
+            },
 	        localhost: {
 	            env:'localhost',
-	            api_url: 'http://192.168.31.200/jiabaokangle',
+	            api_url: 'http://172.16.252.60/jiabaokangle',
 	        }
 	    };
 		switch (localStorage.getItem('wap_clinic')) {
@@ -168,8 +178,19 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 				window.envs = allEnvs.product_kunming;
 				break;
 			}
+	        case '99':
+	        {
+	            window.envs = allEnvs.product_kunming;
+	            break;
+	        }
+	        case '10':
+	        {
+	            window.envs = allEnvs.product_test;
+	            break;
+	        }
 			default:
-				window.envs = allEnvs.localhost;
+	            window.envs = allEnvs.product_zunyi;
+				// window.envs = allEnvs.localhost;
 				break;
 		}
 	}

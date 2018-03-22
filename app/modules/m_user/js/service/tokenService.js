@@ -8,7 +8,7 @@ app.service('tokenService',['BaseHttpRequest',function(BaseHttpRequest){
 	var service={
 		getToken: function(){
 			var requestObj={
-				url: apiUrl+'/mebapi/childtoken'
+				url: window.envs.api_url+'/mebapi/childtoken'
 			}
 			return BaseHttpRequest.get(requestObj,getTokenDto);
 		}

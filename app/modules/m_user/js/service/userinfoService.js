@@ -24,33 +24,33 @@ app.service('userinfoService',['BaseHttpRequest',function(BaseHttpRequest){
 	var service={
 		userinfo: function(params){
 			var requestObj={
-				url: apiUrl+'/mebapi/userprofile',
+				url: window.envs.api_url+'/mebapi/userprofile',
 				data: params
 			}
 			return BaseHttpRequest.post(requestObj, userinfoDto);
 		},
 		userfeedback: function(params){
 			var requestObj={
-				url: apiUrl+'/mebapi/userfeedback',
+				url: window.envs.api_url+'/mebapi/userfeedback',
 				data: params
 			}
 			return BaseHttpRequest.post(requestObj, userfeedbackDto);
 		},
 		searchuser: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebapi/searchuser?username=' + urlOptions.username + '&token=' + urlOptions.token,
+				url: window.envs.api_url + '/mebapi/searchuser?username=' + urlOptions.username + '&token=' + urlOptions.token,
 			}
 			return BaseHttpRequest.get(requestObj, searchuserDto);
 		},
 		searchtran: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebapi/searchtran?username=' + urlOptions.username + '&token=' + urlOptions.token,
+				url: window.envs.api_url + '/mebapi/searchtran?username=' + urlOptions.username + '&token=' + urlOptions.token,
 			}
 			return BaseHttpRequest.get(requestObj, searchtranDto);
 		},
 		bookingfee: function(urlOptions){
 			var requestObj = {
-				url: apiUrl + '/mebapi/bookingfee/' + urlOptions.bookingId + '?username=' + urlOptions.username + '&token=' + urlOptions.token,
+				url: window.envs.api_url + '/mebapi/bookingfee/' + urlOptions.bookingId + '?username=' + urlOptions.username + '&token=' + urlOptions.token,
 			}
 			return BaseHttpRequest.get(requestObj, bookingfeeDto);
 		},

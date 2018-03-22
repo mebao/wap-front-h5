@@ -9,6 +9,10 @@ app.service('CommonService',['BaseHttpRequest',function(BaseHttpRequest){
 		return res;
 	}
 
+	function topuserDto(res){
+		return res;
+	}
+
 	function userregistDto(res){
 		return res;
 	}
@@ -21,14 +25,14 @@ app.service('CommonService',['BaseHttpRequest',function(BaseHttpRequest){
 		return res;
 	}
 
-	function topuserDto(res){
+	function topuserloginDto(res){
 		return res;
 	}
 
 	var service={
 		sendSMSCode: function(params){
 			var requestObj={
-				url: apiUrl+'/mebapi/smsverifycode',
+				url: 'http://mebapi.meb168.com/mebapi/smsverifycode',
 				data: params
 			};
 			return BaseHttpRequest.post(requestObj, sendSMSCodeDto);
@@ -39,6 +43,12 @@ app.service('CommonService',['BaseHttpRequest',function(BaseHttpRequest){
 				data: params
 			};
 			return BaseHttpRequest.post(requestObj,userloginDto);
+		},
+		topuser: function(urlOptions){
+			var requestObj={
+				url: window.envs.api_url+'/mebapi/topuser/' + urlOptions,
+			};
+			return BaseHttpRequest.get(requestObj,userloginDto);
 		},
 		userregist: function(params){
 			var requestObj={
@@ -61,12 +71,13 @@ app.service('CommonService',['BaseHttpRequest',function(BaseHttpRequest){
 			}
 			return BaseHttpRequest.post(requestObj, forgetpwdDto);
 		},
-		topuser: function(urlOptions){
+		topuserlogin: function(params){
 			var requestObj = {
-				// url: 'http://localhost/yrbk/mebapi/topuser' + urlOptions,
-				url: 'http://localhost/yrbk/mebapi/topuser' + urlOptions,
+				url: 'http://mebapi.meb168.com/mebapi/topuserlogin',
+				// url: 'http://localhost/yrbk/mebapi/topuserlogin',
+				data: params
 			}
-			return BaseHttpRequest.get(requestObj, topuserDto);
+			return BaseHttpRequest.post(requestObj, topuserloginDto);
 		},
 	}
     return service;

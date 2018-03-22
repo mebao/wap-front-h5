@@ -1,7 +1,7 @@
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/orderlist');
         $urlRouterProvider.when('/', '/orderlist');
-        $locationProvider.html5Mode(true).hashPrefix('!');
+        // $locationProvider.html5Mode(true).hashPrefix('!');
         $stateProvider
                 .state('layout.test', {
                     url: '/test',
@@ -136,11 +136,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
                     templateUrl: 'app/modules/m_baoquan/view/index.html'
                 })
                 .state('order-paySuccess', {
-                    url: '/order/paySuccess?id&username&token',
+                    url: '/order/paySuccess?id&username&token&clinic_id',
                     templateUrl: 'app/modules/m_order/view/paySuccess.html'
                 })
                 .state('order-info', {
-                    url: '/order/info?id',
+                    url: '/order/info?id&clinic_id',
                     templateUrl: 'app/modules/m_order/view/orderInfo.html'
                 })
     }]);

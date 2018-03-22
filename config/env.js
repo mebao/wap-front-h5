@@ -25,9 +25,13 @@
             env:'product_kunming',
             api_url: 'http://km01.yunapi.meb168.com',
         },
+        product_test: {
+            env:'product_test',
+            api_url: 'http://mebtestapi.meb168.com',
+        },
         localhost: {
             env:'localhost',
-            api_url: 'http://192.168.31.200/jiabaokangle',
+            api_url: 'http://172.16.252.60/jiabaokangle',
         }
     };
     var envs = allEnvs.localhost;//默认连接dev开发环境
@@ -46,6 +50,16 @@
         case '2':
         {
             envs = allEnvs.product_kunming;
+            break;
+        }
+        case '99':
+        {
+            envs = allEnvs.product_kunming;
+            break;
+        }
+        case '10':
+        {
+            window.envs = allEnvs.product_test;
             break;
         }
         default:
