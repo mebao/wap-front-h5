@@ -24,14 +24,17 @@
                                         <span>{{username}}</span>
                                     </div>
                                     <div class="order-info">
-                                        <div ng-if="selectedChild" class="flex text-center">
-                                            <div class="flex-1">
+                                        <div class="flex text-center">
+                                            <div ng-click="goRouter('user-payList')" class="flex-1">
+                                                <div class="item">交易记录</div>
+                                            </div>
+                                            <div ng-if="selectedChild" class="flex-1">
                                                 <div class="item">{{bookingInNum}}次就诊</div>
                                             </div>
-                                            <div class="flex-1">
+                                            <div ng-if="selectedChild" class="flex-1">
                                                 <div class="item">{{casehistory.length}}份病历</div>
                                             </div>
-                                            <div class="flex-1" ng-click="checkList()">
+                                            <div ng-if="selectedChild" class="flex-1" ng-click="checkList()">
                                                 <div class="item no-border">{{checkprojects.length}}组报告</div>
                                             </div>
                                         </div>
