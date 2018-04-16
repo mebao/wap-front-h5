@@ -8,7 +8,7 @@
                     <div ng-if="tab == 'success'" class="success-tab">
                         <img src="./app/images/pay_success.png">
                         <p class="info">支付成功</p>
-                        <p class="tel">客服电话：0851-27556691</p>
+                        <p class="tel">客服电话：{{mobile}}</p>
                         <div class="flex pt20">
                             <div class="flex-1"></div>
                             <button ng-click="showInfo()" class="btn btn-primary btn-small w60">查看详情</button>
@@ -18,9 +18,9 @@
                     <div ng-if="tab == 'error'" class="error-tab">
                         <img src="./app/images/pay_error.png">
                         <p class="info">支付成功，订单数据异常，请联系客服</p>
-                        <p class="tel">客服电话：0851-27556691</p>
+                        <p class="tel">客服电话：{{mobile}}</p>
                         <div class="btn-dock">
-                            <a href="tel://0851-27556691" class="btn btn-primary">联系客服</a>
+                            <a href="tel://{{mobile}}" class="btn btn-primary">联系客服</a>
                         </div>
                     </div>
                 </div>

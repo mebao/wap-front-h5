@@ -52,6 +52,7 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 	}
 
 	$scope.imgUrl = 'http://mebapi.meb168.com';
+	// $scope.imgUrl = 'http://localhost/jiabaokangle';
 
 	// 获取图形验证码
 	var num = 1;
@@ -159,7 +160,7 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
             },
 	        localhost: {
 	            env:'localhost',
-	            api_url: 'http://172.16.252.60/jiabaokangle',
+	            api_url: 'http://172.16.252.33/jiabaokangle',
 	        }
 	    };
 		switch (localStorage.getItem('wap_clinic')) {

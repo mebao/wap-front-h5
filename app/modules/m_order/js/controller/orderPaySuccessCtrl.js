@@ -23,6 +23,11 @@ app.controller('orderPaySuccessCtrl', ['$scope', '$rootScope', '$stateParams', '
 		})
 	}
 
+	$scope.mobile = '0851-27556691';
+	if($stateParams.clinic_id == '2' || $stateParams.clinic_id == '99'){
+		$scope.mobile = '0871-68860030';
+	}
+
 	// var spinner = dialog.showSpinner();
     // var urlOptions = {
     //     username: $stateParams.username,
