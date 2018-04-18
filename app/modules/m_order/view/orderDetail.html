@@ -275,7 +275,7 @@
                         </div>
                     </div>
                     <div ng-if="selectedTab == 3">
-                        <div ng-if="check != '' || assist != '' || prescript.length > 0" class="pad10">
+                        <div ng-if="check != '' || assist != '' || prescript.length > 0 || tcmPrescript.length > 0" class="pad10">
                             <div class="cell-group text">
                                 <div ng-if="check != ''" class="cell height-auto">
                                     <div class="left-box clearly-width">
@@ -299,7 +299,7 @@
                                 </div>
                     			<div ng-if="prescript.length > 0" ng-repeat="item in prescript" class="cell height-auto">
                     				<div class="left-box clearly-width">
-                    					{{$index == 0 ? '处方:' : ''}}
+                    					{{$index == 0 ? '西/中成药处方:' : ''}}
                     				</div>
                     				<div class="middle-box">
                                         <div>
@@ -307,6 +307,22 @@
                                             <span>{{item.format}}</span>
                                             <span>{{item.num + item.unit}}</span>
                                             <span>{{item.days}}天</span>
+                                        </div>
+                                        <div>
+                                            用法：
+                                            <span>{{item.frequency}}</span>
+                                            <span>一次{{item.oneNum + item.oneUnit}}</span>
+                                            <span>{{item.usage}}</span>
+                                        </div>
+                                    </div>
+                    			</div>
+                    			<div ng-if="tcmPrescript.length > 0" ng-repeat="item in tcmPrescript" class="cell height-auto">
+                    				<div class="left-box clearly-width">
+                    					{{$index == 0 ? '中药处方:' : ''}}
+                    				</div>
+                    				<div class="middle-box">
+                                        <div ng-repeat="info in item.infos">
+                                            <span>{{info.tcmName}}</span>
                                         </div>
                                         <div>
                                             用法：

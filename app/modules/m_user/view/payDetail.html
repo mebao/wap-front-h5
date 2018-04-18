@@ -35,23 +35,27 @@
                             <div class="text-center money">{{detail.payAmount}}元</div>
                             <div ng-repeat="info in bookingfee.feeinfo['医生服务费用']" class="flex">
                                 <div class="flex-1">{{info.serviceName}}</div>
-                                <div>{{info.fee}}</div>
+                                <div>{{info.originalFee}}</div>
                             </div>
                             <div ng-repeat="info in bookingfee.feeinfo['检查项目费用']" class="flex">
                                 <div class="flex-1">{{info.projectName}}</div>
-                                <div>{{info.fee}}</div>
+                                <div>{{info.originalFee}}</div>
                             </div>
                             <div ng-repeat="info in bookingfee.feeinfo['辅助项目费用']" class="flex">
                                 <div class="flex-1">{{info.projectName}}</div>
-                                <div>{{info.fee}}</div>
+                                <div>{{info.originalFee}}</div>
                             </div>
                             <div ng-if="bookingfee.feeinfo['药方药品费用'].length > 0" ng-repeat="info in bookingfee.feeinfo['药方药品费用'][0].info" class="flex">
                                 <div class="flex-1">{{info.pname + '-' + info.num + info.unit}}</div>
                                 <div>{{info.allFee}}</div>
                             </div>
+                            <div ng-repeat="info in bookingfee.feeinfo['中药药方费用']" class="flex">
+                                <div class="flex-1">{{info.projectName}}</div>
+                                <div>{{info.originalFee}}</div>
+                            </div>
                             <div ng-repeat="info in bookingfee.feeinfo['其他费用']" class="flex">
                                 <div class="flex-1">{{info.projectName}}</div>
-                                <div>{{info.fee}}</div>
+                                <div>{{info.originalFee}}</div>
                             </div>
                             <div class="flex pt10">
                                 <div class="flex-1">费用合计：</div>

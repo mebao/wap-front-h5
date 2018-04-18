@@ -46,7 +46,7 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 		dialog.alert(data.errorMsg);
 	});
 
-	// 药方
+	// 西/中成药药方
 	OrderService.searchprescript(urlOptions).then(function(data){
 		$scope.prescript = [];
 		if(data.results.list.length > 0){
@@ -55,13 +55,17 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 			}
 			var prescript = data.results.list[0];
 			if(prescript.info.length > 0){
-				for(var i = 0; i < prescript.info.length; i++){
-					prescript.info[i].oneNum = parseFloat(prescript.info[i].oneNum);
-				}
 				$scope.prescript = prescript.info;
 			}
 		}
 	}, function(data){
+		dialog.alert(data.errorMsg);
+	});
+
+	// 中药
+	OrderService.searchtcmprescript(urlOptions).then(function(data) {
+		$scope.tcmPrescript = data.results.list;
+	}, function(data) {
 		dialog.alert(data.errorMsg);
 	});
 

@@ -37,6 +37,10 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 		return res;
 	}
 
+	function searchtcmprescriptDto(res) {
+		return res;
+	}
+
 	var service={
 		getOrderList: function(urlOptions){
 			var requestObj={
@@ -58,7 +62,7 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 		},
 		searchprescript: function(urlOptions){
 			var requestObj = {
-				url: window.envs.api_url + '/mebapi/searchprescript?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id + '&isout=1&today=1',
+				url: window.envs.api_url + '/mebapi/searchprescript?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id + '&isout=1',
 			}
 			return BaseHttpRequest.get(requestObj, searchprescriptDto);
 		},
@@ -89,6 +93,12 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 		bookinginfo: function(urlOptions) {
 			var requestObj = {
 				url: window.envs.api_url + '/mebapi/bookinginfo/' + urlOptions.id
+			}
+			return BaseHttpRequest.get(requestObj, bookinginfoDto);
+		},
+		searchtcmprescript: function(urlOptions) {
+			var requestObj = {
+				url: window.envs.api_url + '/mebapi/searchtcmprescript?username=' + urlOptions.username + '&token=' + urlOptions.token + '&booking_id=' + urlOptions.booking_id + '&isout=1',
 			}
 			return BaseHttpRequest.get(requestObj, bookinginfoDto);
 		}

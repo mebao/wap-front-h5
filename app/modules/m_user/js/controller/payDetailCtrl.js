@@ -39,32 +39,45 @@ app.controller('payDetailCtrl', ['$scope', '$rootScope', '$state', 'userinfoServ
 				detail.needAmount = 0;
 				if(data.results.feeinfo['医生服务费用'].length > 0){
 					for(var i = 0; i < data.results.feeinfo['医生服务费用'].length; i++){
-						detail.needAmount += parseFloat(data.results.feeinfo['医生服务费用'][i].fee);
+						data.results.feeinfo['医生服务费用'][i].originalFee = userinfoService.toDecimal2(parseFloat(data.results.feeinfo['医生服务费用'][i].price) * parseFloat(data.results.feeinfo['医生服务费用'][i].number));
+						detail.needAmount += parseFloat(data.results.feeinfo['医生服务费用'][i].originalFee);
 					}
 				}
 				if(data.results.feeinfo['检查项目费用'].length > 0){
 					for(var i = 0; i < data.results.feeinfo['检查项目费用'].length; i++){
-						detail.needAmount += parseFloat(data.results.feeinfo['检查项目费用'][i].fee);
+						data.results.feeinfo['检查项目费用'][i].originalFee = userinfoService.toDecimal2(parseFloat(data.results.feeinfo['检查项目费用'][i].price) * parseFloat(data.results.feeinfo['检查项目费用'][i].number));
+						detail.needAmount += parseFloat(data.results.feeinfo['检查项目费用'][i].originalFee);
 					}
 				}
 				if(data.results.feeinfo['辅助项目费用'].length > 0){
 					for(var i = 0; i < data.results.feeinfo['辅助项目费用'].length; i++){
-						detail.needAmount += parseFloat(data.results.feeinfo['辅助项目费用'][i].fee);
+						data.results.feeinfo['辅助项目费用'][i].originalFee = userinfoService.toDecimal2(parseFloat(data.results.feeinfo['辅助项目费用'][i].price) * parseFloat(data.results.feeinfo['辅助项目费用'][i].number));
+						detail.needAmount += parseFloat(data.results.feeinfo['辅助项目费用'][i].originalFee);
 					}
 				}
 				if(data.results.feeinfo['药方药品费用'].length > 0){
 					for(var i = 0; i < data.results.feeinfo['药方药品费用'].length; i++){
-						detail.needAmount += parseFloat(data.results.feeinfo['药方药品费用'][i].fee);
+						var originalFee = 0;
 						if(data.results.feeinfo['药方药品费用'][i].info.length > 0){
 							for(var j = 0; j < data.results.feeinfo['药方药品费用'][i].info.length; j++){
 								data.results.feeinfo['药方药品费用'][i].info[j].allFee = userinfoService.toDecimal2(parseFloat(data.results.feeinfo['药方药品费用'][i].info[j].num) * parseFloat(data.results.feeinfo['药方药品费用'][i].info[j].price));
+								originalFee += parseFloat(data.results.feeinfo['药方药品费用'][i].info[j].allFee);
+								detail.needAmount += parseFloat(data.results.feeinfo['药方药品费用'][i].info[j].allFee);
 							}
 						}
+						data.results.feeinfo['药方药品费用'][i].originalFee = userinfoService.toDecimal2(originalFee);
+					}
+				}
+				if(data.results.feeinfo['中药药方费用'].length > 0){
+					for(var i = 0; i < data.results.feeinfo['中药药方费用'].length; i++){
+						data.results.feeinfo['中药药方费用'][i].originalFee = userinfoService.toDecimal2(parseFloat(data.results.feeinfo['中药药方费用'][i].price) * parseFloat(data.results.feeinfo['中药药方费用'][i].number));
+						detail.needAmount += parseFloat(data.results.feeinfo['中药药方费用'][i].originalFee);
 					}
 				}
 				if(data.results.feeinfo['其他费用'].length > 0){
 					for(var i = 0; i < data.results.feeinfo['其他费用'].length; i++){
-						detail.needAmount += parseFloat(data.results.feeinfo['其他费用'][i].fee);
+						data.results.feeinfo['其他费用'][i].originalFee = userinfoService.toDecimal2(parseFloat(data.results.feeinfo['其他费用'][i].price) * parseFloat(data.results.feeinfo['其他费用'][i].number));
+						detail.needAmount += parseFloat(data.results.feeinfo['其他费用'][i].originalFee);
 					}
 				}
 				detail.discountAmount = userinfoService.toDecimal2(detail.needAmount - parseFloat(detail.giveAmount) - parseFloat(detail.amount) - parseFloat(detail.secondAmount == null ? '0' : detail.secondAmount) - (data.results.feeinfo['预约金'] ? parseFloat(data.results.feeinfo['预约金'].fee) : 0));
