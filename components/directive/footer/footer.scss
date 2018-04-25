@@ -23,38 +23,54 @@
             overflow: hidden;
             display: block;
         }
-        .icon-home{
-            background: url('../app/images/icon_footer.png') no-repeat;
-            background-size: 88px 44px;
-            background-position: 0 -22px;
+        // .icon-home{
+        //     background: url('../app/images/icon_footer.png') no-repeat;
+        //     background-size: 88px 44px;
+        //     background-position: 0 -22px;
+        //     &.active{
+        //         background-position: 0 0;
+        //     }
+        //
+        // }
+        // .icon-baoquan{
+        //     background: url('../app/images/icon_footer.png') no-repeat;
+        //     background-size: 88px 44px;
+        //     background-position: -22px -22px;
+        //     &.active{
+        //         background-position: -22px 0;
+        //     }
+        // }
+        // .icon-cck{
+        //     background: url('../app/images/icon_footer.png') no-repeat;
+        //     background-size: 88px 44px;
+        //     background-position: -44px -22px;
+        //     &.active{
+        //         background-position: -44px 0;
+        //     }
+        //
+        // }
+        // .icon-me{
+        //     background: url('../app/images/icon_footer.png') no-repeat;
+        //     background-size: 88px 44px;
+        //     background-position: -66px -22px;
+        //     &.active{
+        //         background-position: -66px 0;
+        //     }
+        // }
+        .icon-booking{
+            background: url('../app/images/booking_default.png') no-repeat;
+            background-size: 22px 22px;
             &.active{
-                background-position: 0 0;
+                background: url('../app/images/booking.png') no-repeat;
+                background-size: 22px 22px;
             }
-
         }
-        .icon-baoquan{
-            background: url('../app/images/icon_footer.png') no-repeat;
-            background-size: 88px 44px;
-            background-position: -22px -22px;
+        .icon-user{
+            background: url('../app/images/user_default.png') no-repeat;
+            background-size: 22px 22px;
             &.active{
-                background-position: -22px 0;
-            }
-        }
-        .icon-cck{
-            background: url('../app/images/icon_footer.png') no-repeat;
-            background-size: 88px 44px;
-            background-position: -44px -22px;
-            &.active{
-                background-position: -44px 0;
-            }
-
-        }
-        .icon-me{
-            background: url('../app/images/icon_footer.png') no-repeat;
-            background-size: 88px 44px;
-            background-position: -66px -22px;
-            &.active{
-                background-position: -66px 0;
+                background: url('../app/images/user.png') no-repeat;
+                background-size: 22px 22px;
             }
         }
         .text{

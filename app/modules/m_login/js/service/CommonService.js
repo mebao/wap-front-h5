@@ -33,6 +33,8 @@ app.service('CommonService',['BaseHttpRequest',function(BaseHttpRequest){
 		sendSMSCode: function(params){
 			var requestObj={
 				url: 'http://mebapi.meb168.com/mebapi/smsverifycode',
+				// url: 'http://localhost/yrbk/mebapi/smsverifycode',
+				// url: 'http://172.16.252.33/yrbk/mebapi/smsverifycode',
 				data: params
 			};
 			return BaseHttpRequest.post(requestObj, sendSMSCodeDto);
@@ -75,6 +77,7 @@ app.service('CommonService',['BaseHttpRequest',function(BaseHttpRequest){
 			var requestObj = {
 				url: 'http://mebapi.meb168.com/mebapi/topuserlogin',
 				// url: 'http://localhost/yrbk/mebapi/topuserlogin',
+				// url: 'http://172.16.252.33/yrbk/mebapi/topuserlogin',
 				data: params
 			}
 			return BaseHttpRequest.post(requestObj, topuserloginDto);
