@@ -1,7 +1,7 @@
 app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','StorageConfig','$state', 'HomeService', 'userinfoService', function($scope,$rootScope,OrderService,dialog,StorageConfig,$state, HomeService, userinfoService){
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
-    $scope.footer = false;
+    $scope.footer = true;
 
     // 获取宝宝信息
     var spinner=dialog.showSpinner();
@@ -72,7 +72,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 				selectedCall: function(item){
 					$scope.selectedChild = item;
 					StorageConfig.ORDER_STORAGE.putItem('selectedChild', item);
-					getOrderData(spinner.id, item.childId);
+					getOrderData(spinner.id);
 					getOtherInfo(item);
 				}
 			},
@@ -81,11 +81,11 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 		$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
 	}
 
-	function getOrderData(spinnerId, childId){
+	function getOrderData(spinnerId){
 		// 记录就诊次数
 		var bookingInNum = 0;
 
-		urlOptions.childId = childId;
+		urlOptions.childId = $scope.selectedChild.childId;
 		OrderService.getOrderList(urlOptions).then(function(res){
 			dialog.closeSpinner(spinnerId);
 			if(res.results.allBookings.length > 0){
