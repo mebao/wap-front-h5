@@ -24,6 +24,15 @@ app.controller('BookingCtrl',['$scope','$rootScope','$stateParams','ClinicBookin
 			$scope.booking_error = '暂无小儿推拿科室医生排班';
 		}else{
 			for(var i = 0; i < data.results.doctors.length; i++){
+				if(data.results.doctors[i].doctorDutys.length > 0){
+					for(var j = 0; j < data.results.doctors[i].doctorDutys.length; j++){
+						var dutyDate = data.results.doctors[i].doctorDutys[j].dutyDate;
+						var dutyDateText = dutyDate.replace('-', '年');
+						dutyDateText = dutyDateText.replace('-', '月');
+						dutyDateText += '日 ' + getWeekTitle(new Date(dutyDate).getDay());
+						data.results.doctors[i].doctorDutys[j].dutyDateText = dutyDateText;
+					}
+				}
 				data.results.doctors[i].str = JSON.stringify(data.results.doctors[i]);
 			}
 			$scope.doctorList = data.results.doctors;
@@ -85,5 +94,33 @@ app.controller('BookingCtrl',['$scope','$rootScope','$stateParams','ClinicBookin
 			dialog.closeSpinner(spinner2.id);
 			dialog.alert(res.errorMsg);
 		});
+	}
+
+	function getWeekTitle(value) {
+		var title = '';
+		switch(value){
+			case 1:
+				title = '星期一';
+				break;
+			case 2:
+				title = '星期二';
+				break;
+			case 3:
+				title = '星期三';
+				break;
+			case 4:
+				title = '星期四';
+				break;
+			case 5:
+				title = '星期五';
+				break;
+			case 6:
+				title = '星期六';
+				break;
+			case 0:
+				title = '星期天';
+				break;
+		}
+		return title;
 	}
 }]);

@@ -18,7 +18,7 @@
                             </div>
                             <div class="cell">
                                 <div class="left-box icon-doctor">
-                                    医生姓名
+                                    推拿师姓名
                                 </div>
                                 <div class="middle-box">
                                     <select name="doctor" ng-model="selectedDoctor" ng-options="doctor as doctor.doctorName for doctor in doctorList" required>
@@ -31,7 +31,7 @@
             						预约日期
             					</div>
             					<div class="middle-box">
-                                    <select ng-model="selectedDate" ng-options="duty as duty.dutyDate for duty in selectedDoctor.doctorDutys" ng-change="changeDuty()" required>
+                                    <select ng-model="selectedDate" ng-options="duty as duty.dutyDateText for duty in selectedDoctor.doctorDutys" ng-change="changeDuty()" required>
 
                                     </select>
             					</div>
