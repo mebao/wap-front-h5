@@ -204,6 +204,17 @@
                                         </div>
                                     </div>
                     			</div>
+                    			<div ng-if="casehistory.files.length > 0" class="cell height-auto">
+                    				<div class="left-box clearly-width">
+                    					文件:{{casehistory.files.length}}
+                    				</div>
+                    				<div class="middle-box">
+                                        <div ng-repeat="file in casehistory.files" class="line-height-normal">
+                                            <img ng-click="showImg(file.fileUrl)" ng-if="file.fileExt != 'pdf'" src="{{file.fileUrl}}">
+                                            <div ng-click="showPdf(file.fileUrl)" ng-if="file.fileExt == 'pdf'">{{file.fileName}}</div>
+                                        </div>
+                                    </div>
+                    			</div>
                     			<div ng-if="casehistory.diagnosis != null && casehistory.diagnosis != ''" class="cell height-auto">
                     				<div class="left-box clearly-width">
                     					诊断:
@@ -271,6 +282,17 @@
                                         </div>
                                     </div>
                                 <!-- </div> -->
+                    			<div ng-if="healthrecord.files.length > 0" class="cell height-auto">
+                    				<div class="left-box clearly-width">
+                    					文件:{{casehistory.files.length}}
+                    				</div>
+                    				<div class="middle-box">
+                                        <div ng-repeat="file in healthrecord.files" class="line-height-normal">
+                                            <img ng-click="showImg(file.fileUrl)" ng-if="file.fileExt != 'pdf'" src="{{file.fileUrl}}">
+                                            <div ng-click="showPdf(file.fileUrl)" ng-if="file.fileExt == 'pdf'">{{file.fileName}}</div>
+                                        </div>
+                                    </div>
+                    			</div>
                             </div>
                         </div>
                     </div>

@@ -128,12 +128,11 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 		{name: '浅表淋巴结', key: 'lymphNode', unit: ''},
 		{name: '头颅', key: 'head', unit: ''},
 		{name: '前囟', key: 'bregmatic', unit: ''},
+		{name: '双眼', key: 'eyes', unit: ''},
 		{name: '耳', key: 'ear', unit: ''},
 		{name: '鼻', key: 'nose', unit: ''},
 		{name: '咽喉', key: 'throat', unit: ''},
 		{name: '扁桃体', key: 'tonsil', unit: ''},
-		{name: '双眼', key: 'eyes', unit: ''},
-		{name: '视力筛查', key: 'vision', unit: ''},
 		{name: '牙龈', key: 'gums', unit: ''},
 		{name: '舌系带', key: 'tongue_tie', unit: ''},
 		{name: '牙窝沟', key: 'teeth_pit', unit: ''},
@@ -145,6 +144,7 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 		{name: '双肺', key: 'lung', unit: ''},
 		{name: '双肾', key: 'kidney', unit: ''},
 		{name: '腹部', key: 'abdomen', unit: ''},
+		{name: '乳腺', key: 'abdomen', unit: 'mammaryGland'},
 		{name: '脊柱及四肢', key: 'limb', unit: ''},
 		{name: '肋骨', key: 'ribs', unit: ''},
 		{name: '髋关节', key: 'hip_joint', unit: ''},
@@ -175,4 +175,16 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 	}, function(data){
 		dialog.alert(data.errorMsg);
 	});
+
+	$scope.showImg = function(_url){
+		dialog.show('<img id="showImgView" src="' + _url + '" style="width: 100%;">', {
+			showBtn: true,
+			id: 'showImgView'
+		});
+	}
+
+	$scope.showPdf = function(_url) {
+		console.log(_url);
+		window.open(_url);
+	}
 }]);

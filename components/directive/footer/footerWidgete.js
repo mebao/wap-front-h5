@@ -23,7 +23,7 @@ app.directive('footerWidget', function () {
                 }
             }
         });
-        $scope.selectedIndex = StorageConfig.FOOTER_STORAGE.getItem('selectedItemIndex') || 0;
+        $scope.selectedIndex = StorageConfig.FOOTER_STORAGE.getItem('selectedItemIndex') || 1;
         $scope.selectItem = function (item, index) {
             // if ($scope.selectedIndex != index) {
                 if (item.beforeCall && typeof item.beforeCall === 'function') {
