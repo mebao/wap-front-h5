@@ -1,6 +1,6 @@
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
-        $urlRouterProvider.otherwise('/orderlist');
-        $urlRouterProvider.when('/', '/orderlist');
+        $urlRouterProvider.otherwise('/user');
+        $urlRouterProvider.when('/', '/user');
         $locationProvider.html5Mode(true).hashPrefix('!');
         $stateProvider
                 // .state('layout.test', {
@@ -75,11 +75,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
                 //     url: '/booking/selectDoctor?type&clinicId&serviceId',
                 //     templateUrl: 'app/modules/m_booking/view/selectDoctor.html'
                 // })
-                // .state('layout.user',{
-                //     url: '/user',
-                //     templateUrl: 'app/modules/m_user/view/index.html'
-                // })
-                // .state('layout.user-childlist',{
+                .state('user',{
+                    url: '/user',
+                    templateUrl: 'app/modules/m_user/view/index.html'
+                })
+                // .state('user-childlist',{
                 //     url: '/user/childlist',
                 //     templateUrl: 'app/modules/m_user/view/childlist.html'
                 // })

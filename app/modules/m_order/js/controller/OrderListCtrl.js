@@ -1,7 +1,6 @@
 app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','StorageConfig','$state', 'HomeService', 'userinfoService', function($scope,$rootScope,OrderService,dialog,StorageConfig,$state, HomeService, userinfoService){
 	$scope.header = true;
-    // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
-    $scope.footer = true;
+    $scope.footer = false;
 
     // 获取宝宝信息
     var spinner=dialog.showSpinner();
@@ -9,83 +8,90 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
         username: StorageConfig.TOKEN_STORAGE.getItem('username'),
         token: StorageConfig.TOKEN_STORAGE.getItem('token')
     };
+	$scope.child = StorageConfig.CHILD_STORAGE.getItem('meb_child');
 	$scope.username = StorageConfig.TOKEN_STORAGE.getItem('username');
-    HomeService.getChilds(urlOptions).then(function(res){
-		if(res.results.childs.length > 0){
-			setHeader(res.results.childs);
-		}else{
-			window.headerConfig={
-				title: '',
-				enableBack: false,
-				enableRefresh: false,
-				otherRightOperate: {
-					enable: true,
-					html: '退出',
-					clickCall: function() {
-						dialog.confirm('确认退出', {
-							closeCallback: function(value){
-								if(value == 0){
-								}else{
-									StorageConfig.TOKEN_STORAGE.putItem('token', '');
-									$state.go('login');
-								}
-							}
-						});
-					},
-				},
-			};
-
-			$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
-			$scope.allBookings = [];
-	        dialog.closeSpinner(spinner.id);
-		}
-    },function(res){
-        dialog.closeSpinner(spinner.id);
-        dialog.alert(res.errorMsg);
-    });
-
-	function setHeader(childList) {
-		window.headerConfig={
-			enableTitle: false,
-			enableBack: false,
-			enableRefresh: false,
-			otherRightOperate: {
-				enable: true,
-				html: '退出',
-				clickCall: function() {
-					dialog.confirm('确认退出', {
-						closeCallback: function(value){
-							if(value == 0){
-							}else{
-								StorageConfig.TOKEN_STORAGE.putItem('token', '');
-								$state.go('login');
-							}
-						}
-					});
-				},
-			},
-			areaOperate: {
-				enable: true,
-				areas: childList,
-				trackKey: 'childName',
-				currentArea: StorageConfig.ORDER_STORAGE.getItem('selectedChild') ? StorageConfig.ORDER_STORAGE.getItem('selectedChild') : undefined,
-				selectedCall: function(item){
-					$scope.selectedChild = item;
-					StorageConfig.ORDER_STORAGE.putItem('selectedChild', item);
-					getOrderData(spinner.id);
-					getOtherInfo(item);
-				}
-			},
-		};
-
-		$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
+	window.headerConfig={
+		title: $scope.child == ''?'':$scope.child.childName,
+		enableBack: true,
+		enableRefresh: false,
 	}
+	getOrderData(spinner.id);
+    // HomeService.getChilds(urlOptions).then(function(res){
+	// 	if(res.results.childs.length > 0){
+	// 		setHeader(res.results.childs);
+	// 	}else{
+	// 		window.headerConfig={
+	// 			title: '',
+	// 			enableBack: true,
+	// 			enableRefresh: false,
+	// 			// otherRightOperate: {
+	// 			// 	enable: true,
+	// 			// 	html: '退出',
+	// 			// 	clickCall: function() {
+	// 			// 		dialog.confirm('确认退出', {
+	// 			// 			closeCallback: function(value){
+	// 			// 				if(value == 0){
+	// 			// 				}else{
+	// 			// 					StorageConfig.TOKEN_STORAGE.putItem('token', '');
+	// 			// 					$state.go('login');
+	// 			// 				}
+	// 			// 			}
+	// 			// 		});
+	// 			// 	},
+	// 			// },
+	// 		};
+	//
+	// 		$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
+	// 		$scope.allBookings = [];
+	//         dialog.closeSpinner(spinner.id);
+	// 	}
+    // },function(res){
+    //     dialog.closeSpinner(spinner.id);
+    //     dialog.alert(res.errorMsg);
+    // });
+
+	// function setHeader(childList) {
+	// 	window.headerConfig={
+	// 		enableTitle: false,
+	// 		enableBack: true,
+	// 		enableRefresh: false,
+	// 		// otherRightOperate: {
+	// 		// 	enable: true,
+	// 		// 	html: '退出',
+	// 		// 	clickCall: function() {
+	// 		// 		dialog.confirm('确认退出', {
+	// 		// 			closeCallback: function(value){
+	// 		// 				if(value == 0){
+	// 		// 				}else{
+	// 		// 					StorageConfig.TOKEN_STORAGE.putItem('token', '');
+	// 		// 					$state.go('login');
+	// 		// 				}
+	// 		// 			}
+	// 		// 		});
+	// 		// 	},
+	// 		// },
+	// 		areaOperate: {
+	// 			enable: true,
+	// 			areas: childList,
+	// 			trackKey: 'childName',
+	// 			currentArea: StorageConfig.ORDER_STORAGE.getItem('selectedChild') ? StorageConfig.ORDER_STORAGE.getItem('selectedChild') : undefined,
+	// 			selectedCall: function(item){
+	// 				$scope.selectedChild = item;
+	// 				StorageConfig.ORDER_STORAGE.putItem('selectedChild', item);
+	// 				getOrderData(spinner.id);
+	// 				getOtherInfo(item);
+	// 			}
+	// 		},
+	// 	};
+	//
+	// 	$rootScope.$broadcast('setHeaderConfig',window.headerConfig);
+	// }
 
 	function getOrderData(spinnerId){
 		// 记录就诊次数
 		var bookingInNum = 0;
 
-		urlOptions.childId = $scope.selectedChild.childId;
+		urlOptions.childId = $scope.child.childId;
 		OrderService.getOrderList(urlOptions).then(function(res){
 			dialog.closeSpinner(spinnerId);
 			if(res.results.allBookings.length > 0){
@@ -105,6 +111,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 			}
 			$scope.bookingInNum = bookingInNum;
 			$scope.allBookings=res.results.allBookings;
+			getOtherInfo($scope.child);
 		},function(res){
 			dialog.closeSpinner(spinnerId);
 			dialog.alert(res.errorMsg);
@@ -170,7 +177,7 @@ app.controller('OrderCtrl',['$scope','$rootScope','OrderService','dialog','Stora
 
 	$scope.checkList = function(){
 		$state.go('order-check-list', {
-			childId: $scope.selectedChild.childId
+			childId: $scope.child.childId
 		})
 	}
 

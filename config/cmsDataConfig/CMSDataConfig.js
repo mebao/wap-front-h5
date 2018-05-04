@@ -10,8 +10,8 @@ app.factory('CMSDataConfig', ['StorageConfig', '$state', function (StorageConfig
         {
             text: '我的',
             class: 'icon-user',
-            route: 'orderlist',
-            url: '/orderlist'
+            route: 'user',
+            url: '/user'
         }
     ];
     return data;

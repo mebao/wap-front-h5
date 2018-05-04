@@ -91,6 +91,9 @@ app.controller('payDetailCtrl', ['$scope', '$rootScope', '$state', 'userinfoServ
 	}else if(type == '3'){
 		// 支付预约金
 		$scope.payType = '3';
+	}else if(type == '6'){
+		//活动卡售卖
+		$scope.payType = '4';
 	}
 	$scope.detail = detail;
 }]);

@@ -144,6 +144,25 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 活动卡售卖 -->
+                    <div ng-if="payType == '4'">
+                        <div class="info-tab pad10">
+                            <div class="text-center">{{detail.typeText}}</div>
+                            <div class="text-center money">{{detail.amount}}元</div>
+                            <div class="flex">
+                                <div class="flex-1">购买活动卡：</div>
+                                <div>{{detail.amount}}</div>
+                            </div>
+                            <div class="flex">
+                                <div class="flex-1">收款方式：</div>
+                                <div>{{detail.wayText}}</div>
+                            </div>
+                            <div class="flex pt10 color-g">
+                                <div class="flex-1">交易时间：</div>
+                                <div>{{detail.time}}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
