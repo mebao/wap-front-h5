@@ -184,7 +184,6 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 	}
 
 	$scope.showPdf = function(_url) {
-		console.log(_url);
 		window.open(_url);
 	}
 }]);

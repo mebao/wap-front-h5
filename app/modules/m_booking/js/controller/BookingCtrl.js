@@ -63,7 +63,6 @@ app.controller('BookingCtrl',['$scope','$rootScope','$stateParams','ClinicBookin
 				$scope.timeList.push(time);
 			}
 		}
-		console.log($scope.timeList);
 	}
 
 	$scope.submitForm = function(){
@@ -84,11 +83,10 @@ app.controller('BookingCtrl',['$scope','$rootScope','$stateParams','ClinicBookin
 			mobile: StorageConfig.TOKEN_STORAGE.getItem('username'),
 			booking_fee: '0',
 		}
-		console.log(_paramsObj);
 		ClinicBookingService.createbooking(_paramsObj).then(function(res){
 			dialog.closeSpinner(spinner2.id);
 			if(res.status=='ok'){
-				$state.go('orderlist');
+				$state.go('user');
 			}
 		},function(res){
 			dialog.closeSpinner(spinner2.id);
