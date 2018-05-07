@@ -64,7 +64,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
                     templateUrl: 'app/modules/m_order/view/checkList.html'
                 })
                 .state('order-checkInfo',{
-                    url: '/order/checkInfo',
+                    url: '/order/checkInfo?type',
                     templateUrl: 'app/modules/m_order/view/checkInfo.html'
                 })
                 // .state('layout.booking-selectClinic',{

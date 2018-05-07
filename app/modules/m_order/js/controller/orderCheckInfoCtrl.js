@@ -1,4 +1,4 @@
-app.controller('orderCheckInfoCtrl', ['$scope', '$rootScope', 'StorageConfig', 'dialog', 'OrderService', function($scope, $rootScope, StorageConfig, dialog, OrderService){
+app.controller('orderCheckInfoCtrl', ['$scope', '$rootScope', '$stateParams', 'StorageConfig', 'dialog', 'OrderService', function($scope, $rootScope, $stateParams, StorageConfig, dialog, OrderService){
 	$scope.header = true;
     // $scope.footer = StorageConfig.FOOTER_STORAGE.getItem('showFooter') ? true : false;
     $scope.footer = false;
@@ -14,7 +14,8 @@ app.controller('orderCheckInfoCtrl', ['$scope', '$rootScope', 'StorageConfig', '
     var otherOptions={
         username: StorageConfig.TOKEN_STORAGE.getItem('username'),
         token: StorageConfig.TOKEN_STORAGE.getItem('token'),
-		id: StorageConfig.ORDER_STORAGE.getItem('checkId')
+		id: $stateParams.type == 'checkList' ? StorageConfig.ORDER_STORAGE.getItem('checkId') : null,
+		booking_id: $stateParams.type == 'orderDetail' ? StorageConfig.ORDER_STORAGE.getItem('checkBookingId') : null,
     };
     OrderService.usercheckprojectinfo(otherOptions).then(function(data){
         dialog.closeSpinner(spinner.id);

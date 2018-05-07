@@ -26,6 +26,8 @@ app.controller('orderCheckListCtrl', ['$scope', '$rootScope', 'StorageConfig', '
 
     $scope.detail = function(id){
 		StorageConfig.ORDER_STORAGE.putItem('checkId', id);
-		$state.go('order-checkInfo');
+		$state.go('order-checkInfo', {
+            type: 'checkList'
+        });
     }
 }])

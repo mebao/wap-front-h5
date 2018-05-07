@@ -108,9 +108,11 @@ app.controller('orderDetailCtrl',['$scope','$rootScope','StorageConfig', 'OrderS
 	});
 
 	$scope.showCheckInfo = function(){
-		StorageConfig.ORDER_STORAGE.putItem('selectedTab', 2);
-		StorageConfig.ORDER_STORAGE.putItem('checkList', $scope.checkList);
-		$state.go('order-checkInfo');
+		StorageConfig.ORDER_STORAGE.putItem('selectedTab', 3);
+		StorageConfig.ORDER_STORAGE.putItem('checkBookingId', $scope.order.id);
+		$state.go('order-checkInfo', {
+            type: 'orderDetail'
+        });
 	}
 
 	$scope.healthItem = [
