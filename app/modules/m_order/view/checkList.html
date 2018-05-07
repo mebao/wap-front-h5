@@ -4,23 +4,25 @@
     <div class="layout-content" id="layoutContent">
         <div class="content-view">
             <div ng-controller="orderCheckListCtrl" class="orderCheckList-page">
-                <div class="check-tab" ng-repeat="check in checkList">
-                    <div class="tab">
-                        <div ng-click="detail(check)">
-                            <p>
-                                <span>检查项目：</span>
-                                <span ng-bind="check.checkName"></span>
-                            </p>
-                            <p ng-if="check.resultList.length > 0" class="pt10">
-                                <span>报告时间：</span>
-                                <span ng-bind="check.resultList[0].time"></span>
-                            </p>
+                <div class="content-page" ng-class="{'topHeader': header, 'bottomFooter': footer}">
+                    <div class="check-tab" ng-repeat="check in checkList">
+                        <div class="tab">
+                            <div ng-click="detail(check.id)">
+                                <p>
+                                    <span>检查项目：</span>
+                                    <span ng-bind="check.checkName"></span>
+                                </p>
+                                <p class="pt10">
+                                    <span>报告时间：</span>
+                                    <span ng-bind="check.time"></span>
+                                </p>
+                            </div>
                         </div>
+                        <div class="sawtooth"></div>
                     </div>
-                    <div class="sawtooth"></div>
-                </div>
-                <div ng-show="checkList.length == 0" class="pad10">
-                    暂无报告
+                    <div ng-show="checkList.length == 0" class="pad10">
+                        暂无报告
+                    </div>
                 </div>
             </div>
         </div>

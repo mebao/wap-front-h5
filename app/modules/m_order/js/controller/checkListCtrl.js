@@ -24,10 +24,8 @@ app.controller('orderCheckListCtrl', ['$scope', '$rootScope', 'StorageConfig', '
         dialog.alert(data.errorMsg);
     });
 
-    $scope.detail = function(check){
-        var checkList = [];
-        checkList.push(check);
-		StorageConfig.ORDER_STORAGE.putItem('checkList', checkList);
+    $scope.detail = function(id){
+		StorageConfig.ORDER_STORAGE.putItem('checkId', id);
 		$state.go('order-checkInfo');
     }
 }])

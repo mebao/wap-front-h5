@@ -21,6 +21,10 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 		return res;
 	}
 
+	function usercheckprojectinfoDto(res){
+		return res;
+	}
+
 	function bookingassistDto(res){
 		return res;
 	}
@@ -71,6 +75,12 @@ app.service('OrderService',['BaseHttpRequest',function(BaseHttpRequest){
 				url: window.envs.api_url + '/mebapi/usercheckprojects?username=' + urlOptions.username + '&token=' + urlOptions.token + (urlOptions.booking_id ? '&booking_id=' + urlOptions.booking_id : '') + (urlOptions.child_id ? '&child_id=' + urlOptions.child_id : '') + '&today=1&ischeck=1',
 			}
 			return BaseHttpRequest.get(requestObj, usercheckprojectsDto);
+		},
+		usercheckprojectinfo: function(urlOptions){
+			var requestObj = {
+				url: window.envs.api_url + '/mebapi/usercheckprojectinfo?username=' + urlOptions.username + '&token=' + urlOptions.token + (urlOptions.booking_id ? '&booking_id=' + urlOptions.booking_id : '') + (urlOptions.id ? '&id=' + urlOptions.id : '') + '&today=1&ischeck=1',
+			}
+			return BaseHttpRequest.get(requestObj, usercheckprojectinfoDto);
 		},
 		bookingassist: function(urlOptions){
 			var requestObj = {
