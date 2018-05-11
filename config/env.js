@@ -31,7 +31,7 @@
         },
         localhost: {
             env:'localhost',
-            api_url: 'http://172.16.252.60/jiabaokangle',
+            api_url: 'http://172.16.252.33/jiabaokangle',
         }
     };
     var envs = allEnvs.localhost;//默认连接dev开发环境
@@ -63,8 +63,8 @@
             break;
         }
         default:
-            // envs = allEnvs.product_zunyi;
-            envs = allEnvs.localhost;
+            envs = allEnvs.product_zunyi;
+            // envs = allEnvs.localhost;
             break;
     }
     return envs;
