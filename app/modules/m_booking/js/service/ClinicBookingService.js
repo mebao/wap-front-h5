@@ -17,6 +17,10 @@ app.service('ClinicBookingService',['BaseHttpRequest',function(BaseHttpRequest){
 		return res;
 	}
 
+	function allservicesDto(res){
+		return res;
+	}
+
 	var service={
 		getDoctorByClinicIdAndServiceId: function(urlOptions){
 			var requestObj={
@@ -34,7 +38,7 @@ app.service('ClinicBookingService',['BaseHttpRequest',function(BaseHttpRequest){
 		// 查询推拿医生
 		searchtuina: function(urlOptions){
 			var requestObj = {
-				url: window.envs.api_url + '/mebapi/searchtuina?username=' + urlOptions.username + '&token=' + urlOptions.token + '&clinic_id=' + urlOptions.clinic_id,
+				url: window.envs.api_url + '/mebapi/searchtuina?username=' + urlOptions.username + '&token=' + urlOptions.token + '&clinic_id=' + urlOptions.clinic_id + '&service_id=' + urlOptions.service_id,
 			}
 			return BaseHttpRequest.get(requestObj, searchtuinaDto);
 		},
@@ -45,6 +49,12 @@ app.service('ClinicBookingService',['BaseHttpRequest',function(BaseHttpRequest){
 			}
 			return BaseHttpRequest.post(requestObj, createbookingDto);
 		},
+		allservices: function(urlOptions){
+			var requestObj = {
+				url: window.envs.api_url + '/mebapi/allservices?username=' + urlOptions.username + '&token=' + urlOptions.token + '&clinic_id=' + urlOptions.clinic_id,
+			}
+			return BaseHttpRequest.get(requestObj, allservicesDto);
+		}
 	}
 	return service;
 }]);

@@ -118,7 +118,11 @@ app.controller('loginCtrl',['$scope','$rootScope','CommonService','dialog','$sta
 				// $state.go($scope.from,eval('(' + $scope.intercept + ')'));
 				// 清空默认选中宝宝
 				StorageConfig.ORDER_STORAGE.removeItem('selectedChild');
-				$state.go('user');
+				if($stateParams.from){
+					$state.go($stateParams.from)
+				}else{
+					$state.go('user');
+				}
 			},function(res){
 				dialog.closeSpinner(spinner.id);
 				dialog.alert(res.errorMsg);

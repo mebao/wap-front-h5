@@ -147,4 +147,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
                     url: '/booking/booking?type&clinicId&serviceId&time&date&doctorId',
                     templateUrl: 'app/modules/m_booking/view/booking.html'
                 })
+                .state('booking-booking2', {
+                    url: '/booking/booking2?type&clinicId&serviceId&time&date&doctorId',
+                    templateUrl: 'app/modules/m_booking/view/booking2.html'
+                })
     }]);
