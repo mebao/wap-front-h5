@@ -22,6 +22,12 @@ app.controller('BookingCtrl',['$scope','$rootScope','$stateParams','ClinicBookin
 	ClinicBookingService.allservices(urlOptions).then(function(data){
 		dialog.closeSpinner(spinner.id);
 		$scope.serviceList = data.results.list;
+		if($scope.serviceList.length > 0){
+			$scope.selectedService = $scope.serviceList[0];
+			$scope.changeService();
+		}else{
+			dialog.alert('暂无可预约科室');
+		}
 	}, function(res){
 		dialog.closeSpinner(spinner.id);
 		dialog.alert(res.errorMsg);
@@ -33,7 +39,9 @@ app.controller('BookingCtrl',['$scope','$rootScope','$stateParams','ClinicBookin
 		ClinicBookingService.searchtuina(urlOptions).then(function(data){
 			dialog.closeSpinner(spinner1.id);
 			if(data.results.doctors.length == 0){
-				$scope.booking_error = '暂无科室医生排班';
+				dialog.alert('暂无科室医生排班');
+				$scope.doctorList = [];
+				// $scope.booking_error = '暂无科室医生排班';
 			}else{
 				for(var i = 0; i < data.results.doctors.length; i++){
 					if(data.results.doctors[i].doctorDutys.length > 0){
@@ -54,7 +62,7 @@ app.controller('BookingCtrl',['$scope','$rootScope','$stateParams','ClinicBookin
 				$scope.selectedChild = $scope.childList[0];
 			}
 		}, function(res){
-			$scope.booking_error = '诊所尚未开设科室';
+			// $scope.booking_error = '诊所尚未开设科室';
 			dialog.closeSpinner(spinner1.id);
 			dialog.alert(res.errorMsg);
 		});

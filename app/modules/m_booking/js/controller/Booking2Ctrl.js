@@ -38,6 +38,8 @@ app.controller('Booking2Ctrl',['$scope','$rootScope','$stateParams','ClinicBooki
 		ClinicBookingService.searchtuina(urlOptions).then(function(data){
 			dialog.closeSpinner(spinner1.id);
 			if(data.results.doctors.length == 0){
+				dialog.alert('暂无科室医生排班');
+				$scope.doctorList = [];
 				// $scope.booking_error = '暂无科室医生排班';
 			}else{
 				for(var i = 0; i < data.results.doctors.length; i++){
