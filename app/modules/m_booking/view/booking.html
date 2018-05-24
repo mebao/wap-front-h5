@@ -44,8 +44,8 @@
             					</div>
             					<div class="middle-box">
             						<select name="time" ng-model="selectedTime" required>
-                                        <option ng-show="time.use" ng-repeat="time in timeList" value="{{time.value}}">{{time.value}}</option>
-                                        <option ng-show="!time.use" ng-repeat="time in timeList" value="{{time.value}}" disabled>{{time.value + '（已预约）'}}</option>
+                                        <option ng-if="time.use" ng-repeat="time in timeList" value="{{time.value}}">{{time.value}}</option>
+                                        <option ng-if="!time.use" ng-repeat="time in timeList" value="{{time.value}}" disabled>{{time.value + '（' + time.text + '）'}}</option>
             						</select>
             					</div>
             					<div class="middle-box" ng-show="type=='ZJ'" ng-bind="time">

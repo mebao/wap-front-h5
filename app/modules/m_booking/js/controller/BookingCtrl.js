@@ -71,15 +71,26 @@ app.controller('BookingCtrl',['$scope','$rootScope','$stateParams','ClinicBookin
 	$scope.timeList = [];
 	$scope.changeDuty = function() {
 		$scope.timeList = [];
+		var todayTimeNum = Number((new Date().getHours() < 10 ? '0' + new Date().getHours() : new Date().getHours()) + '' + (new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()));
 		if($scope.selectedDate.timeList.length > 0){
 			for(var i = 0; i < $scope.selectedDate.timeList.length; i++){
 				var time = {
 					value: $scope.selectedDate.timeList[i],
 					use: true,
+					text: '',
+				}
+				//如果是当天日期，判断时间是否已经过去
+				if(getDayByDate(new Date) == $scope.selectedDate.dutyDate){
+					var timeNum = Number($scope.selectedDate.timeList[i].replace(':', ''));
+					if(timeNum < todayTimeNum){
+						time.use = false;
+						time.text = '已过期';
+					}
 				}
 				// 排班时间，不再已预约时间中
 				if($scope.selectedDate.selectedList.length > 0 && ($scope.selectedDate.selectedList.indexOf($scope.selectedDate.timeList[i]) != -1)){
 					time.use = false;
+					time.text = '已预约';
 				}
 				$scope.timeList.push(time);
 			}
@@ -149,4 +160,11 @@ app.controller('BookingCtrl',['$scope','$rootScope','$stateParams','ClinicBookin
 		}
 		return title;
 	}
+
+	function getDayByDate(date) {
+      	var d = date.getDate(),
+      		m = date.getMonth(),
+      		y = date.getFullYear();
+      	return y + '-' + ((m + 1) > 9 ? (m + 1) : ('0' + (m + 1))) + '-' + (d > 9 ? d : ('0' + d));
+    }
 }]);
