@@ -1,6 +1,6 @@
-<!doctype html>
-<html id="meb-app" ng-app="meb-app">
-<head>
+<!DOCTYPE html>
+<html>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
@@ -15,15 +15,9 @@
     <meta HTTP-EQUIV="expires" CONTENT="0">
     <title></title>
     <base href="/">
-    <link rel="stylesheet" href="framework/framework.css"/>
-    <link rel="stylesheet" href="framework/theme-<%= THEME_NAME %>.css">
-    <link rel="stylesheet" href="components/components.css">
-    <link rel="stylesheet" href="app/app.css">
-    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main.css?v=1.0"/>
-</head>
-<body>
-<div ui-view>
-    <style>
+  </head>
+  <body>
+      <style>
         .init-body{
             position: absolute;
             width: 100%;
@@ -66,13 +60,10 @@
         }
     </style>
     <div class="init-body">
-        <img class="logo" src="app/images/icon_logo.png">
+        <img class="logo" src="/static/icon_logo.png">
         <div class="init-text">嘉宝育儿</div>
     </div>
-</div>
-</body>
-<script src="framework/framework.js"></script>
-<script src="components/components.js"></script>
-<script src="app/app.js"></script>
-<!-- <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=307d8183b8289d804cbf41d086c0c904"></script> -->
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
 </html>

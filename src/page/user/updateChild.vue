@@ -1,0 +1,408 @@
+<template>
+  <div class="layout-base">
+      <mt-header title="修改信息">
+          <mt-button icon="back" slot="left" @click="goBack()"></mt-button>
+    </mt-header>
+    <div class="layout-content">
+        <div class="content-view">
+            <div class="content-page page-update-child">
+                <div class="child-info">
+                    <div class="gender-tab mb10 pb10">
+                        <p class="tip">*</p>
+                        <div class="flex">
+                            <div class="tab-left flex-1 text-center">
+                                <div class="img-part" :class="{'active': child.gender=='男' || child.gender=='M'}" @click="selectGender('M')">
+                                    <div class="icon_boy"></div>
+                                </div>
+                                <p>男孩</p>
+                            </div>
+                            <div class="tab-right flex-1 text-center">
+                                <div class="img-part" :class="{'active': child.gender=='女' || child.gender=='F'}" @click="selectGender('F')">
+                                    <div class="icon_girl"></div>
+                                </div>
+                                <p>女孩</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell-group">
+                        <div class="cell">
+                            <p class="left-box">宝宝姓名：</p>
+                            <p class="middle-box"><input type="text" v-model="child.childName"/></p>
+                        </div>
+                        <div class="cell">
+                            <p class="left-box">宝宝小名：</p>
+                            <p class="middle-box"><input type="text" v-model="child.nickName"/></p>
+                        </div>
+                        <div class="cell">
+                            <p class="left-box">生日：</p>
+                            <p class="middle-box"><input type="date" v-model="child.birthday"></p>
+                        </div>
+                        <div class="cell">
+                            <p class="left-box">宝宝星座：</p>
+                            <p class="middle-box">
+                                <select v-model="child.horoscope">
+                                    <option disabled selected>请选择星座</option>
+                                    <option v-for="option in optionsHoroscope" :key='option.key' :value="option.key">{{option.value}}</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="cell">
+                            <p class="left-box">宝宝生肖：</p>
+                            <p class="middle-box">
+                                <select v-model="child.shengxiao">
+                                    <option disabled selected>请选择生肖</option>
+                                    <option v-for="option in optionsShengxiao" :key='option.key' :value="option.key">{{option.value}}</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="cell">
+                            <p class="left-box">宝宝血型：</p>
+                            <p class="middle-box">
+                                <select v-model="child.bloodType">
+                                    <option disabled selected>请选择血型</option>
+                                    <option v-for="option in optionsBloodtype" :key='option.key' :value="option.key">{{option.value}}</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="cell">
+                            <p class="left-box">宝宝身高：</p>
+                            <p class="middle-box"><input type="number" v-model="child.height"/></p>
+                        </div>
+                        <div class="cell">
+                            <p class="left-box">宝宝体重：</p>
+                            <p class="middle-box"><input type="number" v-model="child.weight"/></p>
+                        </div>
+                        <!-- <div class="cell">
+                            <p class="left-box">宝宝腿长：</p>
+                            <p class="middle-box"><input type="number" v-model="child.legLength"/></p>
+                        </div>
+                        <div class="cell">
+                            <p class="left-box">宝宝头围：</p>
+                            <p class="middle-box"><input type="number" v-model="child.headCircum"/></p>
+                        </div> -->
+                        <div class="child-info flex mt10 mb10">
+                            <div class="flex-1">
+                                <span class="tip">*</span>
+                                上传头像
+                            </div>
+                            <div class="info-img">
+                                <img v-if="child.imageUrl" :src="child.imageUrl" class="preimg"/>
+                                <img v-if="!child.imageUrl"  src="../../assets/icon_child.png" class="preimg"/>
+                                <div id="uploadImgBox"></div>
+                            </div>
+                            <div class="flex-1"></div>
+                        </div>
+                        <!-- <div class="img-tab flex" v-if="child.imageUrl != null">
+                            <div class="flex-1"></div>
+                            <div class="tab">
+                                <img :src="child.imageUrl">
+                            </div>
+                            <div class="flex-1"></div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="mt10 mb10 pr10 pl10">
+                    <mt-button type="primary" size="large" id="create">修改宝宝信息</mt-button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</template>
+<script>
+    import { MessageBox,Indicator } from 'mint-ui';
+    import MoUpload from '@/components/upload'
+    export default {
+        name:'updateChild',
+        components : {
+            MoUpload,
+        },
+        data(){
+            return {
+                username: localStorage.getItem('username'),
+                token: localStorage.getItem('token'),
+                child: JSON.parse(sessionStorage.getItem('child')),
+                optionsHoroscope: '',
+                optionsShengxiao: '',
+                optionsBloodtype: '',
+                
+            }
+        },
+        mounted:function(){
+            this.$nextTick(function () {
+                this.getToken();
+               this.optionsHoroscope = [
+                    {key: 'aries', value: '白羊座'},
+                    {key: 'taurus', value: '金牛座'},
+                    {key: 'gemini', value: '双子座'},
+                    {key: 'cancer', value: '巨蟹座'},
+                    {key: 'leo', value: '狮子座'},
+                    {key: 'virgo', value: '处女座'},
+                    {key: 'libra', value: '天秤座'},
+                    {key: 'scorpio', value: '天蝎座'},
+                    {key: 'sagittarius', value: '射手座'},
+                    {key: 'capricorn', value: '摩羯座'},
+                    {key: 'aquarius', value: '水瓶座'},
+                    {key: 'pisces', value: '双鱼座'},
+                ];
+                this.optionsShengxiao = [
+                    {key: 'rat', value: '鼠'},
+                    {key: 'ox', value: '牛'},
+                    {key: 'tiger', value: '虎'},
+                    {key: 'hare', value: '兔'},
+                    {key: 'dragon', value: '龙'},
+                    {key: 'snake', value: '蛇'},
+                    {key: 'horse', value: '马'},
+                    {key: 'sheep', value: '羊'},
+                    {key: 'monkey', value: '猴'},
+                    {key: 'cock', value: '鸡'},
+                    {key: 'dog', value: '狗'},
+                    {key: 'boar', value: '猪'},
+                ];
+                this.optionsBloodtype = [
+                    {key: 'A', value: 'A型'},
+                    {key: 'B', value: 'B型'},
+                    {key: 'O', value: 'O型'},
+                    {key: 'AB', value: 'AB型'},
+                ];
+                for(var i=0;i<this.optionsHoroscope.length;i++){
+                    if(this.child.horoscope == this.optionsHoroscope[i].value){
+                        this.child.horoscope = this.optionsHoroscope[i].key;
+                    }
+                }
+                for(var i=0;i<this.optionsShengxiao.length;i++){
+                    if(this.child.shengxiao == this.optionsShengxiao[i].value){
+                        this.child.shengxiao = this.optionsShengxiao[i].key;
+                    }
+                }
+                for(var i=0;i<this.optionsBloodtype.length;i++){
+                    if(this.child.bloodType == this.optionsBloodtype[i].value){
+                        this.child.bloodType = this.optionsBloodtype[i].key;
+                    }
+                }
+            })
+        },
+        methods:{
+            uploadComplete(status, result, flag) {
+                if (status == 200) { //
+                    this.thumbnail = `domain.com/${result.key}` //七牛域名 + 返回的key 组成文件url
+                } else {
+                    //失败处理
+                }
+            },
+            selectGender: function(gender){
+                this.child.gender = gender;
+            },
+            updateChild:function(){
+                Indicator.open('加载中...');
+                var urlOptions = '?username=' + this.username + '&token=' + this.token;
+                this.$http.get(window.envs.api_url + '/createchild' + urlOptions).then((res)=>{
+                    if(res.data.status == 'no'){
+                        MessageBox('温馨提示', res.data.errorMsg);
+                    }else{
+                        this.childList = this.childList.concat(res.data.results.childs);
+                    }
+                    Indicator.close();
+                },(res)=>{
+                    Indicator.close();
+                    MessageBox('温馨提示', '服务器错误');
+                });
+            },
+            goChild:function(child){
+                sessionStorage.setItem('child',JSON.stringify(child));
+                this.$router.push('orderlist');
+            },
+            goBack:function(){
+                this.$router.go(-1);
+            },
+             getToken:function(){
+                //Indicator.open('加载中...');
+                this.$http.get(window.envs.api_url + '/childtoken').then((res)=>{
+                    if(res.data.status == 'no'){
+                        MessageBox('温馨提示', res.data.errorMsg);
+                    }else{
+                        var _this = this;
+                        this.readyUpload(res.data.uptoken,_this);
+                    }
+                    Indicator.close();
+                },(res)=>{
+                    Indicator.close();
+                    MessageBox('温馨提示', '服务器错误');
+                });
+            },
+            readyUpload: function(_token,_this){      
+                UploadImg.init({
+                    id: 'uploadImgBox',
+                    multiple: false, // enable the component can select multiple files in one time. In mobile, please use the false.
+                    maxCount: 1, // the max number picture could upload.
+                    // autoUpload: true,
+                    required: false, //ctrl you must upload images files or not. if false, the UploadImg.isFinished() init is true.
+                    //imgListArray: [],
+                    fileNum: getFileNum,
+                    upload: {
+                        uploadUrl: 'http://upload.qiniu.com/',
+                        token: _token,
+                        tokenUrl: window.envs.api_url + '/mebapi/childtoken',
+                        type: 'POST',
+                        async: true,
+                        nameSpace: '',
+                        submitBtnId: 'create',
+                        beforeCall: beforeCall,
+                        afterCall: afterCall,
+                        params: {},
+                        btnHtml: '',
+                    }
+                });
+
+                function getFileNum(num){
+                    // console.log(num,2);
+                }
+
+                function beforeCall(doingCall){
+                    Indicator.open('加载中...');
+                    doingCall({});
+                    if(document.getElementById('uploadInputFile_uploadImgBox').value == ''){
+                        var requestObj={
+                            username: _this.username,
+                            token: _this.token,
+                            name: _this.child.childName,
+                            nickname: _this.child.nickName,
+                            gender: _this.child.gender == '男'?'M':'F',
+                            birth_date: _this.child.birthday,
+                            blood_type: _this.child.bloodType,
+                            horoscope: _this.child.horoscope,
+                            shengxiao: _this.child.shengxiao,
+                            is_default: '1',
+                            // remote_domain: '',
+                            // remote_file_key: '',
+                            clinic_id: localStorage.getItem('wap_clinic'),
+                            child_id: _this.child.childId
+                        }
+                        _this.$http.post(window.envs.api_url + '/createchild' , requestObj).then((res)=>{
+                            if(res.data.status == 'no'){
+                                MessageBox('温馨提示', res.data.errorMsg);
+                            }else{
+                                sessionStorage.setItem('child',JSON.stringify(_this.child));
+                                _this.$router.push('/user/childInfo');
+                            }
+                            Indicator.close();
+                        },(res)=>{
+                            Indicator.close();
+                            MessageBox('温馨提示', '服务器错误');
+                        });
+                    }else{
+                        
+                    }
+                }
+
+                function afterCall(upFileList){
+                    var requestObj={
+                        username: _this.username,
+                        token: _this.token,
+                        name: _this.child.childName,
+                        nickname: _this.child.nickName,
+                        gender: _this.child.gender == '男'?'M':'F',
+                        birth_date: _this.child.birthday,
+                        blood_type: _this.child.bloodType,
+                        horoscope: _this.child.horoscope,
+                        shengxiao: _this.child.shengxiao,
+                        is_default: '1',
+                        remote_domain: 'http://og03472zu.bkt.clouddn.com',
+                        remote_file_key: upFileList[0].key,
+                        clinic_id: localStorage.getItem('wap_clinic'),
+                        child_id: _this.child.childId
+                    }
+                    _this.$http.post(window.envs.api_url + '/createchild' , requestObj).then((res)=>{
+                        if(res.data.status == 'no'){
+                            MessageBox('温馨提示', res.data.errorMsg);
+                        }else{
+                            sessionStorage.setItem('child',JSON.stringify(_this.child));
+                            _this.$router.push('/user/childInfo');
+                        }
+                        Indicator.close();
+                    },(res)=>{
+                        Indicator.close();
+                        MessageBox('温馨提示', '服务器错误');
+                    });
+                }
+            },
+
+        },
+    }
+</script>
+
+<style lang="scss" scoped>
+    .child-info{
+		.img-tab{
+			background-color: #fff;
+			padding: 10px;
+			img{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+		}
+	}
+    .info-img{
+        position: relative;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        width: 90px;
+        height: 90px;
+        overflow: hidden;
+    }
+    .preimg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #c0c0c0;
+        border-radius: 50%;
+    }
+    .upload-img{
+        background-color: inherit !important;
+        padding: 0;
+    }
+    .tip{
+        width: .83333rem;
+        text-align: center;
+        color: red;
+        display: inline-block;
+        height: .83333rem;
+    }
+    .middle-box{
+        flex:1;
+    }
+    .gender-tab{
+		background-color: #fff;
+		padding: px2rem(10px) px2rem(20px);
+		margin-bottom: px2rem(10px);
+		.flex-1{
+			text-align: center;
+			.img-part{
+				border: 1px solid #efefef;
+				display: inline-block;
+				border-radius: 50%;
+				padding: 20px;
+				.icon_boy{
+					background: url('../../assets/icon_boy.png') no-repeat;
+					background-size: 35px 35px;
+					width: 35px;
+					height: 35px;
+				}
+				.icon_girl{
+					background: url('../../assets/icon_girl.png') no-repeat;
+					background-size: 35px 35px;
+					width: 35px;
+					height: 35px;
+				}
+				&.active{
+					border: 1px solid #F4D020;
+				}
+			}
+		}
+	}
+</style>
