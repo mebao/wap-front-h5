@@ -26,6 +26,14 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  width: 100%;  
+  height: 100%;  
+  background: #fff;  
+  overflow: scroll;  
+  -webkit-overflow-scrolling: touch;  
+  position: relative;  
+  left:0;  
+  top:0;  
 }
 @media screen and (min-width: 320px) {
     html {

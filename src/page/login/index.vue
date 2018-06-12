@@ -10,7 +10,7 @@
                         <img :src="imgCode" class="img-code" @click="changeImgCode()">
                     </mt-field> -->
                     <mt-field v-model="verify_code" type="tel" :attr="{ maxlength: 6,minlength: 6 }" label="验证码" placeholder="请输入验证码">
-                        <mt-button class="ml10"  @click="smsverifycode()" type="primary" :disabled="lockEnabled || mobile.length != '11'">{{sendSMSText}}</mt-button>
+                        <mt-button class="ml10"  @click="smsverifycode()" type="primary" :disabled="lockEnabled || mobile.length != '11'">{{sendSMSText[0]}}</mt-button>
                     </mt-field>
                     <div class="w100 pr10 pl10">
                         <mt-button class="mt10" size="large" type="primary" @click="login()" :disabled="verify_code.length != '6' || mobile.length != '11'">登录</mt-button>
@@ -32,25 +32,15 @@ export default {
             vali_code:'',//图形验证码
             verify_code:'',//短信验证码
             //imgCode: baseLoginUrl + '/getcode?id=1',
-            sendSMSText:'验证码',
+            sendSMSText:['验证码'],
             num:1,
             lockEnabled:'',
             count:60,
         }
     },
-    watch: {
-        count(val){
-            this.sendSMSText=val + '秒后重发';
-            if(this.count==0){
-                this.lockEnabled = false;
-                this.sendSMSText='重新发送';
-            }
-        }
-    },
     methods:{
         smsverifycode:function(){
             Indicator.open('加载中...');
-            this.count = 60;
             this.lockEnabled = true;
             var param={
     			mobile: this.mobile,
@@ -63,11 +53,15 @@ export default {
                     MessageBox.alert('温馨提示', res.data.errorMsg);
                 }else{
                     MessageBox.alert('温馨提示', '验证码已发送');
-                    var _this = this;
-                    var verifyCodeInterval = setInterval(function(){
-                        _this.count--;
-                        if(_this.count==0){
-                            clearInterval(verifyCodeInterval);
+                    var verifyCodeInterval = window.setInterval(()=>{
+                        this.count--;
+                        this.$set(this.sendSMSText,0,this.count + '秒后重发');
+                        if(this.count==0){
+                            this.lockEnabled = false;
+                            this.$set(this.sendSMSText,0,'重新发送');
+                        }
+                        if(this.count==0){
+                            window.clearInterval(verifyCodeInterval);
                         }
                     },1000);
                 }
