@@ -107,7 +107,7 @@
   </div>
 </template>
 <script>
-    import { MessageBox,Indicator,Toast } from 'mint-ui';
+    import { Indicator,Toast } from 'mint-ui';
     import common from '@/components/common';
     export default {
         name:'createChild',
@@ -173,7 +173,7 @@
                 this.gender = gender;
             },
             getToken:function(_file){
-                //Indicator.open('加载中...');
+                Indicator.open('加载中...');
                 this.$http.get(window.envs.api_url + '/childtoken').then((res)=>{
                     if(res.data.status == 'no'){
                         Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
@@ -225,17 +225,18 @@
                 }
             },
             create: function(){
+                Indicator.open('加载中...');
                 var _this = this;
                 var requestObj={
                     username: _this.username,
                     token: _this.token,
                     name: _this.name,
                     nickname: _this.nickName,
-                    gender: _this.gender == '男'?'M':'F',
+                    gender: _this.gender,
                     birth_date: _this.birth_date,
-                    blood_type: _this.blood_type,
-                    horoscope: _this.horoscope,
-                    shengxiao: _this.shengxiao,
+                    blood_type: _this.blood_type == '请选择血型' ? '' : _this.blood_type,
+                    horoscope: _this.horoscope == '请选择星座' ? '' : _this.horoscope,
+                    shengxiao: _this.shengxiao == '请选择生肖' ? '' : _this.shengxiao,
                     is_default: '1',
                     // remote_domain: '',
                     // remote_file_key: '',
@@ -255,21 +256,6 @@
                         Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                     }else{
                          _this.$router.push('/user');
-                    }
-                    Indicator.close();
-                },(res)=>{
-                    Indicator.close();
-                    Toast({message: "服务器错误",position: 'middle',duration: 3000});
-                });
-            },
-            searchchild:function(){
-                Indicator.open('加载中...');
-                var urlOptions = '?username=' + this.username + '&token=' + this.token;
-                this.$http.get(window.envs.api_url + '/childprofilelist' + urlOptions).then((res)=>{
-                    if(res.data.status == 'no'){
-                        Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
-                    }else{
-                        this.childList = this.childList.concat(res.data.results.childs);
                     }
                     Indicator.close();
                 },(res)=>{

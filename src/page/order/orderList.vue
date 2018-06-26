@@ -1,9 +1,7 @@
 <template>
     <div class="layout-base">
         <mt-header :title="child.childName">
-            <router-link to="/user" slot="left">
-              <mt-button icon="back"></mt-button>
-            </router-link>
+            <mt-button icon="back" slot="left" @click="goBack()"></mt-button>
             <router-link to="/user" slot="right">
               <img src="../../assets/home.png" height="18"/><span>首页</span>
             </router-link>
@@ -74,6 +72,9 @@ export default {
         })
     },
     methods:{
+        goBack:function(){
+            this.$router.go(-1);
+        },
         searchBookingfee:function(){
             Indicator.open('加载中...');
             var username = this.username;

@@ -182,30 +182,8 @@
             })
         },
         methods:{
-            uploadComplete(status, result, flag) {
-                if (status == 200) { //
-                    this.thumbnail = `domain.com/${result.key}` //七牛域名 + 返回的key 组成文件url
-                } else {
-                    //失败处理
-                }
-            },
             selectGender: function(gender){
                 this.child.gender = gender;
-            },
-            updateChild:function(){
-                Indicator.open('加载中...');
-                var urlOptions = '?username=' + this.username + '&token=' + this.token;
-                this.$http.get(window.envs.api_url + '/createchild' + urlOptions).then((res)=>{
-                    if(res.data.status == 'no'){
-                        Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
-                    }else{
-                        this.childList = this.childList.concat(res.data.results.childs);
-                    }
-                    Indicator.close();
-                },(res)=>{
-                    Indicator.close();
-                    Toast({message: "服务器错误",position: 'middle',duration: 3000});
-                });
             },
             goChild:function(child){
                 sessionStorage.setItem('child',JSON.stringify(child));
@@ -215,7 +193,7 @@
                 this.$router.go(-1);
             },
             getToken:function(_file){
-                //Indicator.open('加载中...');
+                Indicator.open('加载中...');
                 this.$http.get(window.envs.api_url + '/childtoken').then((res)=>{
                     if(res.data.status == 'no'){
                         Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
@@ -267,6 +245,7 @@
                 }
             },
             update: function(){
+                Indicator.open('加载中...');
                 var _this = this;
                 var requestObj={
                     username: _this.username,

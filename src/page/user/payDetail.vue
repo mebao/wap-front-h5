@@ -171,6 +171,21 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 辅助治疗退款 -->
+                    <!-- <div v-if="payType == '7'">
+                        <div class="info-tab pad10">
+                            <div class="text-center">{{detail.typeText}}</div>
+                            <div class="text-center money">{{detail.amount * -1}}元</div>
+                            <div class="flex">
+                                <div class="flex-1">收款方式：</div>
+                                <div>{{detail.wayText}}</div>
+                            </div>
+                            <div class="flex pt10 color-g">
+                                <div class="flex-1">交易时间：</div>
+                                <div>{{detail.time}}</div>
+                            </div>
+                        </div>
+                    </div> -->
               </div>
           </div>
       </div>

@@ -31,7 +31,7 @@
                             <div class="text-center info mt5">
                                 <span>{{child.age}}</span>
                                 <span v-if="child.shengxiao != '未知'">{{child.shengxiao}}</span>
-                                <span v-if="child.bloodType != '未知'">{{child.bloodType}}</span>
+                                <span v-if="child.horoscope != '未知'">{{child.horoscope}}</span>
                             </div>
                             <!-- <div class="order-info">
                                 <div class="flex text-center">
@@ -75,7 +75,7 @@
                     </div> -->
                     <div class="flex growth-btn">
                         <div class="flex-1 text-center"><button @click="goAddGrowth()">新建成长数据</button></div>
-                        <div class="flex-1 text-center"><button @click="goGrowthData()" class="last-button">修改成长数据</button></div>
+                        <div class="flex-1 text-center"><button v-if="!nodata" @click="goGrowthData()" class="last-button">修改成长数据</button><button v-if="nodata" class="last-button disabled">修改成长数据</button></div>
                     </div>
                     <div class="pr10 pl10">
                         <ve-line :data="chartData" :settings="chartSettings"></ve-line>
@@ -285,6 +285,9 @@ export default {
         }
         .last-button{
             background-color: #0D78D3;
+            &.disabled{
+                background-color: #cacaca;
+            }
         }
     }
     .top-tab{
@@ -302,7 +305,6 @@ export default {
             color: #fff;
             border: none;
             border-radius: 3px;
-            vertical-align: middle;
             img{
                 vertical-align: middle;
                 display: inline-block;

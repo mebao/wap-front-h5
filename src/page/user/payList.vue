@@ -25,7 +25,7 @@
                           </div>
                       </div>
                   </div>
-                 <mt-cell :key="tran.id" v-for="tran in tranList" :title="tran.time" :label="tran.typeText" @click.native="goRouter(tran)">-{{tran.amount}}</mt-cell>
+                 <mt-cell :key="tran.id" v-if="tran.type != '7'" v-for="tran in tranList" :title="tran.time" :label="tran.typeText" @click.native="goRouter(tran)">-{{tran.amount}}</mt-cell>
                  <div v-if="nodata" class="ml10 mt10">
                      暂无交易记录
                   </div>
