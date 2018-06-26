@@ -106,7 +106,7 @@ export default {
                 Indicator.close();
                 this.lockEnabled = false;
                 Toast({
-                    message: res.data.errorMsg,
+                    message: '服务器错误',
                     position: 'middle',
                     duration: 3000
                 });
