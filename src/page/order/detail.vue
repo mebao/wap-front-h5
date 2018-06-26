@@ -5,6 +5,9 @@
             <router-link to="/orderlist" slot="left">
               <mt-button icon="back"></mt-button>
             </router-link>
+            <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
+            </router-link>
         </mt-header>
       <div class="layout-content">
           <div class="content-view">
@@ -18,7 +21,7 @@
                   <mt-tab-container v-model="selected">
                       <mt-tab-container-item id="1">
                           <div class="pad10">
-                                <p v-if="(order.status  == '1' || order.status  == '2') && use" class="tip">
+                                <p v-if="(order.status  == '1' || order.status  == '2') && use" class="tip mb10">
                                 <span>离面诊时间还有</span>
                                 <span>{{order.timeDiff}}</span>
                             </p>
@@ -491,7 +494,7 @@ export default {
             var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id;
             this.$http.get(window.envs.api_url + '/searchcasehistory' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     if(res.data.results.list.length > 0){
                         this.hasCasehistory = true;
@@ -503,28 +506,28 @@ export default {
                 Indicator.close();
             },(res)=>{
                 Indicator.close();
-                MessageBox('温馨提示', '服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         searchHealthRecord: function(){
             var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id;
             this.$http.get(window.envs.api_url + '/searchhealthrecord' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);  
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});  
                 }else{
                     if(res.data.results.list.length > 0){
                         this.healthrecord = res.data.results.list[0];
                     }
                 }
             },(res)=>{
-                MessageBox('温馨提示', '服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         searchTcmPrescript: function(){
             var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id  + '&isout=1';
             this.$http.get(window.envs.api_url + '/searchtcmprescript' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);  
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});  
                 }else{
                     if(res.data.results.list.length > 0){
                         this.tcmPrescript = res.data.results.list;
@@ -533,14 +536,14 @@ export default {
                     }
                 }
             },(res)=>{
-                MessageBox('温馨提示', '服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         searchPrescript: function(){
             var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id  + '&isout=1';
             this.$http.get(window.envs.api_url + '/searchprescript' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);  
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});  
                 }else{
                     if(res.data.results.list.length > 0){
                         for(var i = 0; i < res.data.results.list.length; i++){
@@ -555,14 +558,14 @@ export default {
                     }
                 }
             },(res)=>{
-                MessageBox('温馨提示', '服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         searchBookingAssist: function(){
             var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id;
             this.$http.get(window.envs.api_url + '/bookingassist' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);  
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});  
                 }else{
                     var assist = '';
                     if(res.data.results.list.length > 0){
@@ -576,7 +579,7 @@ export default {
                     this.assist = assist;
                 }
             },(res)=>{
-                MessageBox('温馨提示', '服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         searchUserCheckProject: function(){
@@ -585,7 +588,7 @@ export default {
             var urlOptions = '?username=' + username + '&token=' + token + '&booking_id=' + this.order.id + '&today=1&ischeck=1';
             this.$http.get(window.envs.api_url + '/usercheckprojects' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     var check = '';
                     var checkList = [];
@@ -605,7 +608,7 @@ export default {
                     this.checkList = checkList; 
                 }
             },(res)=>{
-                MessageBox('温馨提示', '服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         showCheckInfo:function(){

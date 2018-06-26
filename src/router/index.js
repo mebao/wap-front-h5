@@ -2,15 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 const login = resolve => require(['@/page/login/index'], resolve);
 const user = resolve => require(['@/page/user/index'], resolve);
-const childList = resolve => require(['@/page/user/childList'], resolve);
+// const childList = resolve => require(['@/page/user/childList'], resolve);
 const childInfo = resolve => require(['@/page/user/childInfo'], resolve);
-// const createChild = resolve => require(['@/page/user/createChild'], resolve);
-// const updateChild = resolve => require(['@/page/user/updateChild'], resolve);
+const createChild = resolve => require(['@/page/user/createChild'], resolve);
+const updateChild = resolve => require(['@/page/user/updateChild'], resolve);
 const payList = resolve => require(['@/page/user/payList'], resolve);
 const payDetail = resolve => require(['@/page/user/payDetail'], resolve);
 const addGrowth = resolve => require(['@/page/user/addGrowth'], resolve);
 const growthdatas = resolve => require(['@/page/user/growthdatas'], resolve);
 const updateGrowth = resolve => require(['@/page/user/updateGrowth'], resolve);
+const card = resolve => require(['@/page/user/card'], resolve);
 const orderList = resolve => require(['@/page/order/orderList'], resolve);
 const orderDetail = resolve => require(['@/page/order/detail'], resolve);
 const paySuccess = resolve => require(['@/page/order/paySuccess'], resolve);
@@ -45,14 +46,14 @@ export default new Router({
       },
       component:user,
     },
-    {
-      path:'/user/childList',
-      name:'childList',
-      meta:{
-        title:'宝宝列表'
-      },
-      component:childList,
-    },
+    // {
+    //   path:'/user/childList',
+    //   name:'childList',
+    //   meta:{
+    //     title:'宝宝列表'
+    //   },
+    //   component:childList,
+    // },
     {
       path:'/user/childInfo',
       name:'childInfo',
@@ -61,22 +62,22 @@ export default new Router({
       },
       component: childInfo,
     },
-    // {
-    //   path: '/user/createChild',
-    //   name: 'createChild',
-    //   meta:{
-    //     title:'添加宝宝'
-    //   },
-    //   component: createChild
-    // },
-    // {
-    //   path: '/user/updateChild',
-    //   name: 'createChild',
-    //   meta:{
-    //     title:'修改宝宝'
-    //   },
-    //   component: updateChild
-    // },
+    {
+      path: '/user/createChild',
+      name: 'createChild',
+      meta:{
+        title:'添加宝宝'
+      },
+      component: createChild
+    },
+    {
+      path: '/user/updateChild',
+      name: 'createChild',
+      meta:{
+        title:'修改宝宝'
+      },
+      component: updateChild
+    },
     {
       path: '/user/payList',
       name: 'payList',
@@ -122,8 +123,20 @@ export default new Router({
       component: updateGrowth
     },
     {
+      path: '/user/card',
+      query: {id:'',type:''},
+      name: 'card',
+      meta:{
+        title:'我的卡包'
+      },
+      component: card
+    },
+    {
       path: '/orderlist',
       name: 'orderList',
+      meta:{
+        title:'预约列表'
+      },
       component: orderList
     },
     {

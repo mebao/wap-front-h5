@@ -2,6 +2,9 @@
   <div class="layout-base">
     <mt-header title="修改数据">
         <mt-button icon="back" slot="left" @click="goBack()"></mt-button>
+        <router-link to="/user" slot="right">
+            <img src="../../assets/home.png" height="18"/><span>首页</span>
+        </router-link>
     </mt-header>
     <div class="layout-content">
         <div class="content-view">
@@ -9,23 +12,29 @@
                 <div class="cell-group">
                     <div class="cell">
                         <div class="left-box">
-                            身高
+                            身高：
                         </div>
                         <div class="middle-box">
                             <input type="number" v-model="growth.height" placeholder="请输入身高">
                         </div>
+                        <div class="right-box">
+                            cm
+                        </div>
                     </div>
                     <div class="cell">
                         <div class="left-box">
-                            体重
+                            体重：
                         </div>
                         <div class="middle-box">
                             <input type="number" v-model="growth.weight" placeholder="请输入体重">
                         </div>
+                        <div class="right-box">
+                            kg
+                        </div>
                     </div>
                     <div class="cell">
                         <div class="left-box">
-                            日期
+                            测量时间：
                         </div>
                         <div class="middle-box">{{growth.time.substring(0,10)}}</div>
                     </div>
@@ -71,24 +80,24 @@
                     params.weight=this.growth.weight;
                 }
                 if(params.weight == ''){
-                    MessageBox('温馨提示', '请填写体重');
+                    Toast({message: "请填写体重",position: 'middle',duration: 3000});
                     return;
                 }
                 if(params.height == ''){
-                    MessageBox('温馨提示', '请填写身高');
+                    Toast({message: "请填写身高",position: 'middle',duration: 3000});
                     return;
                 }
                 Indicator.open('加载中...');
                 this.$http.post(window.envs.api_url + '/updategrowth' , params).then((res)=>{
                     if(res.data.status == 'no'){
-                        MessageBox('温馨提示', res.data.errorMsg);
+                        Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                     }else{
                         window.history.go(-1);
                     }
                     Indicator.close();
                 },(res)=>{
                     Indicator.close();
-                    MessageBox('温馨提示', '服务器错误');
+                    Toast({message: "服务器错误",position: 'middle',duration: 3000});
                 });
             },
             goBack: function(){

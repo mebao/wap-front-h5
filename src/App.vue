@@ -22,6 +22,13 @@ export default {
 @function px2multi ($px1, $px2, $px3, $px4){
     @return $px1 / 12px * 1rem $px1 / 12px * 1rem $px1 / 12px * 1rem $px1 / 12px * 1rem;
 }
+html, body {  
+  width: 100%;  
+  height: 100%;  
+  margin: 0;  
+  padding: 0;  
+  position: relative;  
+} 
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -31,7 +38,7 @@ export default {
   background: #fff;  
   overflow: scroll;  
   -webkit-overflow-scrolling: touch;  
-  position: relative;  
+  position: absolute;  
   left:0;  
   top:0;  
 }
@@ -331,6 +338,28 @@ a{
     }
     .middle-box {
         padding: 0 10px;
+    }
+}
+.btn-large{
+    padding:0 20px;
+    width:100%;
+    margin:30px 0 20px;
+    button{
+        border-radius: 20px;
+    }
+}
+.mint-button--large{
+    border-radius: 20px;
+}
+.mint-header{
+    .is-right{
+        img{
+            vertical-align: middle;
+        }
+        span{
+            vertical-align: middle;
+            margin-left: 3px;
+        }
     }
 }
 </style>

@@ -1,11 +1,27 @@
 <template>
     <div class="layout-base">
         <mt-header title="预约">
+          <router-link to="/user" slot="left">
+              <mt-button icon="back"></mt-button>
+            </router-link>
+            <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
+            </router-link>
         </mt-header>
         <div class="layout-content">
             <div class="content-view">
                 <div class="content-page">
             			<div class="cell-group">
+                          <div class="cell flex">
+                              <div class="left-box icon-name">
+                                宝宝姓名
+                              </div>
+                              <div class="flex-1">
+                                <select v-model="selectedChild">
+                                    <option v-for="child in childList" :key='child.childId' :value="child">{{child.childName}}</option>
+                                </select>
+                              </div>
+                          </div>
                             <div class="cell flex">
                                 <div class="left-box icon-type">
                                     预约项目
@@ -51,16 +67,6 @@
                           </div>
                           <div class="flex-1" v-if="type=='ZJ'">{{time}}</div>
                         </div>
-                        <div class="cell flex">
-                          <div class="left-box icon-name">
-                            宝宝姓名
-                          </div>
-                          <div class="flex-1">
-                            <select v-model="selectedChild">
-                                <option v-for="child in childList" :key='child.childId' :value="child">{{child.childName}}</option>
-                            </select>
-                          </div>
-                        </div>
             			  </div>
                         <div class="w100 pr10 pl10">
                             <mt-button class="mt10" size="large" type="primary" @click="submitForm()" :disabled="selectedService =='' || selectedDoctor =='' ||selectedDate =='' ||selectedTime =='' ||selectedChild == ''">确认预约</mt-button>
@@ -68,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <mt-tabbar v-model="selected">
+        <!-- <mt-tabbar v-model="selected">
               <mt-tab-item id="tab1" @click.native="goRouter('tab1')">
                 <img slot="icon" v-if="selected === 'tab1'" src="../../assets/booking.png">
                 <img slot="icon" v-if="selected !== 'tab1'" src="../../assets/booking_default.png">
@@ -79,12 +85,12 @@
                   <img slot="icon" v-if="selected !== 'tab2'" src="../../assets/user_default.png">
                 我的
               </mt-tab-item>
-        </mt-tabbar>
+        </mt-tabbar> -->
     </div>
 </template>
 
 <script>
-import { MessageBox, Indicator } from "mint-ui";
+import { MessageBox, Indicator, Toast } from "mint-ui";
 export default {
   name: "booking",
   data() {
@@ -118,21 +124,21 @@ export default {
         res => {
           if (res.data.status == "no") {
             Indicator.close();
-            MessageBox("温馨提示", res.data.errorMsg);
+            Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
           } else {
             this.serviceList = res.data.results.list;
             if (this.serviceList.length > 0) {
               this.selectedService = this.serviceList[0];
               this.changeService();
             } else {
-              MessageBox("温馨提示", "暂无可预约科室");
+              Toast({message: "暂无可预约科室",position: 'middle',duration: 3000});
             }
             Indicator.close();
           }
         },
         res => {
           Indicator.close();
-          MessageBox("温馨提示", "服务器错误");
+          Toast({message: "服务器错误",position: 'middle',duration: 3000});
         }
       );
     },
@@ -151,10 +157,10 @@ export default {
           //this.childList = res.data.results.childs;
           //this.childList.push(res.data.results.childs);
           if (res.data.status == "no") {
-            MessageBox("温馨提示", res.data.errorMsg);
+            Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
           } else {
             if (res.data.results.doctors.length == 0) {
-              MessageBox("温馨提示", "暂无科室医生排班");
+              Toast({message: "暂无科室医生排班",position: 'middle',duration: 3000});
               this.doctorList = [];
             } else {
               for (var i = 0; i < res.data.results.doctors.length; i++) {
@@ -186,7 +192,7 @@ export default {
         },
         res => {
           Indicator.close();
-          MessageBox("温馨提示", "服务器错误");
+          Toast({message: "服务器错误",position: 'middle',duration: 3000});
         }
       );
     },
@@ -245,7 +251,7 @@ export default {
           //this.childList = res.data.results.childs;
           //this.childList.push(res.data.results.childs);
           if (res.data.status == "no") {
-            MessageBox("温馨提示", res.data.errorMsg);
+            Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
           } else {
             MessageBox.alert("预约成功", "温馨提示").then(
               () => {
@@ -258,7 +264,7 @@ export default {
         },
         res => {
           Indicator.close();
-          MessageBox("温馨提示", "服务器错误");
+          Toast({message: "服务器错误",position: 'middle',duration: 3000});
         }
       );
     },
@@ -335,31 +341,31 @@ export default {
   .icon-type {
     background: url("../../assets/icon_type.png") no-repeat;
     background-size: 1.25rem 1.25rem;
-    padding-left: 25px;
+    padding-left: 30px;
     background-position-y: 21px;
   }
   .icon-doctor {
     background: url("../../assets/icon_doctor.png") no-repeat;
     background-size: 1.25rem 1.25rem;
-    padding-left: 25px;
+    padding-left: 30px;
     background-position-y: 21px;
   }
   .icon-date {
     background: url("../../assets/icon_date.png") no-repeat;
     background-size: 1.25rem 1.25rem;
-    padding-left: 25px;
+    padding-left: 30px;
     background-position-y: 21px;
   }
   .icon-time {
     background: url("../../assets/icon_time.png") no-repeat;
     background-size: 1.25rem 1.25rem;
-    padding-left: 25px;
+    padding-left: 30px;
     background-position-y: 21px;
   }
   .icon-name {
     background: url("../../assets/icon_name.png") no-repeat;
-    background-size: 1.25rem 1.25rem;
-    padding-left: 25px;
+    background-size: 1.5rem 1.25rem;
+    padding-left: 30px;
     background-position-y: 21px;
   }
 }

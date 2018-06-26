@@ -1,8 +1,11 @@
 <template>
     <div class="layout-base">
         <mt-header :title="child.childName">
-            <router-link to="/user/childInfo" slot="left">
+            <router-link to="/user" slot="left">
               <mt-button icon="back"></mt-button>
+            </router-link>
+            <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
             </router-link>
       </mt-header>
       <div class="layout-content">
@@ -78,7 +81,7 @@ export default {
             var urlOptions = '?username=' + username + '&token=' + token + '&child_id=' + this.child.childId;
             this.$http.get(window.envs.api_url + '/mybookings' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     this.allBookings = res.data.results.allBookings;
                     if(res.data.results.allBookings.length > 0){
@@ -102,7 +105,7 @@ export default {
                 Indicator.close();
             },(res)=>{
                 Indicator.close();
-                MessageBox('温馨提示','服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         searchCaseHistory:function(){
@@ -111,12 +114,12 @@ export default {
             var urlOptions = '?username=' + username + '&token=' + token + '&child_id=' + this.child.childId;
             this.$http.get(window.envs.api_url + '/searchcasehistory' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     this.caseHistory = res.data.results.list;
                 }
             },(res)=>{
-                MessageBox('温馨提示','服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         searchUserCheckProject:function(){
@@ -125,12 +128,12 @@ export default {
             var urlOptions = '?username=' + username + '&token=' + token + '&child_id=' + this.child.childId + '&today=1&ischeck=1';
             this.$http.get(window.envs.api_url + '/usercheckprojects' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     this.checkProjects = res.data.results.list;
                 }
             },(res)=>{
-                MessageBox('温馨提示','服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         checkList: function(){
@@ -159,7 +162,7 @@ export default {
                         }
                     },(res)=>{
                         Indicator.close();
-                        MessageBox('温馨提示','服务器错误');
+                        Toast({message: "服务器错误",position: 'middle',duration: 3000});
                     });
             },()=>{
 

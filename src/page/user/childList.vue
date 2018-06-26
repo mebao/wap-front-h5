@@ -4,9 +4,9 @@
         <router-link to="user" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
-        <!-- <router-link to="/user/createChild" slot="right">
-            <mt-button>新增宝宝</mt-button>
-        </router-link> -->
+        <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
+            </router-link>
     </mt-header>
     <div class="layout-content">
         <div class="content-view">
@@ -47,7 +47,7 @@
                 var urlOptions = '?username=' + this.username + '&token=' + this.token;
                 this.$http.get(window.envs.api_url + '/childprofilelist' + urlOptions).then((res)=>{
                     if(res.data.status == 'no'){
-                        MessageBox('温馨提示', res.data.errorMsg);
+                        Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                     }else{
                         this.childList = this.childList.concat(res.data.results.childs);
                         if(this.childList.length == 0){
@@ -57,10 +57,11 @@
                     Indicator.close();
                 },(res)=>{
                     Indicator.close();
-                    MessageBox('温馨提示', '服务器错误');
+                    Toast({message: "服务器错误",position: 'middle',duration: 3000});
                 });
             },
             goChild: function(child){
+                console.log(1111);
                 sessionStorage.setItem('child',JSON.stringify(child));
                 this.$router.push('/user/childInfo');
             },

@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
 import Mint from 'mint-ui'
+import './vconsole.min.js'
 import "@/config/env"
 import "@/components/provider/uploadImg/uploadImg"
 
@@ -30,6 +31,7 @@ router.beforeEach((to, from, next) => {
         next();
       }else{
         if(!(username&&token)){
+          sessionStorage.setItem('toUrl',to.fullPath);
           next({
             path: '/login',
             query: {from: to.name}  // 将跳转的路由path作为参数，登录成功后跳转到该路由

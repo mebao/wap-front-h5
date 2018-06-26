@@ -4,6 +4,9 @@
           <router-link to="/user/childList" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
+        <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
+            </router-link>
     </mt-header>
     <div class="layout-content">
         <div class="content-view">
@@ -57,7 +60,7 @@
                 </div>
                 <div class="other-tab flex">
                     <div class="tab-item flex-1">
-                        <p class="tip">*</p>
+                        <p class="tip"></p>
                         <select v-model="horoscope">
                             <option disabled selected>请选择星座</option>
                             <option v-for="option in optionsHoroscope" :key='option.key' :value="option.key">{{option.value}}</option>
@@ -81,18 +84,22 @@
                         <!-- <optionswidget options-key="3" options-data="optionsBloodtype.data" options-back="optionsBloodtype.backData" options-text="optionsBloodtype.text" options-title="optionsBloodtype.title" options-callback="optionsBloodtype.callback"></optionswidget> -->
                     </div>
                 </div>
-                <div class="child-info flex mt10">
+                <div class="child-info flex mt10 mb10">
                     <div class="flex-1">
-                        <span class="tip">*</span>
+                        <span class="tip"></span>
                         上传头像
                     </div>
                     <div class="info-img">
-                        <div id="uploadImgBox"></div>
+                        <a class="upload-tab">
+                            <img id="imgEle" src="../../assets/icon_child.png">
+                            <input type="hidden" id="file" name="file">
+                            <input class="upload" type="file" @change="getToken($event)">
+                        </a>
                     </div>
                     <div class="flex-1"></div>
                 </div>
                 <div class="w100 pr10 pl10 mt10 mb10">
-                    <mt-button id="create" size="large" type="primary" class="btn btn-primary" :disabled="name == '' || gender =='' || birth_date == '' || horoscope == '' || shengxiao == '' || blood_type == ''">确认添加</mt-button>
+                    <mt-button id="create" size="large" type="primary" class="btn btn-primary"  @click="create" :disabled="name == '' || gender =='' || birth_date == '' || horoscope == '' || shengxiao == '' || blood_type == ''">确认添加</mt-button>
                 </div>
             </div>
         </div>
@@ -128,7 +135,6 @@
         },
         mounted:function(){
             this.$nextTick(function () {
-                this.getToken();
                 this.optionsHoroscope = [
                     {key: 'aries', value: '白羊座'},
                     {key: 'taurus', value: '金牛座'},
@@ -169,96 +175,109 @@
             selectGender: function(gender){
                 this.gender = gender;
             },
-            getToken:function(){
+            getToken:function(_file){
                 //Indicator.open('加载中...');
                 this.$http.get(window.envs.api_url + '/childtoken').then((res)=>{
                     if(res.data.status == 'no'){
-                        MessageBox('温馨提示', res.data.errorMsg);
+                        Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                     }else{
-                        var _this = this;
-                        this.readyUpload(res.data.uptoken,_this);
+                        this.readyUpload(res.data.uptoken,_file);
                     }
                     Indicator.close();
                 },(res)=>{
                     Indicator.close();
-                    MessageBox('温馨提示', '服务器错误');
+                    Toast({message: "服务器错误",position: 'middle',duration: 3000});
                 });
             },
-            readyUpload: function(_token,_this){      
-                UploadImg.init({
-                    id: 'uploadImgBox',
-                    multiple: false, // enable the component can select multiple files in one time. In mobile, please use the false.
-                    maxCount: 1, // the max number picture could upload.
-                    // autoUpload: false,
-                    //required: false, //ctrl you must upload images files or not. if false, the UploadImg.isFinished() init is true.
-                    // imgListArray: [],
-                    fileNum: getFileNum,
-                    upload: {
-                        uploadUrl: 'http://upload.qiniu.com/',
-                        token: _token,
-                        tokenUrl: window.envs.api_url + '/mebapi/childtoken',
-                        type: 'POST',
-                        async: true,
-                        nameSpace: '',
-                        submitBtnId: 'create',
-                        beforeCall: beforeCall,
-                        afterCall: afterCall,
-                        params: {},
-                        btnHtml: '',
-                    }
-                });
+            readyUpload: function(_token,_file){      
+                var fff = [];
+                var fileJson = _file.target['files'];
+                for(var index in fileJson){
+                    if(fileJson[index]['name'] && fileJson[index]['size']){
+                        var file = fileJson[index];
+                        var formData = new FormData();
+                        formData.append('file', file);
+                        formData.append('name', file.name);
+                        formData.append('type', file.type);
+                        formData.append('lastModifiedDate', file.lastModifiedDate);
+                        formData.append('size', file.size);
+                        formData.append('token', _token);// the qiniu upload accessKey.
+                        formData.append('key', (new Date()).getTime() + Math.floor(Math.random() * 100)+'.'+file.name.substr(file.name.lastIndexOf('.')+1));
 
-                function getFileNum(num){
-                    // console.log(num);
-                }
-
-                function beforeCall(doingCall){
-                    Indicator.open('加载中...');
-                    doingCall({});
-                }
-
-                function afterCall(upFileList){
-                    var requestObj={
-                        username: _this.username,
-                        token: _this.token,
-                        name: _this.name,
-                        nickname: _this.nickname,
-                        gender: _this.gender,
-                        birth_date: _this.birth_date,
-                        blood_type: _this.blood_type,
-                        horoscope: _this.horoscope,
-                        shengxiao: _this.shengxiao,
-                        is_default: '1',
-                        remote_domain: 'http://og03472zu.bkt.clouddn.com',
-                        remote_file_key: upFileList[0].key,
-                        clinic_id: localStorage.getItem('wap_clinic')
-                    }
-                    _this.$http.post(window.envs.api_url + '/createchild' , requestObj).then((res)=>{
-                        if(res.data.status == 'no'){
-                            MessageBox('温馨提示', res.data.errorMsg);
-                        }else{
-                            _this.$router.push('/user/childList');
+                        var reader = new FileReader();
+                        var imgEle = document.getElementById('imgEle');
+                        reader.readAsDataURL(file);
+                        reader.onload = function(f) {
+                            imgEle.setAttribute('src', reader.result);
                         }
-                        Indicator.close();
-                    },(res)=>{
-                        Indicator.close();
-                        MessageBox('温馨提示', '服务器错误');
-                    });
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('post', 'http://upload.qiniu.com/', false);
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4) {
+                                if (xhr.status == 200) {
+                                    var fileEle = document.getElementById('file');
+                                    fileEle.setAttribute('value', JSON.parse(xhr.responseText).key);
+                                } else {
+
+                                }
+                            }
+                        };
+                        xhr.send(formData);
+                    }
                 }
+            },
+            create: function(){
+                var _this = this;
+                var requestObj={
+                    username: _this.username,
+                    token: _this.token,
+                    name: _this.name,
+                    nickname: _this.nickName,
+                    gender: _this.gender == '男'?'M':'F',
+                    birth_date: _this.birth_date,
+                    blood_type: _this.blood_type,
+                    horoscope: _this.horoscope,
+                    shengxiao: _this.shengxiao,
+                    is_default: '1',
+                    // remote_domain: '',
+                    // remote_file_key: '',
+                    clinic_id: localStorage.getItem('wap_clinic'),
+                }
+                 //判断头像(不必传)
+                if(document.getElementById('file').value == ''){
+                    //判断是否存在头像，并且没有修改
+                    requestObj['remote_domain'] = '';
+                    requestObj['remote_file_key'] = '';
+                }else{
+                    requestObj['remote_domain'] = 'http://bcircle.meb.meb168.com';
+                    requestObj['remote_file_key'] = document.getElementById('file').getAttribute('value');
+                }
+                _this.$http.post(window.envs.api_url + '/createchild' , requestObj).then((res)=>{
+                    if(res.data.status == 'no'){
+                        Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
+                    }else{
+                         _this.$router.push('/user');
+                    }
+                    Indicator.close();
+                },(res)=>{
+                    Indicator.close();
+                    Toast({message: "服务器错误",position: 'middle',duration: 3000});
+                });
             },
             searchchild:function(){
                 Indicator.open('加载中...');
                 var urlOptions = '?username=' + this.username + '&token=' + this.token;
                 this.$http.get(window.envs.api_url + '/childprofilelist' + urlOptions).then((res)=>{
                     if(res.data.status == 'no'){
-                        MessageBox('温馨提示', res.data.errorMsg);
+                        Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                     }else{
                         this.childList = this.childList.concat(res.data.results.childs);
                     }
                     Indicator.close();
                 },(res)=>{
                     Indicator.close();
-                    MessageBox('温馨提示', '服务器错误');
+                    Toast({message: "服务器错误",position: 'middle',duration: 3000});
                 });
             },
             layout:function(){
@@ -367,6 +386,34 @@
         .middle-box {
             padding: 0 10px;
             flex: 1;
+        }
+    }
+    .upload-tab{
+        position: relative;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        width: 90px;
+        height: 90px;
+        overflow: hidden;
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #c0c0c0;
+            border-radius: 50%;
+        }
+        .upload{
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
         }
     }
 </style>

@@ -4,6 +4,9 @@
         <router-link to="/user/childInfo" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
+        <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
+            </router-link>
     </mt-header>
     <div class="layout-content">
         <div class="content-view">
@@ -11,24 +14,24 @@
                 <div class="cell-group">
                     <div class="cell">
                         <div class="left-box">
-                            身高
+                            身高：
                         </div>
                         <div class="middle-box">
                             <input type="number" v-model="height" placeholder="请输入身高">
                         </div>
                         <div class="right-box">
-                            CM
+                            cm
                         </div>
                     </div>
                     <div class="cell">
                         <div class="left-box">
-                            体重
+                            体重：
                         </div>
                         <div class="middle-box">
                             <input type="number" v-model="weight" placeholder="请输入体重">
                         </div>
                         <div class="right-box">
-                            斤
+                            kg
                         </div>
                     </div>
                     <!-- <div class="cell">
@@ -58,7 +61,7 @@
                     </div> -->
                     <div class="cell">
                         <div class="left-box">
-                            测量时间
+                            测量时间：
                         </div>
                         <div class="middle-box input-date">
                             <input type="date" v-model="date">
@@ -105,12 +108,12 @@
 		        }
                 this.$http.post(window.envs.api_url + '/createchildgrowth', params).then((res)=>{
                     if(res.data.status == 'no'){
-                        MessageBox('温馨提示', res.data.errorMsg);
+                        Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                     }else{
                         this.$router.push('/user/childInfo');
                     }
                 },(res)=>{
-                    MessageBox('温馨提示', '服务器错误');
+                    Toast({message: "服务器错误",position: 'middle',duration: 3000});
                 });
             },
             goRouter:function(tab){

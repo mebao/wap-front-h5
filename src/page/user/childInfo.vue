@@ -1,8 +1,11 @@
 <template>
     <div class="layout-base">
         <mt-header :title="child.childName">
-            <router-link to="/user/childList" slot="left">
+            <router-link to="/user" slot="left">
               <mt-button icon="back"></mt-button>
+            </router-link>
+            <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
             </router-link>
             <!-- <mt-button slot="right" @click="goChild()">修改信息</mt-button> -->
       </mt-header>
@@ -20,17 +23,17 @@
                                 </div>
                                 <div class="flex-1"></div>
                             </div>
-                            <div class="text-center info">
-                                <span class="">{{child.gender}}</span>
-                                <span class="">{{child.age}}</span>
-                                <span class="">{{username}}</span>
+                            <div class="text-center info mt5">
+                                <span class="color-main">{{child.gender}}</span>
+                                <span class=""><span v-if="child.bloodType != '未知'">{{child.bloodType}}</span></span>
+                                <span class=""><button @click="goChild()" class="editor"><span>编辑</span><img src="../../assets/editor.png" height="20" width="20" slot="icon"></button></span>
                             </div>
-                            <div class="text-center info mt5" v-if="child.horoscope != '未知' || child.shengxiao != '未知' || child.bloodType != '未知'">
-                                <span v-if="child.horoscope != '未知'">{{child.horoscope}}</span>
+                            <div class="text-center info mt5">
+                                <span>{{child.age}}</span>
                                 <span v-if="child.shengxiao != '未知'">{{child.shengxiao}}</span>
                                 <span v-if="child.bloodType != '未知'">{{child.bloodType}}</span>
                             </div>
-                            <div class="order-info">
+                            <!-- <div class="order-info">
                                 <div class="flex text-center">
                                     <div v-if="child" class="flex-1">
                                         <router-link to="/orderList">
@@ -44,19 +47,36 @@
                                         <div class="item no-border">{{checkProjects.length}}组报告</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                    <div class="mt10"></div>
-                   <div class="childInfo">
+                   <div class="order-info">
+                        <div class="flex text-center">
+                            <div v-if="child" class="flex-1">
+                                <router-link to="/orderList">
+                                    <div class="item">{{bookingInNum}}次就诊</div>
+                                </router-link>
+                            </div>
+                            <div v-if="child" class="flex-1">
+                                <div class="item">{{caseHistory.length}}份病历</div>
+                            </div>
+                            <div v-if="child" class="flex-1" @click="checkList()">
+                                <div class="item no-border">{{checkProjects.length}}组报告</div>
+                            </div>
+                        </div>
+                    </div>
+                   <!-- <div class="childInfo">
                        <router-link to="/orderList">
                             <div class="info">
                                     预约信息
                             </div>
                         </router-link>
+                    </div> -->
+                    <div class="flex growth-btn">
+                        <div class="flex-1 text-center"><button @click="goAddGrowth()">新建成长数据</button></div>
+                        <div class="flex-1 text-center"><button @click="goGrowthData()" class="last-button">修改成长数据</button></div>
                     </div>
-                    <mt-button @click="goAddGrowth()" size="small" class="ml10">新增</mt-button>
-                    <mt-button @click="goGrowthData()" size="small" class="ml10">修改</mt-button>
                     <div class="pr10 pl10">
                         <ve-line :data="chartData" :settings="chartSettings"></ve-line>
                     </div>
@@ -117,7 +137,7 @@ export default {
             this.$http.get(window.envs.api_url + '/childprofilelist' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
                     Indicator.close();
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     this.childList = res.data.results.childs;
                     for(var i=0;i<res.data.results.childs.length;i++){
@@ -129,7 +149,7 @@ export default {
                 }
             },(res)=>{
                 Indicator.close();
-                MessageBox('温馨提示', '服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         searchBookingfee:function(){
@@ -139,7 +159,7 @@ export default {
             var urlOptions = '?username=' + username + '&token=' + token + '&child_id=' + this.childId;
             this.$http.get(window.envs.api_url + '/mybookings' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     this.allBookings = res.data.results.allBookings;
                     if(res.data.results.allBookings.length > 0){
@@ -170,7 +190,7 @@ export default {
             var urlOptions = '?username=' + username + '&token=' + token + '&child_id=' + this.childId;
             this.$http.get(window.envs.api_url + '/searchcasehistory' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     this.caseHistory = res.data.results.list;
                 }
@@ -185,7 +205,7 @@ export default {
             this.$http.get(window.envs.api_url + '/usercheckprojects' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
                     Indicator.close();
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     this.checkProjects = res.data.results.list;
                 }
@@ -201,11 +221,11 @@ export default {
                 var urlOptions = '?username=' + this.username + '&token=' + this.token + '&child_id=' + this.childId;
                 this.$http.get(window.envs.api_url + '/childgrowth' + urlOptions).then((res)=>{
                     if(res.data.status == 'no'){
-                        MessageBox('温馨提示', res.data.errorMsg);
+                        Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                     }else{
                         this.chartSettings = {
                             labelMap: {
-                                'height': '身高（CM）'
+                                'height': '身高（cm）'
                             },
                         }
                         if(res.data.results.growth.heights){
@@ -223,7 +243,7 @@ export default {
                         }
                         this.chartSettingsWeight = {
                             labelMap: {
-                                'weight': '体重（斤）'
+                                'weight': '体重（kg）'
                             },
                         }
                         this.chartDataWeight = {
@@ -232,7 +252,7 @@ export default {
                         }
                     }
                 },(res)=>{
-                    MessageBox('温馨提示', '服务器错误');
+                    Toast({message: "服务器错误",position: 'middle',duration: 3000});
                 });
         },
         goAddGrowth: function(){
@@ -251,6 +271,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .color-main{
+        color: #0D78D3;
+    }
+    .growth-btn{
+        margin:20px 0;
+        button{
+            color: #fff;
+            background-color:#0D78D3;
+            border: none;
+            padding:5px 10px;
+            border-radius: 4px;
+        }
+        .last-button{
+            background-color: #0D78D3;
+        }
+    }
     .top-tab{
     	background: url('../../assets/bg2.jpg') repeat-y;
     	background-size: 100%;
@@ -260,9 +296,23 @@ export default {
             height: 70px;
             border-radius: 50%
         }
+        .editor{
+            padding:5px;
+            background-color: #0D78D3;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            vertical-align: middle;
+            img{
+                vertical-align: middle;
+                display: inline-block;
+                margin-left: 5px;  
+                margin-top: -5px;
+            }
+        }
         .tab{
             background-color: rgba(0,0,0,0.2);
-            padding-top:20px;
+            padding:20px 0 25px;
         }
     	.order-info{
     		padding:10px;
@@ -275,11 +325,16 @@ export default {
     		}
     	}
     }
-    .childInfo{
-        .info{
-            background-color:#fff;
-            padding:10px;
-            margin:10px 0;
+    .order-info{
+        margin: 0 0 10px;
+        .flex-1{
+            margin: 0 5px;
+            background-color:#0D78D3;
+            padding: 5px;
+            border-radius: 4px;
+            .item{
+                color:#fff;
+            }
         }
     }
     .order-tab{

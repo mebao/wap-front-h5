@@ -4,6 +4,9 @@
             <div slot="left">
               <mt-button icon="back" @click="goBack()"></mt-button>
             </div>
+            <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
+            </router-link>
       </mt-header>
       <div class="layout-content">
           <div class="content-view">
@@ -83,14 +86,14 @@ export default {
             var urlOptions = '?username=' + username + '&token=' + token + id + booking_id  + '&today=1&ischeck=1';
             this.$http.get(window.envs.api_url + '/usercheckprojectinfo' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     this.checkList = res.data.results.list;
                 }
                 Indicator.close();
             },(res)=>{
                 Indicator.close();
-                MessageBox('温馨提示', '服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         goBack:function(){

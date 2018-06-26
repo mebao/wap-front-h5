@@ -4,15 +4,18 @@
         <router-link to="/user/childInfo" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
+        <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
+            </router-link>
     </mt-header>
     <div class="layout-content">
         <div class="content-view">
             <div class="content-page">
                 <div class="data-tab" v-if="data.length > 0">
                     <div class="data-item flex">
-                        <div class="w35">日期</div>
-                        <div class="w25">身高(CM)</div>
-                        <div class="w25">体重(斤)</div>
+                        <div class="w35">测量时间</div>
+                        <div class="w25">身高(cm)</div>
+                        <div class="w25">体重(kg)</div>
                         <div class="w15 text-center">选择</div>
                     </div>
                     <div class="data-item flex" v-for="(growthdata, index) in data" :key="index">
@@ -62,7 +65,7 @@
                 var urlOptions = '?username=' + this.username + '&token=' + this.token + '&child_id=' + this.$route.query.id;
                 this.$http.get(window.envs.api_url + '/growthdatas' + urlOptions).then((res)=>{
                     if(res.data.status == 'no'){
-                        MessageBox('温馨提示', res.data.errorMsg);
+                        Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                     }else{
                         this.data = res.data.results.growth;
                         if(this.data.length==0){
@@ -72,7 +75,7 @@
                     Indicator.close();
                 },(res)=>{
                     Indicator.close();
-                    MessageBox('温馨提示', '服务器错误');
+                    Toast({message: "服务器错误",position: 'middle',duration: 3000});
                 });
             },
             selected: function(index, growthdata){

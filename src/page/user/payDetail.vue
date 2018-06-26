@@ -4,6 +4,9 @@
             <router-link to="payList" slot="left">
               <mt-button icon="back"></mt-button>
             </router-link>
+            <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
+            </router-link>
       </mt-header>
       <div class="layout-content">
           <div class="content-view">
@@ -219,7 +222,7 @@ export default {
                     this.$http.get(window.envs.api_url + '/bookingfee' + urlOptions).then((res)=>{
                         Indicator.close();
                         if(res.data.status == 'no'){
-                            MessageBox('温馨提示', res.data.errorMsg);
+                            Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                         }else{
                             this.bookingfee = res.data.results;
                             this.detail.needAmount = 0;
@@ -271,7 +274,7 @@ export default {
                         }
                     },(res)=>{
                         Indicator.close();
-                        MessageBox('温馨提示', '服务器错误');
+                        Toast({message: "服务器错误",position: 'middle',duration: 3000});
                     });
         		}
         	}else if(type == '3'){

@@ -4,6 +4,9 @@
             <router-link to="/user/childInfo" slot="left">
               <mt-button icon="back"></mt-button>
             </router-link>
+            <router-link to="/user" slot="right">
+              <img src="../../assets/home.png" height="18"/><span>首页</span>
+            </router-link>
       </mt-header>
       <div class="layout-content">
           <div class="content-view">
@@ -58,7 +61,7 @@ export default {
             this.$http.get(window.envs.api_url + '/usercheckprojects' + urlOptions).then((res)=>{
                 Indicator.close();
                 if(res.data.status == 'no'){
-                    MessageBox('温馨提示', res.data.errorMsg);
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
                     this.checkList = res.data.results.list;
                     if(this.checkList.length==0){
@@ -67,7 +70,7 @@ export default {
                 }
             },(res)=>{
                 Indicator.close();
-                MessageBox('温馨提示', '服务器错误');
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
             });
         },
         checkInfo: function(checkId){
