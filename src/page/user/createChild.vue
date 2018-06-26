@@ -107,13 +107,10 @@
   </div>
 </template>
 <script>
-    import { MessageBox,Indicator,DatetimePicker } from 'mint-ui';
+    import { MessageBox,Indicator,Toast } from 'mint-ui';
     import common from '@/components/common';
     export default {
         name:'createChild',
-        components:{
-            'mt-datetime-picker': DatetimePicker
-        },
         data(){
             return {
                 selected:'tab2',
@@ -278,15 +275,6 @@
                 },(res)=>{
                     Indicator.close();
                     Toast({message: "服务器错误",position: 'middle',duration: 3000});
-                });
-            },
-            layout:function(){
-                MessageBox.confirm('确定退出?','温馨提示').then(() => {
-                    localStorage.removeItem('username');
-                    localStorage.removeItem('token');
-                    this.$router.push('/login');
-                },()=>{
-
                 });
             },
             goChild:function(child){
