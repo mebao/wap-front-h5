@@ -282,6 +282,7 @@ export default {
             border: none;
             padding:5px 10px;
             border-radius: 4px;
+            font-size: 16px;
         }
         .last-button{
             background-color: #0D78D3;
@@ -300,11 +301,12 @@ export default {
             border-radius: 50%
         }
         .editor{
-            padding:5px;
+            padding:5px 7px;
             background-color: #0D78D3;
             color: #fff;
             border: none;
             border-radius: 3px;
+            font-size: 14px;
             img{
                 vertical-align: middle;
                 display: inline-block;

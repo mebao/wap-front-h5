@@ -93,7 +93,7 @@
                                     <img id="imgEle" v-if="child.imageUrl" :src="child.imageUrl">
                                     <img id="imgEle" v-if="!child.imageUrl" src="../../assets/icon_child.png">
                                     <input type="hidden" id="file" name="file">
-                                    <input class="upload" type="file" @change="getToken($event)">
+                                    <input class="upload" type="file" @change="readyUpload($event)">
                                 </a>
                             </div>
                             <div class="flex-1"></div>
@@ -124,12 +124,13 @@
                 optionsHoroscope: '',
                 optionsShengxiao: '',
                 optionsBloodtype: '',
+                upToken:'',
                 
             }
         },
         mounted:function(){
             this.$nextTick(function () {
-                //this.getToken();
+               this.getToken();
                this.optionsHoroscope = [
                     {key: 'aries', value: '白羊座'},
                     {key: 'taurus', value: '金牛座'},
@@ -192,13 +193,14 @@
             goBack:function(){
                 this.$router.go(-1);
             },
-            getToken:function(_file){
+            getToken:function(){
                 Indicator.open('加载中...');
                 this.$http.get(window.envs.api_url + '/childtoken').then((res)=>{
                     if(res.data.status == 'no'){
                         Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                     }else{
-                        this.readyUpload(res.data.uptoken,_file);
+                        this.upToken = res.data.uptoken;
+                        //this.readyUpload(res.data.uptoken,_file);
                     }
                     Indicator.close();
                 },(res)=>{
@@ -206,7 +208,7 @@
                     Toast({message: "服务器错误",position: 'middle',duration: 3000});
                 });
             },
-            readyUpload: function(_token,_file){      
+            readyUpload: function(_file){      
                 var fff = [];
                 var fileJson = _file.target['files'];
                 for(var index in fileJson){
@@ -218,7 +220,7 @@
                         formData.append('type', file.type);
                         formData.append('lastModifiedDate', file.lastModifiedDate);
                         formData.append('size', file.size);
-                        formData.append('token', _token);// the qiniu upload accessKey.
+                        formData.append('token', this.upToken);// the qiniu upload accessKey.
                         formData.append('key', (new Date()).getTime() + Math.floor(Math.random() * 100)+'.'+file.name.substr(file.name.lastIndexOf('.')+1));
 
                         var reader = new FileReader();
