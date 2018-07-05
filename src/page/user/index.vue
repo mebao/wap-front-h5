@@ -25,7 +25,7 @@
                     <div class="tab-info">
                         <div class="flex">
                             <div><img slot="icon" src="../../assets/5.png" width="100" height="105"></div>
-                            <div class="flex-1 user info ml10"><div class="name">{{user.name}} 家长</div><div>{{user.mobile}}</div></div>
+                            <div class="flex-1 user info ml10"><div class="name">{{user.name}}</div><div>{{user.mobile}}</div></div>
                             <div class="flex-1"></div>
                             <div class="card info"><div class="card-name" v-if="user.memberName!=null">{{user.memberName}}</div><div class="balance mt3">余额：{{user.userBalance}}元</div></div>
                         </div>

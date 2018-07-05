@@ -234,7 +234,7 @@
                     username: _this.username,
                     token: _this.token,
                     name: _this.name,
-                    nickname: _this.nickName,
+                    nickname: _this.nickname,
                     gender: _this.gender,
                     birth_date: _this.birth_date,
                     blood_type: _this.blood_type == '请选择血型' ? '' : _this.blood_type,
