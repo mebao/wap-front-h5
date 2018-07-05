@@ -67,14 +67,14 @@
                                 </select>
                             </p>
                         </div>
-                        <div class="cell">
+                        <!-- <div class="cell">
                             <p class="left-box">宝宝身高：</p>
                             <p class="middle-box"><input type="number" v-model="child.height"/></p>
                         </div>
                         <div class="cell">
                             <p class="left-box">宝宝体重：</p>
                             <p class="middle-box"><input type="number" v-model="child.weight"/></p>
-                        </div>
+                        </div> -->
                         <!-- <div class="cell">
                             <p class="left-box">宝宝腿长：</p>
                             <p class="middle-box"><input type="number" v-model="child.legLength"/></p>
@@ -109,7 +109,7 @@
   </div>
 </template>
 <script>
-    import { MessageBox,Indicator } from 'mint-ui';
+    import { MessageBox,Indicator,Toast } from 'mint-ui';
     import MoUpload from '@/components/upload'
     export default {
         name:'updateChild',
@@ -130,6 +130,9 @@
         },
         mounted:function(){
             this.$nextTick(function () {
+               this.child.bloodType == '未知' ? this.child.bloodType = '请选择血型' : this.child.blood_type;
+               this.child.shengxiao == '未知' ? this.child.shengxiao = '请选择生肖' : this.child.shengxiao;
+               this.child.horoscope == '未知' ? this.child.horoscope = '请选择星座' : this.child.horoscope;
                this.getToken();
                this.optionsHoroscope = [
                     {key: 'aries', value: '白羊座'},
@@ -249,6 +252,12 @@
             update: function(){
                 Indicator.open('加载中...');
                 var _this = this;
+                if(_this.child.gender == '男'){
+                    _this.child.gender = 'M';
+                }else if(_this.child.gender == '女'){
+                    _this.child.gender = 'F';
+                }
+                console.log(_this.child.bloodType);
                 var requestObj={
                     username: _this.username,
                     token: _this.token,
@@ -256,14 +265,14 @@
                     nickname: _this.child.nickName,
                     gender: _this.child.gender,
                     birth_date: _this.child.birthday,
-                    blood_type: _this.child.bloodType,
-                    horoscope: _this.child.horoscope,
-                    shengxiao: _this.child.shengxiao,
+                    blood_type: _this.child.bloodType == '请选择血型' ? '' : _this.child.bloodType,
+                    horoscope: _this.child.horoscope == '请选择星座' ? '' : _this.child.horoscope,
+                    shengxiao: _this.child.shengxiao == '请选择生肖' ? '' : _this.child.shengxiao,
                     is_default: '1',
                     // remote_domain: '',
                     // remote_file_key: '',
                     clinic_id: localStorage.getItem('wap_clinic'),
-                    child_id: _this.child.childId
+                    child_id: _this.child.childId,
                 }
                  //判断头像(不必传)
                 if(document.getElementById('file').value == ''){
