@@ -25,7 +25,7 @@
                           </div>
                       </div>
                   </div>
-                 <mt-cell :key="tran.id" v-if="tran.type != '7'" v-for="tran in tranList" :title="tran.time" :label="tran.typeText" @click.native="goRouter(tran)">-{{tran.amount}}</mt-cell>
+                 <mt-cell :key="tran.id" v-for="tran in tranList" :title="tran.time" :label="tran.typeText" @click.native="goRouter(tran)">{{(tran.type == '7' ? '+' : '') + (tran.amount * -1)}}</mt-cell>
                  <div v-if="nodata" class="ml10 mt10">
                      暂无交易记录
                   </div>
@@ -84,9 +84,10 @@ export default {
             					this.recharge += parseFloat(res.data.results.list[i].totalAmount);
             				}
             				// 判断是否为消费
-            				if(res.data.results.list[i].type == '1' || res.data.results.list[i].type == '3'){
+            				if(res.data.results.list[i].type != '2'){
             					this.consume += parseFloat(res.data.results.list[i].totalAmount);
                             }
+                            //辅助治疗退款
                             res.data.results.list[i].amount = Common.toDecimal2(res.data.results.list[i].amount);
             			}
                     }else{

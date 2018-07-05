@@ -81,6 +81,10 @@
                                 <div class="flex-1">减免金额：</div>
                                 <div>-{{detail.giveAmount}}</div>
                             </div>
+                            <div class="flex">
+                                <div class="flex-1">退款金额：</div>
+                                <div>{{tuikuan}}</div>
+                            </div>
                             <div class="flex pt10">
                                 <div class="flex-1">{{detail.wayText}}：</div>
                                 <div>{{detail.amount}}</div>
@@ -172,7 +176,7 @@
                         </div>
                     </div>
                     <!-- 辅助治疗退款 -->
-                    <!-- <div v-if="payType == '7'">
+                    <div v-if="payType == '7'">
                         <div class="info-tab pad10">
                             <div class="text-center">{{detail.typeText}}</div>
                             <div class="text-center money">{{detail.amount * -1}}元</div>
@@ -185,7 +189,7 @@
                                 <div>{{detail.time}}</div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
               </div>
           </div>
       </div>
@@ -205,6 +209,7 @@ export default {
             detail:JSON.parse(sessionStorage.getItem('payDetail')),
             payType:'',
             bookingfee:'',
+            tuikuan: 0,
         }
     },
     mounted:function(){
@@ -283,7 +288,11 @@ export default {
             						res.data.results.feeinfo['其他费用'][i].originalFee = Common.toDecimal2(parseFloat(res.data.results.feeinfo['其他费用'][i].price) * parseFloat(res.data.results.feeinfo['其他费用'][i].number));
             						this.detail.needAmount += parseFloat(res.data.results.feeinfo['其他费用'][i].originalFee);
             					}
-            				}
+                            }
+                            if(this.detail.amount != this.bookingfee.tranInfo.amount){
+                                this.detail.needAmount = Common.toDecimal2(parseFloat(this.detail.needAmount) + (this.detail.amount - this.bookingfee.tranInfo.amount));
+                                this.tuikuan = Common.toDecimal2(this.detail.amount - this.bookingfee.tranInfo.amount);
+                            }
             				this.detail.discountAmount = Common.toDecimal2(this.detail.needAmount - parseFloat(this.detail.giveAmount) - parseFloat(this.detail.amount) - parseFloat(this.detail.secondAmount == null ? '0' : this.detail.secondAmount) - (res.data.results.feeinfo['预约金'] ? parseFloat(res.data.results.feeinfo['预约金'].fee) : 0));
             				this.detail.needAmount = Common.toDecimal2(this.detail.needAmount);
                         }
@@ -298,6 +307,9 @@ export default {
         	}else if(type == '6'){
         		//活动卡售卖
         		this.payType = '4';
+        	}else if(type == '7'){
+        		//辅助治疗退款
+        		this.payType = '7';
         	}else if(type == '4'){
                 //药品零售
                 if(this.detail.drug){
