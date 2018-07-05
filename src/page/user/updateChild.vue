@@ -254,7 +254,7 @@
                     token: _this.token,
                     name: _this.child.childName,
                     nickname: _this.child.nickName,
-                    gender: _this.child.gender == '男'?'M':'F',
+                    gender: _this.child.gender,
                     birth_date: _this.child.birthday,
                     blood_type: _this.child.bloodType,
                     horoscope: _this.child.horoscope,

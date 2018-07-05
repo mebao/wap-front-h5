@@ -73,7 +73,11 @@ export default {
     },
     methods:{
         goBack:function(){
-            this.$router.go(-1);
+            if(this.$route.query.from == 'childInfo'){
+                this.$router.push('/user/childInfo');
+            }else{
+                this.$router.push('/user');
+            }
         },
         searchBookingfee:function(){
             Indicator.open('加载中...');

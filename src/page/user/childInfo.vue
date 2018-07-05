@@ -54,7 +54,7 @@
                    <div class="order-info">
                         <div class="flex text-center">
                             <div v-if="child" class="flex-1">
-                                <router-link to="/orderList">
+                                <router-link to="/orderList?from=childInfo">
                                     <div class="item">{{bookingInNum}}次就诊</div>
                                 </router-link>
                             </div>

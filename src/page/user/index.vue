@@ -161,7 +161,7 @@
             },
             goBooking: function(child){
                 sessionStorage.setItem('child',JSON.stringify(child));
-                this.$router.push('/orderList');
+                this.$router.push('/orderList?from=user');
             },
             goCard: function(){
                 this.popupVisible = true;
