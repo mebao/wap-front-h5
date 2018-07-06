@@ -78,7 +78,7 @@ export default {
                     if(res.data.results.list.length > 0){
             			for(var i = 0; i < res.data.results.list.length; i++){
             				res.data.results.list[i].payAmount = Common.toDecimal2((parseFloat(res.data.results.list[i].amount) + parseFloat(res.data.results.list[i].secondAmount)).toString());
-            				res.data.results.list[i].totalAmount = Common.toDecimal2(parseFloat(res.data.results.list[i].amount) + parseFloat(res.data.results.list[i].giveAmount) + parseFloat(res.data.results.list[i].secondAmount == null ? '0' : res.data.results.list[i].secondAmount));
+            				res.data.results.list[i].totalAmount = Common.toDecimal2(parseFloat(res.data.results.list[i].amount) + parseFloat(res.data.results.list[i].secondAmount == null ? '0' : res.data.results.list[i].secondAmount));
             				// 判断是否为充值
             				if(res.data.results.list[i].type == '2'){
             					this.recharge += parseFloat(res.data.results.list[i].totalAmount);
