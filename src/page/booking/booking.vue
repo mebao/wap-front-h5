@@ -27,7 +27,7 @@
                                     预约项目
                                 </div>
                                 <div class="flex-1">
-                                    <select @change="changeService()" :value="selectedService">
+                                    <select @change="changeService()"  v-model="selectedService">
                                         <option v-for="service in serviceList" :key='service.id' :value="service">{{service.name}}</option>
                                     </select>
                                 </div>
@@ -37,7 +37,7 @@
                                     预约医生
                                 </div>
                                 <div class="flex-1">
-                                    <select v-model="selectedDoctor">
+                                    <select v-model="selectedDoctor" @change="changeDoctor()">
                                         <option></option>
                                         <option v-for="doctor in doctorList" :key='doctor.doctorId' :value="doctor">{{doctor.doctorName}}</option>
                                     </select>
@@ -69,7 +69,7 @@
                         </div>
             			  </div>
                         <div class="w100 pr10 pl10">
-                            <mt-button class="mt10" size="large" type="primary" @click="submitForm()" :disabled="selectedService =='' || selectedDoctor =='' ||selectedDate =='' ||selectedTime =='' ||selectedChild == ''">确认预约</mt-button>
+                            <mt-button class="mt10" size="large" type="primary" @click="goBooking()" :disabled="selectedService =='' || selectedDoctor =='' ||selectedDate =='' ||selectedTime =='' ||selectedChild == ''">预约</mt-button>
                         </div>
                 </div>
             </div>
@@ -108,6 +108,7 @@ export default {
       selectedChild: "",
       childList: "",
       type: "",
+      initFlag: true,
     };
   },
   mounted: function() {
@@ -152,6 +153,7 @@ export default {
         "&clinic_id=" +  localStorage.getItem('wap_clinic') +
         "&service_id=" +
         this.selectedService.id;
+
       this.$http.get(window.envs.api_url + "/searchtuina" + urlOptions).then(
         res => {
           //this.childList = res.data.results.childs;
@@ -184,9 +186,14 @@ export default {
               this.doctorList = res.data.results.doctors;
             }
             this.childList = res.data.results.childs;
-            if (this.childList.length > 0) {
+            if (this.initFlag && this.childList.length > 0) {
               this.selectedChild = this.childList[0];
+              this.initFlag = false;
             }
+            //清空数据
+            this.selectedDoctor = '';
+            this.selectedDate = '';
+            this.selectedTime = '';
           }
           Indicator.close();
         },
@@ -195,6 +202,11 @@ export default {
           Toast({message: "服务器错误",position: 'middle',duration: 3000});
         }
       );
+    },
+    changeDoctor: function(){
+      //清空数据
+      this.selectedDate = '';
+      this.selectedTime = '';
     },
     changeDuty: function() {
       this.timeList = [];
@@ -227,8 +239,22 @@ export default {
           this.timeList.push(time);
         }
       }
+      //清空数据
+      this.selectedTime = '';
     },
-    submitForm: function() {console.log(111);
+    goBooking: function(){
+        var html = '<div class="text-left nowrap"><div>宝宝姓名：'+ this.selectedChild.childName + '</div>' +
+                  '<div>预约科室：'+ this.selectedService.name + '</div>' +
+                  '<div>预约医生：'+ this.selectedDoctor.doctorName + '</div>' +
+                  '<div>预约日期：'+ this.selectedDate.dutyDateText + '</div>' +
+                  '<div>预约时间：'+ this.selectedTime + '</div></div>';
+        MessageBox.confirm(html,'确认预约？').then(() => {
+            this.submitForm();
+        },()=>{
+
+        });
+    },
+    submitForm: function() {
       Indicator.open('加载中...');
       var param = {
         username: this.username,

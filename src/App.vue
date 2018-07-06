@@ -362,4 +362,7 @@ a{
         }
     }
 }
+.nowrap{
+    white-space: nowrap;
+}
 </style>
