@@ -243,10 +243,10 @@ export default {
       this.selectedTime = '';
     },
     goBooking: function(){
-        var html = '<div class="text-left nowrap"><div>宝宝姓名：'+ this.selectedChild.childName + '</div>' +
+        var html = '<div class="text-left"><div>宝宝姓名：'+ this.selectedChild.childName + '</div>' +
                   '<div>预约科室：'+ this.selectedService.name + '</div>' +
                   '<div>预约医生：'+ this.selectedDoctor.doctorName + '</div>' +
-                  '<div>预约日期：'+ this.selectedDate.dutyDateText + '</div>' +
+                  '<div class="flex"><div>预约日期：</div><div class="flex-1"><div>'+ this.selectedDate.dutyDateText.split(' ')[0] + '</div><div>'+ this.selectedDate.dutyDateText.split(' ')[1] + '</div></div></div>' +
                   '<div>预约时间：'+ this.selectedTime + '</div></div>';
         MessageBox.confirm(html,'确认预约？').then(() => {
             this.submitForm();
