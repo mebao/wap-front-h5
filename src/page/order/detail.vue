@@ -58,6 +58,9 @@
                                 </div>
                             </div>
                           </div>
+                          <div class="w100 pr10 pl10">
+                            <mt-button size="large" type="primary" @click="udpateBooking()">修改预约</mt-button>
+                          </div>
                       </mt-tab-container-item>
                       <mt-tab-container-item id="2" v-if="casehistory !='' || healthrecord == ''">
                         <div v-if="hasCasehistory" class="pad10">
@@ -399,7 +402,7 @@ export default {
             username: localStorage.getItem('username'),
             token: localStorage.getItem('token'),
             child: JSON.parse(sessionStorage.getItem('child')),
-            order: JSON.parse(sessionStorage.getItem('order')),
+            order: '',
             selected:'1',
             bookingList:'',
             caseList:'',
@@ -414,7 +417,7 @@ export default {
             hasCasehistory: false,
             casehistory: '',
             healthItem: '',
-            use: new Date().getTime() < new Date(JSON.parse(sessionStorage.getItem('order')).bookingDate),
+            use: '',
             imgSrc: '',
             showImg: false,
         }
@@ -426,6 +429,7 @@ export default {
         this.$nextTick(function () {
             document.title = '预约';
             Indicator.open('加载中...');
+            this.searchBooking();
             this.searchUserCheckProject();
             this.searchCaseHistory();
             this.searchHealthRecord();
@@ -490,6 +494,31 @@ export default {
         })
     },
     methods:{
+        searchBooking: function(){
+            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&child_id=' + this.child.childId + '&id=' + this.$route.query.id;
+            this.$http.get(window.envs.api_url + '/mybookings' + urlOptions).then((res)=>{
+                if(res.data.status == 'no'){
+                    Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
+                }else{
+                    if(res.data.results.allBookings.length > 0){
+                        res.data.results.allBookings[0].bookingDateText = res.data.results.allBookings[0].bookingDate.replace('-', '年');
+                        res.data.results.allBookings[0].bookingDateText = res.data.results.allBookings[0].bookingDateText.replace('-', '月');
+                        res.data.results.allBookings[0].bookingDateText = res.data.results.allBookings[0].bookingDateText.replace(' ', '日 ');
+                        if(res.data.results.allBookings[0].begin){
+                            res.data.results.allBookings[0].beginText = res.data.results.allBookings[0].begin.replace('-', '年');
+                            res.data.results.allBookings[0].beginText = res.data.results.allBookings[0].beginText.replace('-', '月');
+                            res.data.results.allBookings[0].beginText = res.data.results.allBookings[0].beginText.replace(' ', '日 ');
+                        }
+                        this.order = res.data.results.allBookings[0];
+                        this.use = new Date().getTime() < new Date(this.order.bookingDate);
+                    }
+                }
+                Indicator.close();
+            },(res)=>{
+                Indicator.close();
+                Toast({message: "服务器错误",position: 'middle',duration: 3000});
+            });
+        },
         searchCaseHistory: function(){
             var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id;
             this.$http.get(window.envs.api_url + '/searchcasehistory' + urlOptions).then((res)=>{
@@ -626,6 +655,10 @@ export default {
         viewImg(){
             this.showImg = false;
         },
+        udpateBooking: function(){
+            sessionStorage.setItem('order',JSON.stringify(this.order));
+            this.$router.push({path:'/booking/updateBooking'});
+        }
     }
 }
 </script>

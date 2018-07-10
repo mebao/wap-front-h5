@@ -145,8 +145,7 @@ export default {
             this.$router.push({path: '/order/checkList',query:{childId:this.child.childId}});
         },
         detail: function(order){
-            sessionStorage.setItem('order',JSON.stringify(order));
-            this.$router.push('order/detail');
+            this.$router.push('order/detail?id=' + order.id);
         },
         cancelOrder: function(id){
             MessageBox.confirm('<textarea id="cancelRemark" placeholder="请输入取消原因" style="padding: 10px; width: 100%; border-radius: 4px; border-color: #d6d6d6;"></textarea>','温馨提示').then(() => {

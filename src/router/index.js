@@ -19,6 +19,7 @@ const orderInfo= resolve => require(['@/page/order/info'], resolve);
 const checkList = resolve => require(['@/page/order/checkList'], resolve);
 const checkInfo= resolve => require(['@/page/order/checkInfo'], resolve);
 const booking = resolve => require(['@/page/booking/booking'], resolve);
+const updateBooking = resolve => require(['@/page/booking/updateBooking'], resolve);
 
 Vue.use(Router)
 
@@ -184,6 +185,14 @@ export default new Router({
         title:'预约'
       },
       component: booking
+    },
+    {
+      path: '/booking/updateBooking',
+      name: 'updateBooking',
+      meta:{
+        title: '修改预约'
+      },
+      component: updateBooking
     },
 ]
 })
