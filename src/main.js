@@ -59,6 +59,9 @@ import {MessageBox} from 'mint-ui';
 Vue.http.interceptors.push((request, next) => {
   request.credentials = true;//请求头携带cookie
   next((res)=>{
+    if(!res.data.status){
+      Toast({message: "服务器错误",position: 'middle',duration: 3000});
+    }
     //设置重新登陆
     if(res.ok && res.data.status == 'no' && res.data.errorCode == '1001'){
         router.push('/login');
