@@ -53,7 +53,7 @@ new Vue({
   template: '<App/>',
 })
 
-import {MessageBox} from 'mint-ui';
+import {Toast} from 'mint-ui';
 
 //vue-resource拦截器
 Vue.http.interceptors.push((request, next) => {
