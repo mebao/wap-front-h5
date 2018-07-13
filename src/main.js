@@ -59,8 +59,11 @@ import {Toast} from 'mint-ui';
 Vue.http.interceptors.push((request, next) => {
   request.credentials = true;//请求头携带cookie
   next((res)=>{
-    if(!res.data.status){
-      return res.data.status = 'no';
+    if(res.headers.map['Content-Type'][0].indexOf('application/json') == -1){
+      res.data = {
+        status: 'no',
+        errorMsg: '服务器错误'
+      };
     }
     //设置重新登陆
     if(res.ok && res.data.status == 'no' && res.data.errorCode == '1001'){

@@ -59,7 +59,7 @@
                             </div>
                           </div>
                           <div class="w100 pr10 pl10">
-                            <mt-button size="large" type="primary" @click="udpateBooking()">修改预约</mt-button>
+                            <mt-button v-if="order.status == '1' || order.status == '2'" size="large" type="primary" @click="udpateBooking()">修改预约</mt-button>
                           </div>
                       </mt-tab-container-item>
                       <mt-tab-container-item id="2" v-if="casehistory !='' || healthrecord == ''">

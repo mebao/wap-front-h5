@@ -28,7 +28,7 @@
                                     <span :class="{'diagnosis': !(order.status == '4' || order.status == '5' || order.status == '11'), 'has-diagnosis': order.status == '4' || order.status == '5' || order.status == '11'}">{{order.status == '4' || order.status == '5' || order.status == '11' ? (!order.diagnosis || order.diagnosis == '' ? '暂无' : order.diagnosis) : '尚未就诊'}}</span>
                                 </p>
         					</div>
-        					<p class="text-right" v-show="order.status==1">
+        					<p class="text-right" v-show="order.status== '1' || order.status== '2'">
         						<button class="btn-cancel" @click="cancelOrder(order.id)">取消订单</button>
         					</p>
                         </div>
