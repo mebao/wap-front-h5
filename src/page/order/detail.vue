@@ -520,7 +520,7 @@ export default {
             });
         },
         searchCaseHistory: function(){
-            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id;
+            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.$route.query.id;
             this.$http.get(window.envs.api_url + '/searchcasehistory' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
                     Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
@@ -539,7 +539,7 @@ export default {
             });
         },
         searchHealthRecord: function(){
-            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id;
+            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.$route.query.id;
             this.$http.get(window.envs.api_url + '/searchhealthrecord' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
                     Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});  
@@ -553,7 +553,7 @@ export default {
             });
         },
         searchTcmPrescript: function(){
-            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id  + '&isout=1';
+            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.$route.query.id  + '&isout=1';
             this.$http.get(window.envs.api_url + '/searchtcmprescript' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
                     Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});  
@@ -569,7 +569,7 @@ export default {
             });
         },
         searchPrescript: function(){
-            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id  + '&isout=1';
+            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.$route.query.id + '&isout=1';
             this.$http.get(window.envs.api_url + '/searchprescript' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
                     Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});  
@@ -591,7 +591,7 @@ export default {
             });
         },
         searchBookingAssist: function(){
-            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.order.id;
+            var urlOptions = '?username=' + this.username + '&token=' + this.token + '&booking_id=' + this.$route.query.id;
             this.$http.get(window.envs.api_url + '/bookingassist' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
                     Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});  
@@ -614,7 +614,7 @@ export default {
         searchUserCheckProject: function(){
             var username = this.username;
             var token = this.token;
-            var urlOptions = '?username=' + username + '&token=' + token + '&booking_id=' + this.order.id + '&today=1&ischeck=1';
+            var urlOptions = '?username=' + username + '&token=' + token + '&booking_id=' + this.$route.query.id + '&today=1&ischeck=1';
             this.$http.get(window.envs.api_url + '/usercheckprojects' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
                     Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
@@ -641,7 +641,7 @@ export default {
             });
         },
         showCheckInfo:function(){
-            sessionStorage.setItem('checkBookingId',this.order.id);
+            sessionStorage.setItem('checkBookingId', this.$route.query.id);
             this.$router.push({path:'/order/checkInfo',query:{type:'orderDetail'}});
         },
         showPdf: function(_url){
