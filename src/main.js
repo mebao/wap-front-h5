@@ -59,7 +59,7 @@ import {Toast} from 'mint-ui';
 Vue.http.interceptors.push((request, next) => {
   request.credentials = true;//请求头携带cookie
   next((res)=>{
-    if(res.headers.map['Content-Type'][0].indexOf('application/json') == -1){
+    if(res.headers.map && ((res.headers.map['content-type'] && res.headers.map['content-type'].length > 0 && res.headers.map['content-type'][0].indexOf('application/json') == -1) || (res.headers.map['Content-Type'] && res.headers.map['Content-Type'].length > 0 && res.headers.map['Content-Type'][0].indexOf('application/json') == -1))){
       res.data = {
         status: 'no',
         errorMsg: '服务器错误'
