@@ -58,9 +58,9 @@
                                     <div class="item">{{bookingInNum}}次就诊</div>
                                 </router-link>
                             </div>
-                            <div v-if="child" class="flex-1">
+                            <!-- <div v-if="child" class="flex-1">
                                 <div class="item">{{caseHistory.length}}份病历</div>
-                            </div>
+                            </div> -->
                             <div v-if="child" class="flex-1" @click="checkList()">
                                 <div class="item no-border">{{checkProjects.length}}组报告</div>
                             </div>
