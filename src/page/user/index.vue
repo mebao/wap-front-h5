@@ -1,6 +1,6 @@
 <template>
   <div class="layout-base">
-      <mt-header title="个人中心">
+      <mt-header :title="title">
     </mt-header>
     <div class="layout-content">
         <div class="content-view">
@@ -103,10 +103,27 @@
                 active: false,
                 activeBooking: false,
                 popupVisible: false,
+                title: '个人中心',
             }
         },
         mounted:function(){
             this.$nextTick(function () {
+                if(localStorage.getItem('wap_clinic')== '1'){
+                    this.title = '个人中心--遵义测试';
+                    document.title = '个人中心--遵义测试';
+                }else if(localStorage.getItem('wap_clinic')== '4'){
+                    this.title = '个人中心--遵义嘉宝';
+                    document.title = '个人中心--遵义嘉宝';                    
+                }else if(localStorage.getItem('wap_clinic')== '10'){
+                    this.title = '个人中心--测试嘉宝';
+                    document.title = '个人中心--测试嘉宝';                   
+                }else if(localStorage.getItem('wap_clinic')== '2'){
+                    this.title = '个人中心--昆明嘉宝';
+                    document.title = '个人中心--昆明嘉宝';
+                }else if(localStorage.getItem('wap_clinic')== '99'){
+                    this.title = '个人中心--昆明测试';
+                    document.title = '个人中心--昆明测试';                    
+                }
                 this.searchchild();
                 this.searchuser();
             })
