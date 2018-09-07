@@ -40,6 +40,14 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="cell flex">
+                                <div class="left-box icon-fee">
+                                    预约价格
+                                </div>
+                                <div class="flex-1" v-if="selectedDoctor.fee">
+                                    {{selectedDoctor.fee * 1}}元/次
+                                </div>
+                            </div>
                           <div class="cell flex">
                             <div class="left-box icon-date">
                               预约日期
@@ -424,6 +432,12 @@ export default {
   .icon-name {
     background: url("../../assets/icon_name.png") no-repeat;
     background-size: 1.5rem 1.25rem;
+    padding-left: 30px;
+    background-position-y: 21px;
+  }
+  .icon-fee {
+    background: url("../../assets/icon_fee.png") no-repeat;
+    background-size: 1.4rem 1.25rem;
     padding-left: 30px;
     background-position-y: 21px;
   }
