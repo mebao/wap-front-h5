@@ -289,6 +289,22 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div v-if="(healthrecord.gestationalDays != null && healthrecord.gestationalDays != '') || (healthrecord.gestationalWeeks != null && healthrecord.gestationalWeeks != '')" class="cell height-auto">
+                                    <div class="left-box clearly-width">
+                                        孕周:
+                                    </div>
+                                    <div class="right-box line-height-normal">
+                                        {{healthrecord.gestationalWeeks}}周<span v-if="healthrecord.gestationalDays != 0">{{healthrecord.gestationalDays}}天</span>
+                                    </div>
+                                </div>
+                                <div v-if="healthrecord.productionWay != null && healthrecord.productionWayText != ''" class="cell height-auto">
+                                    <div class="left-box clearly-width">
+                                        分娩方式:
+                                    </div>
+                                    <div class="right-box line-height-normal">
+                                        {{healthrecord.productionWayText}}
+                                    </div>
+                                </div>
                                 <div v-if="healthrecord[item.key] != null && healthrecord[item.key] != ''" v-for="item in healthItem" class="cell height-auto" :key="item.name">
                                     <div class="left-box clearly-width">
                                         {{item.name}}:
@@ -437,6 +453,13 @@ export default {
             this.searchPrescript();
             this.searchBookingAssist();
             this.healthItem = [
+                {name: '出生时体重', key: 'birthWeight', unit: 'kg'},
+                {name: '分娩状态', key: 'productionStatus', unit: ''},
+                {name: '喂养方式', key: 'feedingWay', unit: ''},
+                {name: '补充VitD制剂', key: 'vitD', unit: ''},
+                {name: '其他(喂养特殊情况)', key: 'feedingOther', unit: ''},
+                {name: '主食', key: 'stapleFood', unit: ''},
+                {name: '辅食', key: 'solidFood', unit: ''},
                 {name: '头围', key: 'headCircum', unit: 'cm'},
                 {name: '胸围', key: 'breastCircum', unit: 'cm'},
                 {name: '体温', key: 'bodyTemperature', unit: '°C'},
@@ -483,12 +506,17 @@ export default {
                 {name: '微量元素', key: 'traceElement', unit: ''},
                 {name: '铅、镉、锰', key: 'heavyMetal', unit: ''},
                 {name: 'ABO血型鉴定', key: 'bloodType', unit: ''},
+                {name: '个人与社会', key: 'individualSociety', unit: ''},
+                {name: '语言', key: 'language', unit: ''},
+                {name: '精细动作', key: 'fineMovement', unit: ''},
+                {name: '大运动', key: 'greatSport', unit: ''},
                 {name: '喂养指导', key: 'feeding', unit: ''},
                 {name: '生活指导', key: 'life', unit: ''},
                 {name: '免疫接种指导', key: 'immunization', unit: ''},
                 {name: '疾病预防', key: 'diseasePrevention', unit: ''},
                 {name: '答疑解惑', key: 'answeringQuestions', unit: ''},
                 {name: '诊疗记录', key: 'record', unit: ''},
+                {name: '其他', key: 'other', unit: ''},
                 {name: '复查日期', key: 'reviewDate', unit: ''},
 	        ]
         })
@@ -546,6 +574,21 @@ export default {
                 }else{
                     if(res.data.results.list.length > 0){
                         this.healthrecord = res.data.results.list[0];
+                    }
+                    if(this.healthrecord.productionWay){
+                        var productionWayList = this.healthrecord.productionWay.split('`');
+                        var productionWayText = '';
+                        if(productionWayList.length > 0){
+                            for(var j = 0; j < productionWayList.length; j++){
+                                if(productionWayList[j] != ''){
+                                    productionWayText += productionWayList[j] + '，';
+                                }
+                            }
+                        }
+                        if(productionWayText.length > 0){
+                            productionWayText = productionWayText.slice(0, productionWayText.length - 1);
+                        }
+                        this.healthrecord.productionWayText = productionWayText;
                     }
                 }
             },(res)=>{
@@ -693,7 +736,7 @@ export default {
             }
         }
         .clearly-width{
-            width:6.25rem;
+            min-width:6.25rem;
             max-width: 16.66667rem;
             height: 100%;
             overflow: hidden;
