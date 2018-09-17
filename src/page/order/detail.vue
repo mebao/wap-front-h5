@@ -498,6 +498,7 @@ export default {
                 {name: '外生殖器', key: 'genitalia', unit: ''},
                 {name: '肛门', key: 'anus', unit: ''},
                 {name: '神经发育', key: 'neurodevelopment', unit: ''},
+                {name: '神经系统检查', key: 'nervousSystem', unit: ''},
                 {name: '血常规', key: 'bloodRoutineExamination', unit: ''},
                 {name: '尿常规', key: 'routineUrine', unit: ''},
                 {name: '大便常规', key: 'stoolRoutineExamination', unit: ''},
