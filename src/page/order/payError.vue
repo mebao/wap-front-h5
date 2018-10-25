@@ -1,17 +1,18 @@
 <template>
     <div class="layout-base">
-        <mt-header title="支付成功">
+        <mt-header title="预约错误">
       </mt-header>
       <div class="layout-content">
           <div class="content-view">
               <div class="content-page">
                   <div class="success-tab">
-                        <img src="../../assets/pay_success.png">
-                        <p class="info">支付成功</p>
+                        <img src="../../assets/pay_error.png">
+                        <p class="info" v-if="error != '0'">{{error}}</p>
+                        <p class="info" v-if="error == '0'">预约错误</p>
                         <p class="tel">前台电话：{{tel}}</p>
                         <div class="flex pt20">
                             <div class="flex-1"></div>
-                            <mt-button @click="showInfo()" class="btn btn-primary btn-small w60" type="primary">查看详情</mt-button>
+                            <mt-button v-if="error != '0'" @click="showInfo()" class="btn btn-primary btn-small w60" type="primary">查看详情</mt-button>
                             <div class="flex-1"></div>
                         </div>
                     </div>
@@ -23,10 +24,11 @@
 
 <script>
 export default {
-    name:'paySuccess',
+    name: 'payError',
     data(){
         return {
             tel: this.$route.query.tel,
+            error: this.$route.query.error,
         }
     },
     methods:{

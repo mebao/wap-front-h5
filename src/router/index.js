@@ -15,6 +15,7 @@ const card = resolve => require(['@/page/user/card'], resolve);
 const orderList = resolve => require(['@/page/order/orderList'], resolve);
 const orderDetail = resolve => require(['@/page/order/detail'], resolve);
 const paySuccess = resolve => require(['@/page/order/paySuccess'], resolve);
+const payError = resolve => require(['@/page/order/payError'], resolve);
 const orderInfo= resolve => require(['@/page/order/info'], resolve);
 const checkList = resolve => require(['@/page/order/checkList'], resolve);
 const checkInfo= resolve => require(['@/page/order/checkInfo'], resolve);
@@ -159,6 +160,12 @@ export default new Router({
       name: 'paySuccess',
       meta: {loginNoAuth: true, title:'支付成功'},
       component: paySuccess
+    },
+    {
+      path: '/order/payError',
+      name: 'payError',
+      meta: {loginNoAuth: true, title:'预约错误'},
+      component: payError
     },
     {
       path: '/order/checkList',
