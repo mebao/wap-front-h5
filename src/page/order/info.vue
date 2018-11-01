@@ -64,6 +64,7 @@ export default{
         return {
             bookingId: this.$route.query.id,
             info: '',
+            envs: '',
         }
     },
     mounted:function(){
@@ -76,7 +77,7 @@ export default{
         searchBookingInfo:function(){
             Indicator.open('加载中...');
             var urlOptions = '/'+ this.bookingId;
-            this.$http.get(window.envs.api_url + '/bookinginfo' + urlOptions).then((res)=>{
+            this.$http.get(this.envs.api_url + '/bookinginfo' + urlOptions).then((res)=>{
                 if(res.data.status == 'no'){
                     Toast({ message: res.data.errorMsg,position: 'middle',duration: 3000});
                 }else{
@@ -115,36 +116,36 @@ export default{
                 }
             };
            if(process.env.NODE_ENV === 'development'){
-                window.envs = allEnvs.localhost;
+                this.envs = allEnvs.localhost;
             }else if(process.env.NODE_ENV === 'production'){
-                switch (localStorage.getItem('wap_clinic')) {
+                switch (this.$route.query.clinic_id) {
                     case '1':
                     {
-                        window.envs = allEnvs.product_zunyi;
+                        this.envs = allEnvs.product_zunyi;
                         break;
                     }
                     case '4':
                     {
-                        window.envs = allEnvs.product_zunyi;
+                        this.envs = allEnvs.product_zunyi;
                         break;
                     }
                     case '2':
                     {
-                        window.envs = allEnvs.product_kunming;
+                        this.envs = allEnvs.product_kunming;
                         break;
                     }
                     case '99':
                     {
-                        window.envs = allEnvs.product_kunming;
+                        this.envs = allEnvs.product_kunming;
                         break;
                     }
                     case '10':
                     {
-                        window.envs = allEnvs.product_test;
+                        this.envs = allEnvs.product_test;
                         break;
                     }
                     default:
-                        window.envs = allEnvs.product_zunyi;
+                        this.envs = allEnvs.product_zunyi;
                         break;
                 }
             }
